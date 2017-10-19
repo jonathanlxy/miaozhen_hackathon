@@ -18,7 +18,7 @@ def title_parser(url):
     # parse title
     title = driver.title
     n = 0
-    # check if chinese characters appear, otherwise stop loading after 5 secs
+    # check if chinese characters appear, if nah stop loading after 5 secs
     while re.findall('[\u4e00-\u9fff]+', title) == []:
         time.sleep(.1)
         n += .1
