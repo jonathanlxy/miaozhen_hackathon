@@ -31,7 +31,7 @@ def title_parser(url):
     return title
 
 #load url list
-url_list = open('/Users/olap/Desktop/url.csv', 'r').read().split('\n')
+url_list = open('url.csv', 'r').read().split('\n')
 
 # parse title
 start = time.time()
@@ -40,6 +40,6 @@ end = time.time()
 print(end - start)
 
 
-with open("/Users/olap/Desktop/file3.txt", "w") as output:
+with open("title.txt", "w") as output:
     for title in title_list:
         output.write(str(title) + '\n')
