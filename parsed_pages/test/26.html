@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<!--STATUS OK-->
+<!--
+ * Copyright (c) 2014-2015 Baidu, All rights reseved.
+ * @fileoverview 页面模板主框架
+ * @author WangWenshu | wangwenshu@baidu.com
+ * @version 1.0 | 2014-06-17 | WangWenshu    // Initial version.
+ * @version 1.1 | 2014-09-12 | WangWenshu    // 新增 'after_body' 的 block.
+ * @version 1.2 | 2014-09-22 | WangWenshu    // 新增 'head_start' 的 block.
+ * @version 1.3 | 2014-09-24 | WangWenshu    // 新增 'after_head' 的 block.
+ * @version 1.4 | 2015-04-30 | ShangWenbin   // 新增 'variable_defined' 的 block.
+ *
+ * @description
+ *   1) 此文件定义页面模板的主框架，所有业务模块的所有页面模板，最终都应继承于此模板。
+ *   2) 此框架内禁止(MUST NOT)包含任何业务模块独立相关的业务逻辑。
+ *   3) "head_end" block 位于 <head> 标签尾部，用于自行添加 CSS 资源引用等。
+ *      此 block 输出的内容将位于 FIS 向 <head> 自动输出的内容(CSS等资源引用)之前；
+ *      如需确保插入的内容位于 FIS 输出内容之后，且位于 body 之前，则可考虑使用 "after_head" block.
+ *   4) "variable_defined" block 只用来定义smarty变量，做数据预处理。
+ *      @!!notice: 严禁在该block中做任何输出，否则会导致页面出错。
+ -->
+<!--
+ * framework: 基于AMD规范的模块化框架.
+ * fid: FIS自动打包参数，产品线标志，百科固定为 "baike".
+ * sampleRate: FIS自动打包参数，统计采样率，取值 [0,1]，建议覆盖50~100万 PV；此处取 PV 100W 计算(词条页接入后，需降低此值)。
+ -->
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible"/>
+  <meta content="always" name="referrer"/>
+  <meta content="百度百科是一部内容开放、自由的网络百科全书，旨在创造一个涵盖所有领域知识，服务所有互联网用户的中文知识性百科全书。在这里你可以参与词条编辑，分享贡献你的知识。" name="description"/>
+  <title>
+   【TA说】中国有一种比大熊猫还珍贵的猴子，因为不会卖萌错失国宝宝座_百度百科
+  </title>
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="//www.baidu.com/img/baidu.svg" mask="" rel="icon" sizes="any"/>
+  <!-- <head> 标签开始位置，title 之后，所有 CSS/JavaScript 引用之前 -->
+  <!-- 基础样式 -->
+  <!-- 为 IE8 及更低版本 IE 浏览器添加 HTML5 新增元素支持 -->
+  <!--
+ * Copyright (c) 2014-2015 Baidu, All rights reseved.
+ * @fileoverview HTML5 hack(for IE8 and lower versions)
+ * @author WangWenshu | wangwenshu@baidu.com
+ * @version 1.0 | 2014-05-04 | WangWenshu    // Initial version.
+ -->
+  <!--[if lte IE 9]>
+  <script>
+    (function() {
+      var e = "abbr,article,aside,audio,canvas,datalist,details,dialog,eventsource,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,time,video".split(","),
+        i = e.length;
+      while (i--) {
+        document.createElement(e[i]);
+      }
+    })();
+  </script>
+<![endif]-->
+  <!-- <head> 标签结束位置(FIS自动整合进头部的资源之前) -->
+  <link href="https://bkssl.bdimg.com/static/wiki-common/pkg/wiki-common-base_1acfb9c.css" rel="stylesheet" type="text/css"/>
+  <link href="https://bkssl.bdimg.com/static/wiki-common/widget/component/userbar/userbar_a5630e5.css" rel="stylesheet" type="text/css"/>
+  <link href="https://bkssl.bdimg.com/static/wiki-tashuo/pkg/wiki-tashuo_c2e9f44.css" rel="stylesheet" type="text/css"/>
+  <link href="https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/announcement/announcement_126f5e6.css" rel="stylesheet" type="text/css"/>
+  <link href="https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/label/label_ca156c6.css" rel="stylesheet" type="text/css"/>
+  <link href="https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/newSideShare/sideShare_2af1cbd.css" rel="stylesheet" type="text/css"/>
+  <link href="https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/video/pageMask/pageMask_ff9a193.css" rel="stylesheet" type="text/css"/>
+  <link href="https://bkssl.bdimg.com/static/wiki-lemma/pkg/wiki-lemma-module_d0fe2e6.css" rel="stylesheet" type="text/css"/>
+  <link href="https://bkssl.bdimg.com/static/wiki-tashuo/less/article/article_58812af.css" rel="stylesheet" type="text/css"/>
+ </head>
+ <!-- <head> 标签之后 -->
+ <!-- block "body_page_class" 用于向 <body> 标签中添加样式名 -->
+ <body class="w-large">
+  <!-- <body> 标签开始位置，页面主体内容前 -->
+  <!-- 页面主体内容 -->
+  <!-- 页面内容的 header 区域 -->
+  <div class="header-wrapper">
+   <div class="header">
+    <ul class="wgt-userbar">
+     <li>
+      <a href="http://www.baidu.com/">
+       百度首页
+      </a>
+     </li>
+    </ul>
+    <div class="wgt-searchbar wgt-searchbar-simple cmn-clearfix ">
+     <div class="logo-container">
+      <a class="logo cmn-inline-block" href="/" title="到百科首页">
+       <span class="cmn-baike-logo">
+        <em class="cmn-icon cmn-icons cmn-icons_logo-bai" style="font-size: 32px">
+        </em>
+        <em class="cmn-icon cmn-icons cmn-icons_logo-du" style="font-size: 32px">
+        </em>
+        <em class="cmn-icon cmn-icons cmn-icons_logo-baike" style="font-size: 32px">
+        </em>
+       </span>
+      </a>
+      <span class="topic">
+       TA说
+      </span>
+     </div>
+    </div>
+   </div>
+  </div>
+  <!-- 页面内容主体 -->
+  <div class="wrapper">
+   <div class="layout">
+    <div class="content" id="main_content">
+     <div class="article art-widget-box" id="article">
+      <div class="caption">
+       中国有一种比大熊猫还珍贵的猴子，因为不会卖萌错失国宝宝座
+      </div>
+      <div class="caption-sub cmn-clearfix">
+       <div class="caption-info">
+        原创
+        <span>
+         |
+        </span>
+        2017-09-28
+       </div>
+       <div class="caption-numbers">
+        <span class="read-item">
+         阅读
+         <strong>
+          53485
+         </strong>
+        </span>
+        <span class="vote-item">
+         赞
+         <strong id="caption_numbers_vote">
+          371
+         </strong>
+        </span>
+       </div>
+      </div>
+      <div class="main-text">
+       <p>
+        在中国说到最珍贵的动物，可能大部分人都会想到大熊猫。但其实大熊猫并不是中国最珍贵的动物，有一种名为滇金丝猴的动物，无论是从数量上还是从珍稀程度上来说，都比大熊猫更加珍贵。
+       </p>
+       <p>
+        <img src="https://imgsrc.baidu.com/baike/pic/item/2e2eb9389b504fc2be988a03eedde71191ef6df4.jpg" style="max-width:100%;"/>
+       </p>
+       <p>
+        滇金丝猴属于猴科动物中的仰鼻猴属，仅仅只有四川省、云南省和西藏省三省的交界处才有。这种特殊的猴子平时生活在海拔4000米左右的高山林地中。它们的数量很少，据统计野生的滇金丝猴数量仅为1500只左右。早在十年前就被世界自然保护联盟列入了濒危物种红色名录。
+       </p>
+       <p>
+        <img src="https://imgsrc.baidu.com/baike/pic/item/54fbb2fb43166d22526130924d2309f79052d2a5.jpg" style="max-width:100%;"/>
+       </p>
+       <p>
+        滇金丝猴的体型在猴子中属于中等，成年雄性滇金丝猴体长大约为70厘米左右，尾巴跟身体的长度几乎持平，重量在32斤上下。雌性滇金丝猴的体型比雄性要小一些。
+       </p>
+       <p>
+        <img src="https://imgsrc.baidu.com/baike/pic/item/b3fb43166d224f4a3e8f561502f790529822d1a5.jpg" style="max-width:100%;"/>
+       </p>
+       <p>
+        滇金丝猴属于群居类动物，但是一般不会组大群，都是二十只左右为一群。之所以它们的数量如此之少，与其繁育能力低下也是有关系的。雌性滇金丝猴每两年只能生一胎，一般情况下一胎为1~2只幼崽。幼崽出生时生长缓慢，需要母猴抚养比较长的时间。也亏得是整个横断山脉没有太多大型猎食动物，否则滇金丝猴恐怕早就走向灭绝了。
+       </p>
+       <p>
+        <img src="https://imgsrc.baidu.com/baike/pic/item/8ad4b31c8701a18b7e9f3749952f07082838fe44.jpg" style="max-width:100%;"/>
+       </p>
+       <p>
+        与大熊猫热衷于卖萌，胆大亲近人类不同，滇金丝猴的胆量很小，很难被人工饲养，除非从小滇金丝猴就处于人工饲养的环境中。现在全国也仅有那些规模比较大的动物园才能见到滇金丝猴的身影。这也是为什么大多数人都不知道滇金丝猴珍贵的原因。
+       </p>
+       <p>
+        所谓会哭的孩子有奶吃。大熊猫凭借卖萌者一项绝迹就坐上了“国宝”的宝座，而更加珍贵的滇金丝猴却只能在深山老林里凄苦度日。也许哪一天这种动物灭绝了，还没有人意识到它的珍贵，想想也是够悲剧的。
+       </p>
+      </div>
+      <div class="article-vote">
+       <a class="vote" href="javascript:void(0);" id="vote">
+        <i class="icons-vote-max">
+        </i>
+        <strong>
+         371
+        </strong>
+       </a>
+      </div>
+      <ul class="article-statement">
+       <li>
+        <i class="icons-i">
+        </i>
+        本文仅代表作者个人观点，不代表百度百科立场。
+        <a href="http://baike.baidu.com/feedback" target="_blank">
+         举报
+        </a>
+       </li>
+       <li>
+        <i class="icons-i">
+        </i>
+        本文经授权发布，未经许可，请勿转载。如有需要，请联系tashuo@baidu.com。
+       </li>
+      </ul>
+     </div>
+    </div>
+    <div class="side">
+     <div class="author-wrapper" id="author_wrapper">
+      <div class="author">
+       <a href="/tashuo/authorcenter?authorId=69372428306f0d08a1384721">
+        <div class="author-photo">
+         <img src="https://imgsa.baidu.com/baike/pic/item/1c950a7b02087bf4bad00ac4f9d3572c11dfcfdb.jpg"/>
+        </div>
+        <div class="infor">
+         <h5 class="name" title="新动物世界">
+          新动物世界
+         </h5>
+         <p class="intro" title="动物百科作者">
+          动物百科作者
+         </p>
+        </div>
+       </a>
+      </div>
+      <div class="index-tashuo-list">
+       <div class="hot-item">
+        <a href="/tashuo/browse/content?id=dfbc67e968605d1aaff83cdb&amp;fromModule=pcArticleMoreRecommend">
+        </a>
+        <table class="hot-item-table">
+         <tbody>
+          <tr>
+           <td style="width: 90px;">
+            <div class="hot-cover ">
+             <img src="https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/awhcrop%3D90%2C67/sign=b53f920a3e2ac65c714f3b20899dc22c/b21c8701a18b87d6a8c7e5750c0828381e30fdd7.jpg"/>
+            </div>
+           </td>
+           <td>
+            <div class="hot-content">
+             <div class="hot-content-title">
+              <h4>
+               可爱的迷你小鹿，体型比兔子还小，只有三斤左右的重量
+              </h4>
+             </div>
+             <div class="hot-content-author">
+              <p>
+               新动物世界
+              </p>
+             </div>
+            </div>
+           </td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+       <div class="hot-item">
+        <a href="/tashuo/browse/content?id=7d03a8b898ad07beecd7a8d8&amp;fromModule=pcArticleMoreRecommend">
+        </a>
+        <table class="hot-item-table">
+         <tbody>
+          <tr>
+           <td style="width: 90px;">
+            <div class="hot-cover ">
+             <img src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/awhcrop%3D90%2C67/sign=1fce3c1c2ba446236880f831ea4d0233/d01373f082025aafd6e338adf0edab64024f1a86.jpg"/>
+            </div>
+           </td>
+           <td>
+            <div class="hot-content">
+             <div class="hot-content-title">
+              <h4>
+               所谓的虎骨酒其实用的不是真正的虎骨，而是这种动物的骨头
+              </h4>
+             </div>
+             <div class="hot-content-author">
+              <p>
+               新动物世界
+              </p>
+             </div>
+            </div>
+           </td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+       <div class="hot-item">
+        <a href="/tashuo/browse/content?id=1350e486d3af047c0818a6df&amp;fromModule=pcArticleMoreRecommend">
+        </a>
+        <table class="hot-item-table">
+         <tbody>
+          <tr>
+           <td style="width: 90px;">
+            <div class="hot-cover ">
+             <img src="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/awhcrop%3D90%2C67/sign=975d355651afa40f2a8c938ed90b7372/574e9258d109b3de782f660cc7bf6c81810a4cc6.jpg"/>
+            </div>
+           </td>
+           <td>
+            <div class="hot-content">
+             <div class="hot-content-title">
+              <h4>
+               南美洲有一种体重达三十斤的“大老鼠”，还非常善于游泳
+              </h4>
+             </div>
+             <div class="hot-content-author">
+              <p>
+               新动物世界
+              </p>
+             </div>
+            </div>
+           </td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="praise-btn " id="praise_btn">
+     <span class="praise-btn-add J-add">
+      + 1
+     </span>
+     <span class="praise-btn-clicked">
+      已赞
+     </span>
+    </div>
+    <a class="toTop top-arrived" href="javascript:;" id="toTop" title="返回顶部">
+     <em class="cmn-icon cmn-icons cmn-icons_arrow-t">
+     </em>
+    </a>
+   </div>
+  </div>
+  <div class="new-bdsharebuttonbox new-side-share" id="side-share">
+   <span class="title">
+    分享
+   </span>
+   <div class="side-border">
+    <div class="triangle">
+    </div>
+    <a class="share-link bds_qzone" href="javascript:void(0);" nslog-type="10060101">
+     <em class="cmn-icon cmn-icons cmn-icons_logo-qzone">
+     </em>
+    </a>
+    <a class="share-link bds_tsina" href="javascript:void(0);" nslog-type="10060301">
+     <em class="cmn-icon cmn-icons cmn-icons_logo-sina-weibo">
+     </em>
+    </a>
+    <a class="bds_wechat" href="javascript:void(0);" nslog-type="10060001">
+     <em class="cmn-icon cmn-icons cmn-icons_logo-wechat">
+     </em>
+    </a>
+    <a class="share-link bds_tqq" href="javascript:void(0);" nslog-type="10060201">
+     <em class="cmn-icon cmn-icons cmn-icons_logo-qq">
+     </em>
+    </a>
+   </div>
+  </div>
+  <div class="qrcode-wrapper" id="layer" style="display: none">
+   <div class="bd_weixin_popup_header">
+    <em class="cmn-icon cmn-icons cmn-icons_close">
+    </em>
+    <span>
+     分享到微信朋友圈
+    </span>
+   </div>
+   <div id="wechat-qrcode-img">
+   </div>
+   <div class="bd_weixin_popup_footer">
+    打开微信“扫一扫”即可将网页分享至朋友圈
+   </div>
+  </div>
+  <!-- 页面内容的 footer 区域 -->
+  <div class="wgt-footer-simple">
+   <div class="copyright">
+    <p>
+     如果想提出功能问题或意见建议，请到
+     <a href="/feedback" target="_blank">
+      意见反馈
+     </a>
+     ；如果您要举报侵权或违法信息，请到
+     <a href="http://tousu.baidu.com/baike" target="_blank">
+      投诉中心
+     </a>
+     ；其他问题请访问
+     <a href="http://tieba.baidu.com/f?kw=%B0%D9%B6%C8%B0%D9%BF%C6" target="_blank">
+      百度百科吧
+     </a>
+    </p>
+    <p>
+     ©2017 Baidu
+     <a href="http://www.baidu.com/duty/" target="_blank">
+      使用百度前必读
+     </a>
+     |
+     <a href="http://help.baidu.com/question?prod_en=baike&amp;class=159&amp;id=1047" target="_blank">
+      百科协议
+     </a>
+     |
+     <a href="/operation/cooperation" target="_blank">
+      百度百科合作平台
+     </a>
+     |
+     <span>
+      京ICP证030173号
+     </span>
+     <img class="copyright-img" height="16" src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/copy_rignt_24.png" width="13"/>
+    </p>
+    <p class="recordcode">
+     <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002000001" target="_blank">
+      <i class="icon-police">
+      </i>
+      京公网安备11000002000001号
+     </a>
+    </p>
+   </div>
+  </div>
+  <!-- <body> 标签结束位置，页面主体内容后 -->
+ </body>
+ <script src="https://bkssl.bdimg.com/static/wiki-common/js/mod_4302fe0.js" type="text/javascript">
+ </script>
+ <script type="text/javascript">
+  require.resourceMap({"res":{"wiki-tashuo:widget/article/articleSide/articleSide.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/article/articleSide/articleSide_47e2845.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-tashuo:widget/article/praiseBtn/praise.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/article/praiseBtn/praise_36afcc4.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-tashuo:widget/article/toTop/toTop.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/article/toTop/toTop_6306e8a.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/util/scrollToTop.js"]},"wiki-tashuo:widget/article/vote/vote.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/article/vote/vote_a58c32c.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/component/nslog/nslog.js"]},"wiki-tashuo:widget/bindLemmas/bindLemmas.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/bindLemmas/bindLemmas_a906ce8.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/lib/jsmart/jsmart.js","wiki-common:widget/ui/dialog/dialog.js"]},"wiki-tashuo:widget/authorRelevance/authorRelevanceApp.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/authorRelevance/authorRelevanceApp_ae138a5.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/lib/jsmart/jsmart.js","wiki-tashuo:widget/bindLemmas/bindLemmas.js","wiki-common:widget/ui/dialog/dialog.js"]},"wiki-tashuo:widget/banner/banner.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/banner/banner_8306448.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-tashuo:widget/pageChecker/pageChecker.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/pageChecker/pageChecker_ab1191d.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/ui/dialog/dialog.js","wiki-common:widget/component/userLogin/userLogin.js"]},"wiki-tashuo:widget/urlParams/urlParams.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/urlParams/urlParams_2eed4b4.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-tashuo:widget/pager/pager.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/pager/pager_7ec7c64.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/ui/pager/horPager/horPager.js","wiki-tashuo:widget/urlParams/urlParams.js"]},"wiki-tashuo:widget/relevance/relevanceApp.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/relevance/relevanceApp_fb219bc.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/lib/jsmart/jsmart.js","wiki-tashuo:widget/bindLemmas/bindLemmas.js","wiki-common:widget/ui/dialog/dialog.js"]},"wiki-tashuo:widget/scroll/tinyscrollbar.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/scroll/tinyscrollbar_22e30fb.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-tashuo:widget/select/select.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/select/select_f907066.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/lib/jsmart/jsmart.js"]},"wiki-tashuo:widget/search/search.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/search/search_8e95ee1.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/ui/dialog/dialog.js","wiki-common:widget/util/timeFormater.js","wiki-common:widget/ui/datePicker/datePicker.js","wiki-tashuo:widget/select/select.js","wiki-tashuo:widget/urlParams/urlParams.js"]},"wiki-tashuo:widget/searchArticle/search.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/searchArticle/search_3891d4d.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/ui/dialog/dialog.js","wiki-common:widget/util/timeFormater.js","wiki-common:widget/ui/datePicker/datePicker.js","wiki-tashuo:widget/select/select.js","wiki-tashuo:widget/urlParams/urlParams.js"]},"wiki-tashuo:widget/searchArticleId/search.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/searchArticleId/search_80723b3.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-tashuo:widget/urlParams/urlParams.js"]},"wiki-tashuo:widget/searchAuthor/search.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/searchAuthor/search_3787f5f.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/ui/dialog/dialog.js","wiki-common:widget/util/timeFormater.js","wiki-common:widget/ui/datePicker/datePicker.js","wiki-tashuo:widget/select/select.js","wiki-tashuo:widget/urlParams/urlParams.js"]},"wiki-tashuo:widget/searchDate/search.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/searchDate/search_4e2376e.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/ui/dialog/dialog.js","wiki-common:widget/util/timeFormater.js","wiki-common:widget/ui/datePicker/datePicker.js","wiki-tashuo:widget/urlParams/urlParams.js"]},"wiki-tashuo:widget/searchLemma/search.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/searchLemma/search_950907c.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-tashuo:widget/urlParams/urlParams.js","wiki-tashuo:widget/select/select.js"]},"wiki-tashuo:widget/searchRecord/search.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/searchRecord/search_0a5c508.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/ui/dialog/dialog.js","wiki-common:widget/util/timeFormater.js","wiki-common:widget/ui/datePicker/datePicker.js","wiki-tashuo:widget/select/select.js","wiki-tashuo:widget/urlParams/urlParams.js"]},"wiki-tashuo:widget/searchWxList/search.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/searchWxList/search_498fd5a.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/ui/dialog/dialog.js","wiki-common:widget/util/timeFormater.js","wiki-common:widget/ui/datePicker/datePicker.js","wiki-tashuo:widget/urlParams/urlParams.js"]},"wiki-tashuo:widget/wangEditor/wangEditor.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/wangEditor/wangEditor_63b4c7a.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-tashuo:widget/webuploader/webuploader.fis.js":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/widget/webuploader/webuploader.fis_c837d92.js","pkg":"wiki-tashuo:p0","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/tools/bkshare/share.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/bkshare/share_3beba04.js","pkg":"wiki-lemma:p4"},"wiki-lemma:static/tools/bkshare.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/tools/bkshare_a2941a6.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-lemma:widget/tools/bkshare/share.js"]},"wiki-lemma:static/tools/scriptLazyLoad.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/tools/scriptLazyLoad_eee6f6d.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/tools/announcement/announcement.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/announcement/announcement_f8dd02e.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/lib/jsmart/jsmart.js","wiki-common:widget/util/cookie.js"]},"wiki-lemma:widget/tools/rangeExt/rangeExt.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/rangeExt/rangeExt_798a7db.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/tools/label/label.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/label/label_6192cab.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/util/safeCall.js","wiki-common:widget/util/browser.js","wiki-common:widget/ui/bubble/bubble.js","wiki-common:widget/ui/dialog/dialog.js","wiki-lemma:widget/tools/rangeExt/rangeExt.js"]},"wiki-lemma:widget/tools/lazyLoad/lazyLoad.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/lazyLoad/lazyLoad_eb3d370.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/tools/marquee/marquee.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/marquee/marquee_50fd4bd.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/tools/newSideShare/qrcode.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/newSideShare/qrcode_a30d942.js","pkg":"wiki-lemma:p4"},"wiki-lemma:widget/tools/newSideShare/qzopensl.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/newSideShare/qzopensl_ec12b1e.js","pkg":"wiki-lemma:p4"},"wiki-lemma:widget/tools/newSideShare/sideShare.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/newSideShare/sideShare_abcb5be.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/tools/newSideShare/taskSideShare.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/newSideShare/taskSideShare_933b477.js","pkg":"wiki-lemma:p4","deps":["wiki-lemma:widget/tools/newSideShare/sideShare.js","wiki-lemma:widget/tools/newSideShare/qrcode.js","wiki-common:widget/component/nslog/nslog.js"]},"wiki-lemma:widget/tools/rightCheck/rightCheck.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/rightCheck/rightCheck_3c23284.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/util/safeCall.js","wiki-common:widget/component/userLogin/userLogin.js"]},"wiki-lemma:widget/tools/service/service.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/service/service_688d1e2.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/tools/searchHeader/toolButtons-n/toolButtons.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/searchHeader/toolButtons-n/toolButtons_827b876.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/component/userLogin/userLogin.js","wiki-lemma:widget/tools/service/service.js"]},"wiki-lemma:widget/tools/searchHeader/toolButtons-n/userInfo.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/searchHeader/toolButtons-n/userInfo_5a07430.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/component/userLogin/userLogin.js"]},"wiki-lemma:widget/tools/searchHeader/toolButtons/toolButtons.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/searchHeader/toolButtons/toolButtons_3b55e42.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/component/userLogin/userLogin.js","wiki-lemma:widget/tools/service/service.js"]},"wiki-lemma:widget/tools/searchHeader/toolButtons/userInfo.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/searchHeader/toolButtons/userInfo_0f7cec4.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/component/userLogin/userLogin.js"]},"wiki-lemma:widget/tools/tool/tool.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/tool/tool_0c386e5.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/tools/video/flashVideo/flashVideo.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/video/flashVideo/flashVideo_808154c.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/lib/swfObject/swfObject.js"]},"wiki-lemma:widget/tools/video/iframeVideo/iframeVideo.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/video/iframeVideo/iframeVideo_6e5b775.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/tools/video/iqiyiVideo/iqiyiVideo.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/video/iqiyiVideo/iqiyiVideo_2bdb190.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-lemma:widget/tools/video/flashVideo/flashVideo.js"]},"wiki-lemma:widget/tools/video/pageMask/pageMask.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/video/pageMask/pageMask_f8ef928.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/tools/video/video.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/tools/video/video_c965528.js","pkg":"wiki-lemma:p4","deps":["wiki-lemma:widget/tools/video/iframeVideo/iframeVideo.js","wiki-lemma:widget/tools/video/iqiyiVideo/iqiyiVideo.js","wiki-lemma:widget/tools/video/flashVideo/flashVideo.js"]},"wiki-lemma:widget/basicElement/addSub/addSub.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/basicElement/addSub/addSub_861fb77.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/ui/dialog/dialog.js","wiki-common:widget/component/userLogin/userLogin.js","wiki-lemma:widget/tools/rightCheck/rightCheck.js","wiki-common:widget/component/unameFiller/unameFiller.js"]},"wiki-lemma:widget/basicElement/collect/collect.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/basicElement/collect/collect_c780e5b.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/component/userLogin/userLogin.js","wiki-lemma:widget/tools/service/service.js"]},"wiki-lemma:widget/basicElement/commonModulePager/commonModulePager.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/basicElement/commonModulePager/commonModulePager_3be0385.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/basicElement/micrositeIcon/micrositeIcon.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/basicElement/micrositeIcon/micrositeIcon_8c46b4d.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/component/nslog/nslog.js"]},"wiki-lemma:widget/basicElement/modulePager/modulePager.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/basicElement/modulePager/modulePager_48278b3.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/basicElement/personalIcon/personalIcon.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/basicElement/personalIcon/personalIcon_629c630.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/ui/dialog/dialog.js","wiki-common:widget/component/userLogin/userLogin.js","wiki-common:widget/component/nslog/nslog.js"]},"wiki-lemma:widget/basicElement/pinyin/fmp.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/basicElement/pinyin/fmp_5d69a67.js","pkg":"wiki-lemma:p4"},"wiki-lemma:widget/basicElement/pinyin/lemmaPinyin.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/basicElement/pinyin/lemmaPinyin_9a43b17.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/basicElement/slidePager/slidePager.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/basicElement/slidePager/slidePager_ccf6292.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/basicElement/topShare/topShare.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/basicElement/topShare/topShare_6f18a5c.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/component/nslog/nslog.js"]},"wiki-lemma:widget/lemma_content/commonModule/album/album.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/lemma_content/commonModule/album/album_527eb5c.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/lemma_content/mainContent/albumList/albumList.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/lemma_content/mainContent/albumList/albumList_10b7813.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-lemma:widget/basicElement/modulePager/modulePager.js","wiki-lemma:widget/lemma_content/commonModule/album/album.js"]},"wiki-lemma:widget/lemma_content/mainContent/basicInfo/basicInfo.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/lemma_content/mainContent/basicInfo/basicInfo_4f73206.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/lemma_content/mainContent/lemmaReference/lemmaReference.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/lemma_content/mainContent/lemmaReference/lemmaReference_31b4600.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/component/nslog/nslog.js"]},"wiki-lemma:widget/lemma_content/mainContent/lemmaStatistics/lemmaStatistics.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/lemma_content/mainContent/lemmaStatistics/lemmaStatistics_9410e32.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/component/userCard/userCard.js"]},"wiki-lemma:widget/lemma_content/mainContent/polysemantList/polysemantList.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/lemma_content/mainContent/polysemantList/polysemantList_db17aa7.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/component/userLogin/userLogin.js","wiki-common:widget/component/unameFiller/unameFiller.js","wiki-common:widget/ui/dialog/dialog.js","wiki-common:widget/component/nslog/nslog.js"]},"wiki-lemma:widget/lemma_content/mainContent/sideCatalog/sideCatalog.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/lemma_content/mainContent/sideCatalog/sideCatalog_b223266.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/component/nslog/nslog.js"]},"wiki-lemma:widget/lemma_content/mainContent/taskLemmasInfoCard/taskLemmasInfoCard.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/lemma_content/mainContent/taskLemmasInfoCard/taskLemmasInfoCard_710af62.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/lib/jsmart/jsmart.js"]},"wiki-lemma:widget/lemma_content/commonModule/cellModule/cellModule.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/lemma_content/commonModule/cellModule/cellModule_e5ea8f0.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-lemma:widget/basicElement/commonModulePager/commonModulePager.js"]},"wiki-lemma:widget/lemma_content/commonModule/horizontalModule/horizontalModule.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/lemma_content/commonModule/horizontalModule/horizontalModule_ec4cf5c.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/lemma_content/commonModule/map/map.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/lemma_content/commonModule/map/map_b457a26.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/component/nslog/nslog.js"]},"wiki-lemma:widget/lemma_content/commonModule/music/musicAlbum/musicAlbum.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/lemma_content/commonModule/music/musicAlbum/musicAlbum_dd02264.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/lemma_content/commonModule/music/musicHot/musicHot.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/lemma_content/commonModule/music/musicHot/musicHot_94c575f.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/lemma_content/commonModule/noticeIcon/noticeIcon.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/lemma_content/commonModule/noticeIcon/noticeIcon_0b5e785.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/lemma_content/commonModule/series/series.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/lemma_content/commonModule/series/series_45f4280.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/promotion/banner/banner.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/promotion/banner/banner_885e924.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/lib/jsmart/jsmart.js"]},"wiki-lemma:widget/promotion/bottomAd/bottomAd.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/promotion/bottomAd/bottomAd_411c05a.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/component/nslog/nslog.js","wiki-common:widget/component/testElem/testElem.js"]},"wiki-lemma:widget/promotion/declaration/declaration.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/promotion/declaration/declaration_3f1b3fb.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/lib/jsmart/jsmart.js"]},"wiki-lemma:widget/promotion/fengchao/fengchao.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/promotion/fengchao/fengchao_66604a4.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/util/cookie.js","wiki-common:widget/component/nslog/nslog.js","wiki-common:widget/component/testElem/testElem.js"]},"wiki-lemma:widget/promotion/guessLike/guessLike.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/promotion/guessLike/guessLike_28b9ac6.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/lib/jsmart/jsmart.js","wiki-common:widget/util/cookie.js","wiki-common:widget/component/nslog/nslog.js"]},"wiki-lemma:widget/promotion/relatedBusiness/relatedBusiness.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/promotion/relatedBusiness/relatedBusiness_8b3e687.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/util/cookie.js"]},"wiki-lemma:widget/promotion/rightAd/rightAd.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/promotion/rightAd/rightAd_75999e0.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/component/nslog/nslog.js","wiki-common:widget/util/cookie.js"]},"wiki-lemma:widget/promotion/rightBigAd/rightBigAd.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/promotion/rightBigAd/rightBigAd_4ea47fa.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/promotion/rightPreciseAd/rightPreciseAd.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/promotion/rightPreciseAd/rightPreciseAd_7d3d186.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/promotion/slide/slide.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/promotion/slide/slide_150b4f9.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/lib/jsmart/jsmart.js","wiki-common:widget/ui/pager/horPager/horPager.js","wiki-common:widget/ui/carousel/carousel.js"]},"wiki-lemma:widget/promotion/topAd/topAd.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/promotion/topAd/topAd_4dccf05.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/component/nslog/nslog.js"]},"wiki-lemma:widget/promotion/unionAd/unionAd.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/promotion/unionAd/unionAd_e07356b.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/promotion/unionAdFromPs/unionAdFromPs.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/promotion/unionAdFromPs/unionAdFromPs_612dac5.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/promotion/vbaike/vbaike.js":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/widget/promotion/vbaike/vbaike_a4d87d5.js","pkg":"wiki-lemma:p4","deps":["wiki-common:widget/lib/jquery/jquery.js","wiki-common:widget/lib/jsmart/jsmart.js","wiki-common:widget/ui/pager/horPager/horPager.js","wiki-common:widget/ui/carousel/carousel.js"]}},"pkg":{"wiki-tashuo:p0":{"url":"https://bkssl.bdimg.com/static/wiki-tashuo/pkg/wiki-tashuo_6d066dd.js"},"wiki-lemma:p4":{"url":"https://bkssl.bdimg.com/static/wiki-lemma/pkg/wiki-lemma_f3f88b5.js"}}});
+ </script>
+ <script src="https://bkssl.bdimg.com/static/wiki-common/widget/lib/jquery/jquery_1.11.1_dfce600.js" type="text/javascript">
+ </script>
+ <script src="https://bkssl.bdimg.com/static/wiki-common/widget/lib/jquery/jquery.mousewheel_4fde694.js" type="text/javascript">
+ </script>
+ <script src="https://bkssl.bdimg.com/static/wiki-common/widget/lib/jquery/jquery_2d56800.js" type="text/javascript">
+ </script>
+ <script src="https://bkssl.bdimg.com/static/wiki-common/widget/lib/jsmart/PHPJS_2406ddf.js" type="text/javascript">
+ </script>
+ <script src="https://bkssl.bdimg.com/static/wiki-common/widget/lib/jsmart/jsmart_a7d06a5.js" type="text/javascript">
+ </script>
+ <script src="https://bkssl.bdimg.com/static/wiki-common/widget/lib/sparkMD5/sparkMD5_a5502a8.js" type="text/javascript">
+ </script>
+ <script src="https://bkssl.bdimg.com/static/wiki-common/widget/lib/swfObject/swfObject_00526c3.js" type="text/javascript">
+ </script>
+ <script src="https://bkssl.bdimg.com/static/wiki-common/widget/lib/cyberplayer/cyberplayer_b1ca478.js" type="text/javascript">
+ </script>
+ <script src="https://bkssl.bdimg.com/static/wiki-common/widget/lib/letvPlayer/letvPlayer_f923883.js" type="text/javascript">
+ </script>
+ <script src="https://bkssl.bdimg.com/static/wiki-common/pkg/wiki-common-base_fe090e2.js" type="text/javascript">
+ </script>
+ <script src="https://bkssl.bdimg.com/static/wiki-common/widget/component/userbar/userbar_b1b0dcf.js" type="text/javascript">
+ </script>
+ <script src="https://bkssl.bdimg.com/static/wiki-lemma/pkg/wiki-lemma_f3f88b5.js" type="text/javascript">
+ </script>
+ <script type="text/javascript">
+  !function(){  var $ = require('wiki-common:widget/lib/jquery/jquery'),
+    userbar = require('wiki-common:widget/component/userbar/userbar');
+    
+  $(function() {
+    userbar.buildUserbar($('.wgt-userbar'), null);
+  });
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery'),
+      initSearchbar = require('wiki-common:widget/component/searchbar/searchbar');  
+        initSearchbar($('.wgt-searchbar-simple'));
+  
+  }();
+!function(){    require.async(["wiki-tashuo:widget/article/vote/vote"],function(vote) {
+        vote({
+            tashuoId: "03557a8fec542a9226d3e4c2",
+            isvote: "0",
+            vote: "371"
+        });
+    });
+}();
+!function(){var nslog = require('wiki-common:widget/component/nslog/nslog');
+// 页面pv
+nslog('20008301');
+}();
+!function(){require.async(['wiki-tashuo:widget/article/articleSide/articleSide'], function(init) {
+    init();
+});
+}();
+!function(){require.async(['wiki-tashuo:widget/article/praiseBtn/praise'], function (praise) {
+    praise();
+});
+}();
+!function(){    require.async(['wiki-tashuo:widget/article/toTop/toTop']);
+}();
+!function(){    require('wiki-lemma:widget/tools/newSideShare/qzopensl');
+    require.async(["wiki-lemma:widget/tools/newSideShare/taskSideShare"],function(taskShare){
+        taskShare.init({
+            title: '【TA说】中国有一种比大熊猫还珍贵的猴子，因为不会卖萌错失国宝宝座',
+            desc: "\u4f5c\u8005\uff1a\u65b0\u52a8\u7269\u4e16\u754c\uff08\u52a8\u7269\u767e\u79d1\u4f5c\u8005\uff09| 53485\u9605\u8bfb\uff0c371\u8d5e",
+            pic: 'https:\\\/\\\/gss3.bdstatic.com\\\/-Po3dSag_xI4khGkpoWK1HF6hhy\\\/baike\\\/pic\\\/item\\\/2e2eb9389b504fc2be988a03eedde71191ef6df4.jpg',
+            url: 'http:\/\/baike.baidu.com\/tashuo\/browse\/content?id=03557a8fec542a9226d3e4c2',
+            qqPic: 'https:\\\/\\\/gss3.bdstatic.com\\\/-Po3dSag_xI4khGkpoWK1HF6hhy\\\/baike\\\/pic\\\/item\\\/2e2eb9389b504fc2be988a03eedde71191ef6df4.jpg',
+            newLemmaId: '',
+            lemmaTitle: ''
+        });
+    });
+}();
+!function(){      require('wiki-common:widget/component/psLink/psLink');
+    }();
+ </script>
+ <!-- <body> 标签之后，FIS 自动管理的静态资源之后 -->
+</html>

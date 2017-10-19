@@ -1,0 +1,983 @@
+<html>
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <script language="javaScript" src="http://bbs.feeyo.com/include/forumbase.js" type="text/javascript">
+  </script>
+  <script src="http://www.carnoc.com/js/jquery-1.11.3.min.js">
+  </script>
+  <script src="http://www.bootcss.com/p/unslider/unslider.min.js">
+  </script>
+  <link href="http://bbs.feeyo.com/css/bbs.css" rel="stylesheet" type="text/css"/>
+  <style type="text/css">
+   .marquee_txt{ background:#e6e6e6; clear:both; border:1px dashed #ccc; margin:0px; padding:0px 10px; margin-bottom:-14px;}
+.marquee_txt span{ float:left; margin-top:4px;}
+.marquee_txt ul{ margin:0; padding:0;}
+.marquee_txt li{  list-style:none; margin-left:-8px; padding:1px 0 1px 18px}
+.topinfo{  margin-bottom: 5px; padding: 3px 5px 5px 5px; width: 99%; float:left ; border-bottom:1px solid #CADCF4; line-height:130%}
+.topinfo div,.topinfo td,.topinfo p{ line-height:130%;}
+.topinfo_left { padding:0px 5px 0px 5px; color: #999; float:left;  font-family: Arial, Helvetica, sans-serif;}
+.topinfo_left h5 { display: inline; font-size: 14px; font-weight: bold; margin: 0px; }
+.topinfo_right { padding:5px; float: right; text-align:right; background: #EFEFEF; border: 1px #CCCCCC dashed;  margin-bottom: 5px;  }
+.novzj img{ clear:both; width:40px; height:40px; padding:3px; margin-right:4px; border:1px solid #ccc; border-right: 2px solid #999; border-bottom: 2px solid #999;}
+.topinfo_left em{ margin-left:8px; padding-top:8px; padding-left:6px;background:url(http://bbs.feeyo.com/image/gift_bg.gif) no-repeat bottom; width:121px; height:25px; font-style:normal}
+.topinfo_left em img{ width:18px; height:18;  margin-right:7px;}
+#changeimg_s { margin: 0 0px;background:url(http://bbs.feeyo.com/img/movie_bg.gif); }
+#changeimg_s img { width:100px; height:60px; margin:30px 3px; vertical-align: middle; border:0px; }
+#changeimg_s a:hover{ border:2px solid #09c; cursor:pointer}
+.viewkz { text-align: center; margin: 10px }
+.viewkz input { margin: 0 15px }
+.adbbspost{ text-align:left; float:right}
+.adbbspost li{ list-style:none; line-height:160%; color:#333}
+  </style>
+  <meta content="-1" http-equiv="Expires"/>
+  <meta content="NO-CACHE" http-equiv="PRAGMA"/>
+  <meta content="no-cache" http-equiv="Cache-Control"/>
+  <script type="text/javascript">
+   var ismobile=false;
+var mobileAgents=['Windows CE','iPod','Symbian','iPhone','BlackBerry','Android'];
+var sUserAgent=navigator.userAgent;
+if(sUserAgent.indexOf('Android')>-1&&(sUserAgent.indexOf('ERD79')>-1||sUserAgent.indexOf('MZ60')>-1||sUserAgent.indexOf('GT-P7'))>-1){}
+else
+ {
+for(var i=0;i<mobileAgents.length;i++){if(sUserAgent.indexOf(mobileAgents[i])>-1)
+{
+  ismobile=true;break;
+}}
+if (ismobile)
+{
+  var url=window.location.href;
+  var pattern  = /^http:\/\/bbs.feeyo.com\/posts\/([0-9]+)\/topic\-00([0-9]+)\-([0-9]+)\.html/;
+  var mts = pattern.exec(url);
+    if (mts != null)
+    {
+      url="http://m.carnoc.com/posts/"+mts[1]+"/"+mts[3]+".html";
+      location=url;
+    }
+}
+}
+function givegift(postid,authorid){
+	g_pop=new Popup({ contentType:1, isReloadOnClose:false,scrollType:'no',width:500, height:330 });
+	g_pop.setContent("title","奖励小飞机");
+	g_pop.setContent("contentUrl","http://bbs.feeyo.com/comm.jsp?action=givegift&postid="+postid+"&authorid="+authorid);
+	g_pop.build();
+	g_pop.show();
+	return false;
+}
+function replacepic(postid,authorid){
+	g_pop=new Popup({ contentType:1, isReloadOnClose:false,scrollType:'no',width:500, height:200 });
+	g_pop.setContent("title","替换帖子贴图");
+	g_pop.setContent("contentUrl","http://bbs.feeyo.com/comm.jsp?action=replacepic&postid="+postid+"&authorid="+authorid);
+	g_pop.build();
+	g_pop.show();
+	return false;
+}
+function reportpost(topic,postid,title,authorid){
+	g_pop=new Popup({ contentType:1, isReloadOnClose:false,scrollType:'no',width:500, height:290 });
+	g_pop.setContent("title","举报帖子");
+	g_pop.setContent("contentUrl","http://bbs.feeyo.com/comm.jsp?action=reportpost&forumid=0011&topic="+topic+"&postid="+postid+"&authorid="+authorid+"&title="+title);
+	g_pop.build();
+	g_pop.show();
+	return false;
+}
+  </script>
+  <script language="JavaScript" src="http://pic.feeyo.com/js/popup.js" type="text/JavaScript">
+  </script>
+ </head>
+ <title>
+  [讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论
+ </title>
+ <body>
+  <script language="JavaScript">
+   function CheckAll(form) {
+     for(var i=0;i<form.elements.length;i++) {
+       var e = form.elements[i];
+       e.checked = true;
+     }
+  }
+  function FanAll(form) {
+    for(var i=0;i<form.elements.length;i++) {
+      var e = form.elements[i];
+      if (e.checked == true) {
+        e.checked = false;
+      }
+      else {
+        e.checked = true;
+      }
+    }
+  }
+  function delreplybatch(form) {
+     var checked=false;
+     for(var i=0;i<form.elements.length;i++) {
+       var e = form.elements[i];
+       if(e.checked) checked=true;
+     }
+    if(checked)  document.topic.submit();
+    else alert("你还没有选择需要删除的回帖！"); 
+  }
+  </script>
+  <iframe height="0" id="hiddenFrame" name="hiddenFrame" src="" width="0">
+  </iframe>
+  <div id="outbox">
+   <script src="http://www.feeyo.com/js/bbs/top.js">
+   </script>
+   <table align="center" bgcolor="#e9f5ff" border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+     <td class="font1" height="20">
+      您现在的位置：
+      <a href="http://bbs.feeyo.com/index.html" target="_top">
+       首页
+      </a>
+      &gt;&gt;
+      <a href="http://bbs.feeyo.com/cache/forum/0011/1.html">
+       民航论坛
+      </a>
+     </td>
+     <td align="right" height="20">
+      <table align="right" border="0">
+       <tr>
+        <td align="center">
+         <a href="javascript:window.location.reload()">
+          [刷新]
+         </a>
+         <a href="http://bbs.feeyo.com/list.jsp?url=http%3A%2F%2Fbbs.feeyo.com%2Fcache%2Fforum%2F0011%2F1.html">
+          [返回框架]
+         </a>
+         <a href="http://bbs.feeyo.com/print/594/topic-0011-5943300.html" target="_blank">
+          [打印存档]
+         </a>
+        </td>
+        <td align="center">
+         <a href="http://bbs.feeyo.com/register.jsp?inviteuserid=345631" target="_parent">
+          <img alt="注册" border="0" height="20" src="http://bbs.feeyo.com/image/b04.gif" width="35"/>
+         </a>
+        </td>
+        <td align="center">
+         <a href="http://bbs.feeyo.com/loginout.jsp">
+          <img alt="登陆" border="0" height="20" src="http://bbs.feeyo.com/image/b05.gif" width="35"/>
+         </a>
+        </td>
+        <script language="javascript">
+         var username=getCookie("username");
+                   if (username.substring(0,5)!="guest" && username.substring(0,5)!=""){
+                   document.writeln('<td> <a href="http://bbs.feeyo.com/myforum.jsp?action=addfav&forumid=0011&topic=5943300" target=hiddenFrame><img height="20" alt="收藏" src="http://bbs.feeyo.com/image/b15.gif" width="35" border="0"></a></td>');
+                   document.writeln('<td> <a href="http://bbs.feeyo.com/topic.jsp?forumid=0011&topic=5943300&mode=1"> <img height="20" alt="管理" src="http://bbs.feeyo.com/image/b13.gif" width="35" border="0"></a></td>');
+                   }
+        </script>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>
+   <div class="post">
+    <h2>
+     主题：[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论
+    </h2>
+    <p>
+     <script language="javascript">
+      function Addme(){ 
+url = document.location;
+title = " [讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论";
+window.external.AddFavorite(url,title); 
+}
+    document.write("<input size=\"60\" value=\""+document.location+"\"><input type=\"button\" value=\"复制本贴地址\" class=button title=\"点击复制地址到剪贴板,直接在MSN/QQ上粘贴即可.\" onclick=\"copyToClipBoard()\">");
+     </script>
+     <input class="button" onclick="Addme()" type="button" value="收藏"/>
+     <a href="javascript:reportforum('0011')" title="您可以提出对本论坛的意见建议以及咨询版主问题">
+      <span class="red">
+       <strong>
+        意见建议
+       </strong>
+      </span>
+     </a>
+    </p>
+    <a href="#5943300" name="5943300">
+    </a>
+    <dl class="post">
+     <dt>
+      楼主    [讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论
+　　2017-09-20 00:30:22.0
+     </dt>
+     <dd>
+      <div class="topinfo">
+       <script src="http://bbs.feeyo.com/userjs/345/345631.js">
+       </script>
+       <div class="topinfo_right">
+        <span class="z2">
+         [
+         <a href="http://bbs.feeyo.com/post.jsp?action=edit&amp;forumid=0011&amp;topic=5943300&amp;postid=5943300&amp;page=1">
+          编辑
+         </a>
+         ]
+		 
+		 [
+         <a href="http://bbs.feeyo.com/post.jsp?action=reply&amp;forumid=0011&amp;topic=5943300&amp;topicauthor=0h_yeah&amp;topictellauthor=0">
+          回复
+         </a>
+         ]
+		 [
+         <a href="http://bbs.feeyo.com/post.jsp?action=replyquote&amp;forumid=0011&amp;topic=5943300&amp;postid=5943300&amp;topicauthor=0h_yeah&amp;topictellauthor=0">
+          引用
+         </a>
+         ]
+		 [
+         <a href="#" onclick="javascript:reportpost(5943300,5943300,'[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论',345631);return false;">
+          举报
+         </a>
+         ]
+		 [
+         <a href="#" onclick="javascript:givegift(5943300,345631);return false;">
+          奖飞机
+         </a>
+         ]
+        </span>
+       </div>
+      </div>
+      <script src="http://bbs.feeyo.com/js/publish/allfloorgg.js">
+      </script>
+      <p>
+       <br/>
+       1、苏腊巴亚东爪哇首府，印尼第2大城市，华人比例高，工业和商贸城市，现每天仅1班CX 772/333，长期高票价，说明客流还是不错的，有增加1班的可能性，是否由CX转为KA运营，每天333+321组合
+      </p>
+      <p>
+       2、棉兰是印尼第3大城市，苏门答腊首府，华人比例仅次于雅加达、泗水，与新马联系紧密，可由KA执飞每天1班321
+      </p>
+      <p>
+      </p>
+      <p>
+       3、印尼华人与香港台湾联系密切高于大陆，但近年来人数增加也很多，增幅明显，印尼华人祖辈多广东客家潮汕和福建人，与两地联系密切，虽然可以经香港中转，但两地多商务人士，商务客流稳定，广州是中国南大门，对东南亚第一桥头堡，厦门是福建华侨进出的重要口岸，初期试水保守广州――苏腊巴亚可开通每周4班，机型73G/319，厦门可开通每周2班，机型73G
+      </p>
+      <div>
+      </div>
+      <div class="adbbspost">
+       <script language="javascript" src="http://www.carnoc.com/noticejs/nwj1s1.js">
+       </script>
+       <a href="#5943302" name="5943302">
+       </a>
+       <dl class="post">
+        <dt>
+         <span class="right">
+          &amp;nbsp&amp;nbsp
+          <a href="#">
+           回到顶部↑
+          </a>
+         </span>
+         头等舱    Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论
+　　2017-09-20 00:46:56.0
+        </dt>
+        <dd>
+         <div class="topinfo">
+          <script src="http://bbs.feeyo.com/userjs/2586/2586976.js">
+          </script>
+          <div class="topinfo_right">
+           <span class="z2">
+            [
+            <a href="http://bbs.feeyo.com/post.jsp?action=edit&amp;forumid=0011&amp;topic=5943300&amp;postid=5943302&amp;page=1">
+             编辑
+            </a>
+            ]
+		 
+		 
+		 [
+            <a href="http://bbs.feeyo.com/post.jsp?action=replyquote&amp;forumid=0011&amp;topic=5943300&amp;postid=5943302&amp;topicauthor=0h_yeah&amp;topictellauthor=0">
+             引用
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:reportpost(5943300,5943302,'Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论',2586976);return false;">
+             举报
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:givegift(5943302,2586976);return false;">
+             奖飞机
+            </a>
+            ]
+           </span>
+          </div>
+         </div>
+         每天仅1班CX 772/333就说明客流有限
+         <div>
+         </div>
+        </dd>
+       </dl>
+       <a href="#5943336" name="5943336">
+       </a>
+       <dl class="post">
+        <dt>
+         <span class="right">
+          &amp;nbsp&amp;nbsp
+          <a href="#">
+           回到顶部↑
+          </a>
+         </span>
+         经济舱    Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论
+　　2017-09-20 04:55:44.0
+        </dt>
+        <dd>
+         <div class="topinfo">
+          <script src="http://bbs.feeyo.com/userjs/1077/1077819.js">
+          </script>
+          <div class="topinfo_right">
+           <span class="z2">
+            [
+            <a href="http://bbs.feeyo.com/post.jsp?action=edit&amp;forumid=0011&amp;topic=5943300&amp;postid=5943336&amp;page=1">
+             编辑
+            </a>
+            ]
+		 
+		 
+		 [
+            <a href="http://bbs.feeyo.com/post.jsp?action=replyquote&amp;forumid=0011&amp;topic=5943300&amp;postid=5943336&amp;topicauthor=0h_yeah&amp;topictellauthor=0">
+             引用
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:reportpost(5943300,5943336,'Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论',1077819);return false;">
+             举报
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:givegift(5943336,1077819);return false;">
+             奖飞机
+            </a>
+            ]
+           </span>
+          </div>
+         </div>
+         明明是泗水，非得写成苏腊巴亚……
+         <div>
+         </div>
+        </dd>
+       </dl>
+       <a href="#5943342" name="5943342">
+       </a>
+       <dl class="post">
+        <dt>
+         <span class="right">
+          &amp;nbsp&amp;nbsp
+          <a href="#">
+           回到顶部↑
+          </a>
+         </span>
+         3楼    Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论
+　　2017-09-20 08:12:58.0
+        </dt>
+        <dd>
+         <div class="topinfo">
+          <script src="http://bbs.feeyo.com/userjs/223/223549.js">
+          </script>
+          <div class="topinfo_right">
+           <span class="z2">
+            [
+            <a href="http://bbs.feeyo.com/post.jsp?action=edit&amp;forumid=0011&amp;topic=5943300&amp;postid=5943342&amp;page=1">
+             编辑
+            </a>
+            ]
+		 
+		 
+		 [
+            <a href="http://bbs.feeyo.com/post.jsp?action=replyquote&amp;forumid=0011&amp;topic=5943300&amp;postid=5943342&amp;topicauthor=0h_yeah&amp;topictellauthor=0">
+             引用
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:reportpost(5943300,5943342,'Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论',223549);return false;">
+             举报
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:givegift(5943342,223549);return false;">
+             奖飞机
+            </a>
+            ]
+           </span>
+          </div>
+         </div>
+         印尼亚航早就开过香港-棉兰 ，结果多为印佣坐，好像半年就收摊
+         <div>
+         </div>
+        </dd>
+       </dl>
+       <a href="#5943346" name="5943346">
+       </a>
+       <dl class="post">
+        <dt>
+         <span class="right">
+          &amp;nbsp&amp;nbsp
+          <a href="#">
+           回到顶部↑
+          </a>
+         </span>
+         4楼    Re:[讨论]关于增班香港――苏腊巴亚
+　　2017-09-20 08:45:56.0
+        </dt>
+        <dd>
+         <div class="topinfo">
+          <script src="http://bbs.feeyo.com/userjs/2575/2575055.js">
+          </script>
+          <div class="topinfo_right">
+           <span class="z2">
+            [
+            <a href="http://bbs.feeyo.com/post.jsp?action=edit&amp;forumid=0011&amp;topic=5943300&amp;postid=5943346&amp;page=1">
+             编辑
+            </a>
+            ]
+		 
+		 
+		 [
+            <a href="http://bbs.feeyo.com/post.jsp?action=replyquote&amp;forumid=0011&amp;topic=5943300&amp;postid=5943346&amp;topicauthor=0h_yeah&amp;topictellauthor=0">
+             引用
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:reportpost(5943300,5943346,'Re:[讨论]关于增班香港――苏腊巴亚',2575055);return false;">
+             举报
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:givegift(5943346,2575055);return false;">
+             奖飞机
+            </a>
+            ]
+           </span>
+          </div>
+         </div>
+         南航以前也开过泗水，后来停了，具体时间不知道
+         <div>
+         </div>
+        </dd>
+       </dl>
+       <a href="#5943432" name="5943432">
+       </a>
+       <dl class="post">
+        <dt>
+         <span class="right">
+          &amp;nbsp&amp;nbsp
+          <a href="#">
+           回到顶部↑
+          </a>
+         </span>
+         5楼    Re:Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论
+　　2017-09-20 13:34:49.0
+        </dt>
+        <dd>
+         <div class="topinfo">
+          <script src="http://bbs.feeyo.com/userjs/2576/2576256.js">
+          </script>
+          <div class="topinfo_right">
+           <span class="z2">
+            [
+            <a href="http://bbs.feeyo.com/post.jsp?action=edit&amp;forumid=0011&amp;topic=5943300&amp;postid=5943432&amp;page=1">
+             编辑
+            </a>
+            ]
+		 
+		 
+		 [
+            <a href="http://bbs.feeyo.com/post.jsp?action=replyquote&amp;forumid=0011&amp;topic=5943300&amp;postid=5943432&amp;topicauthor=0h_yeah&amp;topictellauthor=0">
+             引用
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:reportpost(5943300,5943432,'Re:Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论',2576256);return false;">
+             举报
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:givegift(5943432,2576256);return false;">
+             奖飞机
+            </a>
+            ]
+           </span>
+          </div>
+         </div>
+         <br/>
+         <table bgcolor="#D2D2D2" border="0" cellpadding="5" cellspacing="1" width="95%">
+          <tbody>
+           <tr>
+            <td>
+             <b>
+              下面引用由
+              <u>
+               <a href="http://u.feeyo.com/lqy302" style="color:#0078B6;text-decoration:none" target="_blank">
+                @lqy302
+               </a>
+              </u>
+              <i>
+               2017-09-20 04:55:44.0
+              </i>
+              发表的内容：
+             </b>
+             <br/>
+             明明是泗水，非得写成苏腊巴亚……
+             <br/>
+            </td>
+           </tr>
+          </tbody>
+         </table>
+         <br/>
+         <div>
+          对，这就像海参崴，非要写成符拉迪沃斯托克一样。。。
+         </div>
+         <div>
+         </div>
+        </dd>
+       </dl>
+       <a href="#5943558" name="5943558">
+       </a>
+       <dl class="post">
+        <dt>
+         <span class="right">
+          &amp;nbsp&amp;nbsp
+          <a href="#">
+           回到顶部↑
+          </a>
+         </span>
+         6楼    Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论
+　　2017-09-21 00:31:59.0
+        </dt>
+        <dd>
+         <div class="topinfo">
+          <script src="http://bbs.feeyo.com/userjs/195/195387.js">
+          </script>
+          <div class="topinfo_right">
+           <span class="z2">
+            [
+            <a href="http://bbs.feeyo.com/post.jsp?action=edit&amp;forumid=0011&amp;topic=5943300&amp;postid=5943558&amp;page=1">
+             编辑
+            </a>
+            ]
+		 
+		 
+		 [
+            <a href="http://bbs.feeyo.com/post.jsp?action=replyquote&amp;forumid=0011&amp;topic=5943300&amp;postid=5943558&amp;topicauthor=0h_yeah&amp;topictellauthor=0">
+             引用
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:reportpost(5943300,5943558,'Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论',195387);return false;">
+             举报
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:givegift(5943558,195387);return false;">
+             奖飞机
+            </a>
+            ]
+           </span>
+          </div>
+         </div>
+         其实泗水还不错，城市建设上贫富差距没有雅加达夸张；雅加达破的地方是真心破
+         <div>
+         </div>
+        </dd>
+       </dl>
+       <a href="#5943564" name="5943564">
+       </a>
+       <dl class="post">
+        <dt>
+         <span class="right">
+          &amp;nbsp&amp;nbsp
+          <a href="#">
+           回到顶部↑
+          </a>
+         </span>
+         7楼    Re:Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论
+　　2017-09-21 01:24:14.0
+        </dt>
+        <dd>
+         <div class="topinfo">
+          <script src="http://bbs.feeyo.com/userjs/395/395536.js">
+          </script>
+          <div class="topinfo_right">
+           <span class="z2">
+            [
+            <a href="http://bbs.feeyo.com/post.jsp?action=edit&amp;forumid=0011&amp;topic=5943300&amp;postid=5943564&amp;page=1">
+             编辑
+            </a>
+            ]
+		 
+		 
+		 [
+            <a href="http://bbs.feeyo.com/post.jsp?action=replyquote&amp;forumid=0011&amp;topic=5943300&amp;postid=5943564&amp;topicauthor=0h_yeah&amp;topictellauthor=0">
+             引用
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:reportpost(5943300,5943564,'Re:Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论',395536);return false;">
+             举报
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:givegift(5943564,395536);return false;">
+             奖飞机
+            </a>
+            ]
+           </span>
+          </div>
+         </div>
+         <br/>
+         <table bgcolor="#D2D2D2" border="0" cellpadding="5" cellspacing="1" width="95%">
+          <tbody>
+           <tr>
+            <td>
+             <b>
+              下面引用由
+              <u>
+               <a href="http://u.feeyo.com/xuchenhao" style="color:#0078B6;text-decoration:none" target="_blank">
+                @xuchenhao
+               </a>
+              </u>
+              <i>
+               2017-09-21 00:31:59.0
+              </i>
+              发表的内容：
+             </b>
+             <br/>
+             其实泗水还不错，城市建设上贫富差距没有雅加达夸张；雅加达破的地方是真心破
+             <br/>
+            </td>
+           </tr>
+          </tbody>
+         </table>
+         雅加达好的地方也没多好啊，虽然也有那么几栋高楼，号称东南亚第一大城市，城市建设简直破烂，跟胡志明一个档次，新加坡吉隆坡曼谷排前三吧，不知道马尼拉怎样，不过马尼拉起码还有地铁。。。
+         <br/>
+         <br/>
+         <div>
+         </div>
+        </dd>
+       </dl>
+       <a href="#5943630" name="5943630">
+       </a>
+       <dl class="post">
+        <dt>
+         <span class="right">
+          &amp;nbsp&amp;nbsp
+          <a href="#">
+           回到顶部↑
+          </a>
+         </span>
+         8楼    Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论
+　　2017-09-21 09:45:26.0
+        </dt>
+        <dd>
+         <div class="topinfo">
+          <script src="http://bbs.feeyo.com/userjs/2780/2780504.js">
+          </script>
+          <div class="topinfo_right">
+           <span class="z2">
+            [
+            <a href="http://bbs.feeyo.com/post.jsp?action=edit&amp;forumid=0011&amp;topic=5943300&amp;postid=5943630&amp;page=1">
+             编辑
+            </a>
+            ]
+		 
+		 
+		 [
+            <a href="http://bbs.feeyo.com/post.jsp?action=replyquote&amp;forumid=0011&amp;topic=5943300&amp;postid=5943630&amp;topicauthor=0h_yeah&amp;topictellauthor=0">
+             引用
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:reportpost(5943300,5943630,'Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论',2780504);return false;">
+             举报
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:givegift(5943630,2780504);return false;">
+             奖飞机
+            </a>
+            ]
+           </span>
+          </div>
+         </div>
+         东南亚第一大城市应该是新加坡吧，这地方真的不错。
+         <div>
+         </div>
+        </dd>
+       </dl>
+       <a href="#5945308" name="5945308">
+       </a>
+       <dl class="post">
+        <dt>
+         <span class="right">
+          &amp;nbsp&amp;nbsp
+          <a href="#">
+           回到顶部↑
+          </a>
+         </span>
+         9楼    Re:Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论
+　　2017-09-28 23:35:57.0
+        </dt>
+        <dd>
+         <div class="topinfo">
+          <script src="http://bbs.feeyo.com/userjs/345/345631.js">
+          </script>
+          <div class="topinfo_right">
+           <span class="z2">
+            [
+            <a href="http://bbs.feeyo.com/post.jsp?action=edit&amp;forumid=0011&amp;topic=5943300&amp;postid=5945308&amp;page=1">
+             编辑
+            </a>
+            ]
+		 
+		 
+		 [
+            <a href="http://bbs.feeyo.com/post.jsp?action=replyquote&amp;forumid=0011&amp;topic=5943300&amp;postid=5945308&amp;topicauthor=0h_yeah&amp;topictellauthor=0">
+             引用
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:reportpost(5943300,5945308,'Re:Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论',345631);return false;">
+             举报
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:givegift(5945308,345631);return false;">
+             奖飞机
+            </a>
+            ]
+           </span>
+          </div>
+         </div>
+         <br/>
+         <table bgcolor="#d2d2d2" border="0" cellpadding="5" cellspacing="1" width="95%">
+          <tbody>
+           <tr>
+            <td>
+             <b>
+              下面引用由
+              <u>
+               <a href="http://u.feeyo.com/q407997307" style="color:#0078B6;text-decoration:none" target="_blank">
+                @q407997307
+               </a>
+              </u>
+              <i>
+               2017-09-21 09:45:26.0
+              </i>
+              发表的内容：
+             </b>
+             <br/>
+             东南亚第一大城市应该是新加坡吧，这地方真的不错。
+             <br/>
+            </td>
+           </tr>
+          </tbody>
+         </table>
+         论地盘和人口当然雅加达
+         <br/>
+         <br/>
+         <div>
+         </div>
+        </dd>
+       </dl>
+       <a href="#5945310" name="5945310">
+       </a>
+       <dl class="post">
+        <dt>
+         <span class="right">
+          &amp;nbsp&amp;nbsp
+          <a href="#">
+           回到顶部↑
+          </a>
+         </span>
+         10楼    Re:Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论
+　　2017-09-28 23:36:53.0
+        </dt>
+        <dd>
+         <div class="topinfo">
+          <script src="http://bbs.feeyo.com/userjs/345/345631.js">
+          </script>
+          <div class="topinfo_right">
+           <span class="z2">
+            [
+            <a href="http://bbs.feeyo.com/post.jsp?action=edit&amp;forumid=0011&amp;topic=5943300&amp;postid=5945310&amp;page=1">
+             编辑
+            </a>
+            ]
+		 
+		 
+		 [
+            <a href="http://bbs.feeyo.com/post.jsp?action=replyquote&amp;forumid=0011&amp;topic=5943300&amp;postid=5945310&amp;topicauthor=0h_yeah&amp;topictellauthor=0">
+             引用
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:reportpost(5943300,5945310,'Re:Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论',345631);return false;">
+             举报
+            </a>
+            ]
+		 [
+            <a href="#" onclick="javascript:givegift(5945310,345631);return false;">
+             奖飞机
+            </a>
+            ]
+           </span>
+          </div>
+         </div>
+         <br/>
+         <table bgcolor="#d2d2d2" border="0" cellpadding="5" cellspacing="1" width="95%">
+          <tbody>
+           <tr>
+            <td>
+             <b>
+              下面引用由
+              <u>
+               <a href="http://u.feeyo.com/ruspc" style="color:#0078B6;text-decoration:none" target="_blank">
+                @ruspc
+               </a>
+              </u>
+              <i>
+               2017-09-20 00:46:56.0
+              </i>
+              发表的内容：
+             </b>
+             <br/>
+             每天仅1班CX 772/333就说明客流有限
+             <br/>
+            </td>
+           </tr>
+          </tbody>
+         </table>
+         客流有限还长期高价？安心送客流给其它公司做转机
+         <br/>
+         <br/>
+         <div>
+         </div>
+         <div class="adbbspost">
+          <script language="javascript" src="http://www.carnoc.com/noticejs/nwj1s1.js">
+          </script>
+         </div>
+         <table align="center" class="lane1">
+          <tr>
+           <td height="1">
+           </td>
+          </tr>
+         </table>
+         <div class="bbsnextpage">
+          共有
+          <strong>
+           10
+          </strong>
+          篇回帖
+          <b>
+           1
+          </b>
+          转到：
+          <input name="pageno" onkeydown="if (event.keyCode==13){window.location='http://bbs.feeyo.com/topic.jsp?forumid=0011&amp;mode=3&amp;topic=5943300&amp;page='+this.value;return false;}" size="5" type="text"/>
+         </div>
+         <div class="partpost">
+          <a href="http://bbs.feeyo.com/myforum.jsp?action=addfav&amp;forumid=0011&amp;topic=5943300" target="hiddenFrame">
+           添加到我的收藏夹
+          </a>
+          [
+          <a href="http://bbs.feeyo.com/topic.jsp?forumid=0011&amp;topic=5943300&amp;mode=1&amp;page=1">
+           管理本贴
+          </a>
+          ]   [
+          <a href="javascript:light()" title="将帖子的背景颜色设置不同，同时放到所有帖子最上方。">
+           点亮本贴(VIP:600/普通4000飞元)
+          </a>
+          ]
+         </div>
+         <script language="JavaScript">
+          function light()
+     {
+       if (confirm("你是否确定点亮本帖？")) hiddenFrame.location.href="http://bbs.feeyo.com/postings.jsp?action=light&forumid=0011&topic=5943300"; 
+     }
+    function mana(action,postid,topic,width,height){
+     var page="postmanage.jsp?action="+action+"&postid="+postid+"&topic="+topic+"&forumid=0011";
+     showModalDialog(page,window,"dialogWidth:"+width+"px;dialogHeight:"+height+"px;status:0;scroll:0;help:0;")
+    }
+    function checkgo(form)
+    {
+     if(!checkIsNotEmpty(form.content.value)) 
+      {
+        document.getElementById("checkinfo").innerHTML = "请输入贴子内容";
+        document.getElementById("checkinfo").className = "ErrorMsg";
+        return false
+      }
+     var str= form.content.value;
+
+     str=str.replace(/\</g,"&lt;");
+     str=str.replace(/\>/g,"&gt;");
+     str=str.replace(/\r\n/g,"<br>");
+     str=str.replace(/\r/g,"<br>");
+     str=str.replace(/\n/g,"<br>");
+     form.content.value=str; 
+     //alert(str);
+     document.getElementById("checkinfo").innerHTML = "数据正在提交到服务器，请稍侯...";
+     document.getElementById("checkinfo").className = "WarningMsg";
+     form.submit1.disabled=true;
+        return true;
+    }
+         </script>
+         <!-- ad start -->
+         <!-- ad end -->
+         <div align="center">
+          <script language="javascript">
+           if (username.substring(0,5)!="guest" && username.substring(0,5)!="") document.writeln('<a href="http://bbs.feeyo.com/post.jsp?action=reply&forumid=0011&topic=5943300&topicauthor=0h_yeah&topictellauthor=0"> <img height="22" alt="回复贴子" src="http://bbs.feeyo.com/image/bu_re2.gif" width="106" border="0"></a> <a href="http://bbs.feeyo.com/post.jsp?action=reply&forumid=0011&topic=5943300&type=postimage&author=0h_yeah&tellauthor=0"> <img height="22" alt="回复贴子" src="http://bbs.feeyo.com/image/bu_rett2.gif" width="106" border="0"></a>');
+          </script>
+         </div>
+         <table align="center" class="repost">
+          <tr>
+           <td class="title2" colspan="3">
+            快速回复   [请您在发表评论时务必注意《
+            <a href="http://www.carnoc.com/bbs/prescribe/userhelp.htm" target="_blank">
+             社区发言规定
+            </a>
+            》]
+           </td>
+          </tr>
+          <form action="http://bbs.feeyo.com/post.jsp?action=reply&amp;forumid=0011&amp;topic=5943300&amp;job=post&amp;topicauthor=0h_yeah&amp;topictellauthor=0" enctype="multipart/form-data" method="post" name="form1" onsubmit="return checkgo(this);" target="hiddenFrame">
+           <tr>
+            <td class="repostwr">
+             <p>
+              主题：
+              <input maxlength="25" name="posttitle" size="53" tabindex="1" value="Re:[讨论]关于增班香港――苏腊巴亚、新开港龙香港――棉兰、广州、厦门――苏腊巴亚的讨论"/>
+             </p>
+             <p>
+              正文：
+              <textarea class="mhtextfield5" cols="53" name="content" rows="11"></textarea>
+             </p>
+             <div align="center">
+              <div align="center" id="checkinfo">
+              </div>
+             </div>
+             <p align="center">
+              <script src="http://bbs.feeyo.com/showpostcodejs.jsp">
+              </script>
+              <input class="button" name="submit1" type="submit" value="发表回复"/>
+              <script language="javascript">
+               if (username.substring(0,5)=="guest" || username=="") {
+                       document.form1.submit1.disabled=true;
+			document.writeln('请 <a href="http://bbs.feeyo.com/loginout.jsp">登陆</a> 后，发表回复');     
+			}
+              </script>
+             </p>
+            </td>
+            <td class="repostzy">
+            </td>
+            <td>
+            </td>
+           </tr>
+          </form>
+         </table>
+         <img border="0" height="0" src="http://bbs.feeyo.com/click.jsp?forumid=0011&amp;topic=5943300" width="0"/>
+         <script src="http://www.feeyo.com/js/bbs/foot.js">
+         </script>
+        </dd>
+       </dl>
+      </div>
+      <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+      </script>
+      <script type="text/javascript">
+       _uacct = "UA-274014-2";
+urchinTracker();
+      </script>
+     </dd>
+    </dl>
+   </div>
+  </div>
+ </body>
+</html>

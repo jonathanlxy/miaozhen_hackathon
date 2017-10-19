@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Silverlight 2.5D RPG游戏技巧与特效处理(Game Effects)：目录 - 深蓝色右手 - 博客园
+  </title>
+  <link href="/bundles/blog-common.css?v=ChDk9h03-S75WEqNhGvXkWireJ5cCWdK1xRM9NIXfnM1" rel="stylesheet" type="text/css"/>
+  <link href="/skins/ClearScreen01/bundle-ClearScreen01.css?v=4UXTP9ZStRsZvXp-yHLt-Sj_8XUk5Wp-6PcbbHcz-6A1" id="MainCss" rel="stylesheet" type="text/css"/>
+  <link href="/blog/customcss/57553.css?v=Mpir%2f46Z4dbFLPkqFxzIBkcsS6g%3d" rel="stylesheet" type="text/css"/>
+  <link href="/skins/ClearScreen01/bundle-ClearScreen01-mobile.css?v=tUKHFYxNlVCqqPw2ehLjjpxgcgCsSF7iHAsULWHpwXs1" id="mobile-style" media="only screen and (max-width: 768px)" rel="stylesheet" type="text/css"/>
+  <link href="http://www.cnblogs.com/alamiye010/rss" rel="alternate" title="RSS" type="application/rss+xml"/>
+  <link href="http://www.cnblogs.com/alamiye010/rsd.xml" rel="EditURI" title="RSD" type="application/rsd+xml"/>
+  <link href="http://www.cnblogs.com/alamiye010/wlwmanifest.xml" rel="wlwmanifest" type="application/wlwmanifest+xml"/>
+  <script src="//common.cnblogs.com/script/jquery.js" type="text/javascript">
+  </script>
+  <script type="text/javascript">
+   var currentBlogApp = 'alamiye010', cb_enable_mathjax=false;var isLogined=false;
+  </script>
+  <script src="/bundles/blog-common.js?v=wUUQbLTt-LocHM-6RVSAUwAYdrfA1Lt3ool1ZdiICfI1" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <a name="top">
+  </a>
+  <!--PageBeginHtml Block Begin-->
+  <div height:100="" style="width:100%; position:absolute; background-image:url('http://images.cnblogs.com/cnblogs_com/alamiye010/BlogTopBackM.jpg')">
+   <div style="float:left;overflow:hidden;width:67%;">
+    <img src="http://images.cnblogs.com/cnblogs_com/alamiye010/Icons/BlogTopBackL.jpg" title="生命在扶摇直上中绽放"/>
+   </div>
+   <div style="float:right; overflow:hidden;width:33%;">
+    <img src="http://images.cnblogs.com/cnblogs_com/alamiye010/Icons/BlogTopBackR.jpg" title="I,m DarkBlue"/>
+   </div>
+  </div>
+  <div style="height:69px !important; height:85px;">
+  </div>
+  <!--PageBeginHtml Block End-->
+  <!--done-->
+  <div id="header">
+   <!--done-->
+   <div class="header">
+    <div class="headerText">
+     <a class="headermaintitle" href="http://www.cnblogs.com/alamiye010/" id="Header1_HeaderTitle">
+      深蓝色右手
+     </a>
+     <br/>
+     生命在扶摇直上中绽放
+    </div>
+   </div>
+  </div>
+  <div id="mylinks">
+   <!--done-->
+   <a class="listitem" href="http://www.cnblogs.com/" id="blog_nav_sitehome">
+    博客园
+   </a>
+   ::
+   <a class="listitem" href="http://www.cnblogs.com/alamiye010/" id="blog_nav_myhome">
+    首页
+   </a>
+   ::
+   <a class="listitem" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" id="blog_nav_newpost" rel="nofollow">
+    新随笔
+   </a>
+   ::
+   <a accesskey="9" class="listitem" href="https://msg.cnblogs.com/send/%E6%B7%B1%E8%93%9D%E8%89%B2%E5%8F%B3%E6%89%8B" id="blog_nav_contact" rel="nofollow">
+    联系
+   </a>
+   ::
+   <a class="listitem" href="http://www.cnblogs.com/alamiye010/rss" id="blog_nav_rss">
+    订阅
+   </a>
+   <a href="http://www.cnblogs.com/alamiye010/rss" id="blog_nav_rss_image">
+    <img alt="订阅" src="//www.cnblogs.com/images/xml.gif"/>
+   </a>
+   ::
+   <a class="listitem" href="https://i.cnblogs.com/" id="blog_nav_admin" rel="nofollow">
+    管理
+   </a>
+  </div>
+  <div id="mytopmenu">
+   <div id="mystats">
+    <div id="blog_stats">
+     <!--done-->
+     <div class="blogStats">
+      posts - 156, 
+comments - 5250, 
+trackbacks - 0
+     </div>
+    </div>
+   </div>
+  </div>
+  <div id="main">
+   <div id="leftcontent">
+    <div id="leftcontentcontainer">
+     <!--done-->
+     <div class="news">
+      公告
+     </div>
+     <div class="newsItem">
+      <div id="blog-news">
+      </div>
+      <script type="text/javascript">
+       loadBlogNews();
+      </script>
+     </div>
+     <div id="blog-calendar" style="display:none">
+     </div>
+     <script type="text/javascript">
+      loadBlogDefaultCalendar();
+     </script>
+     <div id="blog-sidecolumn">
+     </div>
+     <script type="text/javascript">
+      loadBlogSideColumn();
+     </script>
+    </div>
+   </div>
+   <div id="centercontent">
+    <div id="post_detail">
+     <!--done-->
+     <div class="post">
+      <div class="postTitle">
+       <a class="postTitle2" href="http://www.cnblogs.com/alamiye010/archive/2011/04/02/2003182.html" id="cb_post_title_url">
+        Silverlight 2.5D RPG游戏技巧与特效处理(Game Effects)：目录
+       </a>
+      </div>
+      <div id="cnblogs_post_body">
+       <p style="text-indent: 28pt; line-height: 150%;">
+        <span style="font-size: 14pt; line-height: 150%; font-family: 宋体;">
+         以当下主流2.5D RPG客户端品质游戏特效为借鉴，以最大程度控制性能损失为前提，将Silverlight游戏资源占用最小化，综合效果及用户体验最优化，即本系列作者想要向大家讲解的核心技术知识。
+        </span>
+       </p>
+       <p align="left" style="text-indent: 28pt; line-height: 150%;">
+        <span style="font-size: 14pt; line-height: 150%; font-family: 宋体;">
+         本系列着眼于2.5D RPG中各类特效/系统的实现，其中穿插着相关技巧与细节，唯有读者自行理会后方能发现其中更深层次的拓展价值。或许对于今天的Silverlight 4来说，这些特效炫而不实；但是随着Silverlight 5的发布，不仅
+         <a href="http://www.silverlight.net/getstarted/silverlight-5-beta/" target="_blank">
+          整合了XNA
+         </a>
+         ，同时
+         <a href="http://msdn.microsoft.com/zh-cn/library/gg197424(v=XNAGameStudio.35).aspx#Y1840" target="_blank">
+          HLSL也可完美借助GPU硬件加速
+         </a>
+         ，这是多么伟大的奇迹呀！接下来我的代码和演示将向大家展示Silverlight在网页游戏以及移动平台上开发游戏所能越及的高度与深度，这些大多都是其他RIA所无法比拟的。或许当你还在为Silverlight 4所创造的特效视觉冲击赞叹不已时，
+         <a href="http://www.cnblogs.com/alamiye010/archive/2011/04/14/2015690.html" target="_blank">
+          <span style="font-size: 14pt; line-height: 150%; font-family: 宋体;">
+           沉默中的勇士Silverlight 5早已在低调的布控局着整场战役，新的闪电战将于不久的未来一触即发，目标不再只是一个国家，而是整个世界！
+          </span>
+         </a>
+        </span>
+       </p>
+       <p align="left" style="text-indent: 28pt; line-height: 150%;">
+        <span style="font-size: 14pt; line-height: 150%; font-family: 宋体;">
+         记得初入编程道时所受的教诲：软件开发80%的时间应用于思考、设计与统筹需求，而最终用于编程的时间绝不应超过20%，遵循不了这个规律的软件产品都将成为垃圾。至今为止我一直以之为铭警示自己。为什么国外那样的强调开发效率，然而国内却时常会冒出武林高手炫耀十年一日用记事本编程？？或许他还真的很年轻。8年前，我也走过同样的路，曾用记事本编写JAVA程序，用CMD调试，写了不下10W行的物流管理软件。或许对于当时的我来说这非常有利于语言的掌握以及提升代码的严谨性，甚至睡梦时都能清晰的记得哪条语句在哪一行哪一列；然而当岁月开始侵蚀你的肌肤，一个中年男人背负起家庭、父母和孩子的责任时，你会发现用那张历经沧桑的脸面对着显示器是如此的奢侈而弥足珍贵。
+        </span>
+       </p>
+       <p style="text-indent: 28pt; line-height: 150%;">
+        <span style="font-size: 14pt; line-height: 150%; font-family: 宋体;">
+         某天，我干枯疲惫的心偶然遇上了如烈火般狂野的Visual Studio 2010，突然，我的生命开始沸腾了！如此高性能、高开发效率、极其易用的IDE，更重要的是它最终成为了我驰骋Silverlight疆场最得力的帮手；让我深刻体会到原来如此多的梦想可以这般轻易实现，原来编程是可以如此享受的。Silverlight游戏开发中，当你将80%甚至更多的时间用于完成创意设计及构思时，接下来不到20%的时间你会觉得敲击的绝非键盘，而是在用Visual Studio 2010谱写着一曲曲美妙的旋律，身心愉悦着，指头随着节奏而轻舞飞扬。常有朋友问我为何能坚持两年多编写高质量的游戏教程却依旧精力充沛，是否你已经从中找到了答案了呢？
+        </span>
+       </p>
+       <p style="text-indent: 21pt; line-height: 150%;">
+        <span style="font-size: 14pt; line-height: 150%; font-family: 宋体;">
+         既然活着，只有无奈的前行；很是奇怪，一遇清明就会莫名其妙的高烧，每年此时便会疼彻心底的去怀念那些逝去的人、遗憾的事，以及即将被大脑所抹去的牵强记忆；家驹、雨生、哥哥，还有海子……
+        </span>
+       </p>
+       <p style="text-indent: 28pt;">
+        <span style="font-size: 14pt; color: gray; font-family: 宋体;">
+         从明天起，做一个幸福的人；
+        </span>
+        <span style="font-size: 14pt; color: gray; font-family: 宋体;">
+         喂马，劈柴，周游世界
+        </span>
+       </p>
+       <p style="text-indent: 28pt;">
+        <span style="font-size: 14pt; color: gray; font-family: 宋体;">
+         从明天起，关心粮食和蔬菜；
+        </span>
+        <span style="font-size: 14pt; color: gray; font-family: 宋体;">
+         我有一所房子，面朝大海，春暖花开……
+        </span>
+       </p>
+       <p style="line-height: 150%;">
+       </p>
+       <hr/>
+       <p>
+       </p>
+       <p style="line-height: 150%;">
+        <span style="font-size: 14pt; line-height: 150%; font-family: 宋体;">
+         源码下载地址：
+         <a href="http://vdisk.weibo.com/s/okI94" target="_blank">
+          2.5D-RPGEffectsDemo
+         </a>
+        </span>
+       </p>
+       <p style="text-indent: 28pt; line-height: 150%;">
+        <span style="font-size: 14pt; line-height: 150%; font-family: 宋体;">
+         在线演示地址：
+         <a href="http://cangod.com/" target="_blank">
+          http://cangod.com/
+         </a>
+        </span>
+       </p>
+       <p style="text-indent: 28pt; line-height: 150%;">
+        <span style="font-size: 14pt; line-height: 150%; font-family: 宋体;">
+         欢迎有理想，志同道合的专业人士加入深蓝唯一QQ群:73068105，需要证明身份或提供作品。
+        </span>
+       </p>
+       <p align="left" style="background: white; margin: 3.75pt 0cm; text-indent: 25.6pt; line-height: 150%;">
+        <span style="font-size: 14pt; line-height: 150%; font-family: 宋体;">
+         友情提示：
+         <strong>
+          <span style="color: red;">
+           本系列课程完全为本人原创，本人享有示例源码的所有权并与博客园共同享有该教程版权，请在本人许可的前提下进行相关使用，否则保留追究法律责任的权利。另外，课程中所有素材均来源于网络，切勿用作商业用途，否则后果自负。
+          </span>
+         </strong>
+        </span>
+       </p>
+       <p style="text-indent: 28pt; line-height: 150%;">
+        <span style="font-size: 14pt; line-height: 150%; font-family: 宋体;">
+         系列目录：
+        </span>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/02/17/1957422.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（一）序言
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/02/22/1961817.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（二）纸娃娃系统
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/02/26/1966006.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（三）动态光影
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/03/06/1972643.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（四）天气系统
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/03/13/1982821.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（五）HLSL
+           </span>
+           <span>
+            渲染动画
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/03/17/1987155.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（六）流光追影
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/03/23/1992658.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（七）动画特写
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/03/25/1995565.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（八）无限缩放空间系统
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/04/01/2001920.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（九）粒子系统
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/04/07/2008049.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（十）多重空间战斗系统
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/04/11/2012742.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（十一）AI系统
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <strong>
+          <strong>
+           <strong>
+            <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+             <a href="http://www.cnblogs.com/alamiye010/archive/2011/04/19/2021612.html" target="_blank">
+              Silverlight 2.5D RPG
+              <span>
+               游戏技巧与特效处理：（十二）魔法系统
+              </span>
+             </a>
+            </span>
+           </strong>
+          </strong>
+         </strong>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/05/02/2034467.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（十三）资源动态下载组件
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/05/05/2037472.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（十四）体感系统
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/05/12/2044561.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（十五）剧情任务
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2010/06/18/1760465.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（十六）动态资源
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2010/06/21/1762140.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（十七）多国语言(本地化)
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/05/28/2060617.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（十八）开场卷轴与动态窗口
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/06/08/2075420.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（十九）基于WCF的注册与登陆
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/06/23/2087888.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（二十）副本系统
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+          <a href="http://www.cnblogs.com/alamiye010/archive/2011/06/29/2093568.html" target="_blank">
+           Silverlight 2.5D RPG
+           <span>
+            游戏技巧与特效处理：（二十一）自定义路径动画
+           </span>
+          </a>
+         </span>
+        </strong>
+       </p>
+       <p style="background: white; text-indent: 27.55pt; line-height: 150%;">
+        <strong>
+         <strong>
+          <strong>
+           <strong>
+            <strong>
+             <strong>
+              <strong>
+               <strong>
+                <strong>
+                 <strong>
+                  <span style="font-size: 14pt; color: #7b7d62; line-height: 150%; font-family: 宋体;">
+                   <a href="http://www.cnblogs.com/alamiye010/archive/2011/07/07/2100156.html" target="_blank">
+                    Silverlight 2.5D RPG
+                    <span>
+                     游戏技巧与特效处理：（完结篇）革新之路
+                    </span>
+                   </a>
+                  </span>
+                 </strong>
+                </strong>
+               </strong>
+              </strong>
+             </strong>
+            </strong>
+           </strong>
+          </strong>
+         </strong>
+        </strong>
+       </p>
+      </div>
+      <div id="MySignature">
+      </div>
+      <div class="clear">
+      </div>
+      <div id="blog_post_info_block">
+       <div id="BlogPostCategory">
+       </div>
+       <div id="EntryTag">
+       </div>
+       <div id="blog_post_info">
+       </div>
+       <div class="clear">
+       </div>
+       <div id="post_next_prev">
+       </div>
+      </div>
+      <div class="postDesc">
+       posted on
+       <span id="post-date">
+        2011-04-02 12:00
+       </span>
+       <a href="http://www.cnblogs.com/alamiye010/">
+        深蓝色右手
+       </a>
+       阅读(
+       <span id="post_view_count">
+        ...
+       </span>
+       ) 评论(
+       <span id="post_comment_count">
+        ...
+       </span>
+       )
+       <a href="https://i.cnblogs.com/EditPosts.aspx?postid=2003182" rel="nofollow">
+        编辑
+       </a>
+       <a href="#" onclick="AddToWz(2003182);return false;">
+        收藏
+       </a>
+      </div>
+     </div>
+     <script type="text/javascript">
+      var allowComments=true,cb_blogId=57553,cb_entryId=2003182,cb_blogApp=currentBlogApp,cb_blogUserGuid='8e4185d5-6d5a-de11-9510-001cf0cd104b',cb_entryCreatedDate='2011/4/2 12:00:00';loadViewCount(cb_entryId);
+     </script>
+    </div>
+    <a name="!comments">
+    </a>
+    <div id="blog-comments-placeholder">
+    </div>
+    <script type="text/javascript">
+     var commentManager = new blogCommentManager();commentManager.renderComments(0);
+    </script>
+    <div class="commentform" id="comment_form">
+     <a name="commentform">
+     </a>
+     <div id="divCommentShow">
+     </div>
+     <div id="comment_nav">
+      <span id="span_refresh_tips">
+      </span>
+      <a clientidmode="Static" href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();" runat="server">
+       刷新评论
+      </a>
+      <a href="#" onclick="return RefreshPage();">
+       刷新页面
+      </a>
+      <a href="#top">
+       返回顶部
+      </a>
+     </div>
+     <div id="comment_form_container">
+     </div>
+     <div class="ad_text_commentbox" id="ad_text_under_commentbox">
+     </div>
+     <div id="ad_t2">
+     </div>
+     <div id="opt_under_post">
+     </div>
+     <div class="c_ad_block" id="cnblogs_c1">
+     </div>
+     <div id="under_post_news">
+     </div>
+     <div class="c_ad_block" id="cnblogs_c2">
+     </div>
+     <div id="under_post_kb">
+     </div>
+     <div class="c_ad_block" id="HistoryToday">
+     </div>
+     <script type="text/javascript">
+      fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+     </script>
+    </div>
+   </div>
+  </div>
+  <!--done-->
+  <div class="footer">
+   Powered by:
+   <br/>
+   <a href="http://www.cnblogs.com/" id="Footer1_Hyperlink3" name="Hyperlink1" style="font-family:Verdana;font-size:12px;">
+    博客园
+   </a>
+   <br/>
+   Copyright ©2017 深蓝色右手
+  </div>
+  <!--PageEndHtml Block Begin-->
+  <div style="text-align:right; margin-top:-38px; margin-right:15px">
+   <script language="javascript" src="http://js.users.51.la/3035887.js" type="text/javascript">
+   </script>
+   <noscript>
+    <a href="http://www.51.la/?3035887" target="_blank">
+     <img src="http://img.users.51.la/3035887.asp" style="border:none" title="我要啦免费统计"/>
+    </a>
+   </noscript>
+  </div>
+  <!--PageEndHtml Block End-->
+ </body>
+</html>

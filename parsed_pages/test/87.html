@@ -1,0 +1,1349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="email=no" name="format-detection"/>
+  <meta content="address=no" name="format-detection"/>
+  <meta content="telephone=no" name="format-detection"/>
+  <meta content="Copyright 北森测评技术有限公司 beisen.com" name="copyright"/>
+  <meta content="s_zhaohaopeng@beisen.com" name="author"/>
+  <meta content="" name="description"/>
+  <meta content="" name="keywords"/>
+  <title>
+   海信集团网申系统--职位列表
+  </title>
+  <meta content="http://hisense.m.zhiye.com/" name="mobileUrl"/>
+  <link href="//stnew.beisen.com/cmssite//Styles/frontmodule.css" rel="stylesheet" type="text/css"/>
+  <link front="css" href="//stcms.beisen.com/CmsPortal/201174/201174_themes_hisense_styles_cssmin.css?v=0.0.5.2" rel="stylesheet" type="text/css"/>
+  <link front="css" href="//stcms.beisen.com/CmsPortal/201174/201174_themes_hisense_styles_select.css?v=0.0.5.2" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript">
+   //mobileUrl rewrite
+       function goPAGE() {
+		    if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+			    var appSrcMetas = document.getElementsByName('mobileUrl');
+			    if(appSrcMetas.length > 0){
+		       		window.location.href = appSrcMetas[0].getAttribute("content");
+			    }
+		    } 
+		  }
+      goPAGE();
+       
+       //opsapi
+       window.PERF_START=new Date;
+       function _splash(page, uid, tid, pid){
+        uid =  uid || 0;  // 这里是用户ID
+        tid =  tid || 0;   // 这里是租户ID
+        pid =  pid || 'unknown';  // 这里是项目标识
+        var now = new Date;
+        var start = window.PERF_START || now;
+        var diff = now - start;
+        var rand = Math.round(Math.random()*1000000);
+        var url= document.location.protocol+'//opsapi.beisen.com/opsapi/AddLog?appName='+pid+'&label=%5Bsplash%5D%20'+page+'&uid='+uid+'&tid='+tid+'&time='+diff+'&type=1&sid='+rand+'&step=0';
+        var img = new Image;
+        img.src = url;
+    }
+  </script>
+  <script src="//stcms.beisen.com/CmsPortal/201174/201174_themes_hisense_script_bsbase.js?v=0.0.5.2" type="text/javascript">
+  </script>
+  <script src="//stcms.beisen.com/CmsPortal/201174/201174_themes_hisense_script_ddroundiesmin.js?v=0.0.5.2" type="text/javascript">
+  </script>
+  <script src="//stcms.beisen.com/CmsPortal/201174/201174_themes_hisense_script_jquerycookie.js?v=0.0.5.2" type="text/javascript">
+  </script>
+  <script type="text/javascript">
+   var $bs_vars={'st':'//stnew.beisen.com/','version':'2017.01.19.001','constSite':'//const.italent.cn'};function vstr(str) {
+         if (typeof ($bs_vars) == 'undefine')
+             return str;
+         var result = str;
+         for (var v in $bs_vars) {
+             var regex = new RegExp('\\$\\{' + v.toString() + '\\}|\\{' + v.toString() + '\\}', 'igm');
+             result = result.replace(regex, $bs_vars[v]);
+         }
+         return result;
+     };
+  </script>
+  <!--引用静态文件:requirejs-->
+  <script src="//stnew.beisen.com/2017.01.19.001/base/js/require.js" type="text/javascript">
+  </script>
+ </head>
+ <body>
+  <!--header begin-->
+  <div class="header img5">
+   <div class="navbox">
+    <div class="wrap">
+     <a href="#" title="">
+      <img alt="" class="fl" src="http://stcms.beisen.com/cmsportal/201174/201174_themes_hisense_images_logo.png"/>
+     </a>
+     <style type="text/css">
+      .isLogin,.unLogin {
+        display:inline-block;
+        vertical-align: top;
+    }
+     </style>
+     <div class="nav" style="position:relative;padding-right:160px;">
+      <ul class="navul">
+       <li class="subnav">
+        <a href="/" title="">
+         首页
+        </a>
+       </li>
+       <li class="subnav">
+        <a href="/ljhx" title="">
+         了解海信
+        </a>
+        <ul class="navlib">
+         <li>
+          <a href="/ljhx" title="">
+           公司简介
+          </a>
+         </li>
+         <li>
+          <a href="/qywh" title="">
+           企业文化
+          </a>
+         </li>
+         <li>
+          <a href="/pxfz" title="">
+           培训发展
+          </a>
+         </li>
+         <li>
+          <a href="/klgz" title="">
+           快乐工作
+          </a>
+         </li>
+         <li>
+          <a href="/lxwm" title="">
+           联系我们
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="subnav">
+        <a href="/socialnotice" title="">
+         社会招聘
+        </a>
+        <ul class="navlib">
+         <li>
+          <a href="/socialnotice" title="">
+           招聘公告
+          </a>
+         </li>
+         <li>
+          <a href="/socialprocess" title="">
+           招聘流程
+          </a>
+         </li>
+         <li>
+          <a href="/socialsalary1" title="">
+           薪酬福利
+          </a>
+         </li>
+         <li>
+          <a href="sjobs?k=&amp;c=&amp;p=3^-1,1^-1&amp;PageIndex=1" title="">
+           工作机会
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="subnav">
+        <a href="/campusnotice" title="">
+         校园招聘
+        </a>
+        <ul class="navlib">
+         <li>
+          <a href="/campusnotice" title="">
+           招聘公告
+          </a>
+         </li>
+         <li>
+          <a href="/campusprocess" title="">
+           招聘流程
+          </a>
+         </li>
+         <li>
+          <a href="/campussalary" title="">
+           薪酬福利
+          </a>
+         </li>
+         <li>
+          <a href="/campusfaq" title="">
+           FAQ
+          </a>
+         </li>
+         <li>
+          <a href="cjobs?k=&amp;c=&amp;p=3^-1,1^-1&amp;PageIndex=1" title="">
+           工作机会
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="subnav">
+        <a href="/traineeprocess" title="">
+         实习生招聘
+        </a>
+        <ul class="navlib">
+         <li>
+          <a href="/traineeprocess" title="">
+           招聘流程
+          </a>
+          <!--<li><a href="/intern" title="">工作机会</a></p>-->
+         </li>
+         <li>
+          <a href="/ijobs?k=&amp;c=&amp;p=3^-1,1^-1&amp;PageIndex=1" title="">
+           工作机会
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="subnav">
+        <a href="/overseasmission" title="">
+         Global Talent
+        </a>
+        <ul class="navlib w95">
+         <li>
+          <a href="/overseasmission" title="">
+           Mission
+          </a>
+         </li>
+         <li>
+          <a href="/overseasintroduction" title="">
+           Introduction
+          </a>
+          <!--<li><a href="/global" title="">Global Talent</a></p>-->
+         </li>
+         <li>
+          <a href="http://hisense.zhiye.com/gjobs?k=&amp;c=&amp;p=3%5E-1,1%5E-1&amp;PageIndex=1" title="">
+           Global Talent
+          </a>
+         </li>
+        </ul>
+       </li>
+       <!--<li class="subnav"><a href="/Portal/Resume/ResumeItem" title="">加入人才库</a></li>-->
+       <div class="cb">
+       </div>
+      </ul>
+      <div class="dlbox" style="top:0;right:0;height:37px;line-height:37px; width:150px;min-width:150px">
+       <div class="isLogin" style="display:none">
+        <a class="colfff" href="/Portal/Apply/Index">
+         <span>
+          个人中心
+         </span>
+        </a>
+        <em class="ph15">
+         |
+        </em>
+        <a class="colfff" href="/User/Account/LogOut">
+         <span>
+          退出
+         </span>
+        </a>
+       </div>
+       <div class="unLogin" style="display:none">
+        <a class="colfff" href="/Portal/Account/Login?returnUrl=%2Fsjobs%3Fk%3D%26c%3D%26p%3D3%255E-1%2C1%255E-1%26PageIndex%3D1">
+         登录
+        </a>
+        <em class="ph15">
+         |
+        </em>
+        <a class="colfff" href="/Portal/Account/Register?returnUrl=%2Fsjobs%3Fk%3D%26c%3D%26p%3D3%255E-1%2C1%255E-1%26PageIndex%3D1">
+         注册
+        </a>
+       </div>
+      </div>
+      <div class="cb">
+      </div>
+     </div>
+     <!--dom对象加载完成后就get user info-->
+     <script type="text/javascript">
+      var makeUserInfo = function (resp) {
+        var userInfo = {};
+        //userInfo.name = resp.Model.Email;
+        userInfo.isLogin = resp.Success;
+        return userInfo;
+    }
+    
+    $.ajax({
+        url: '/User/Account/GetUserLoginInfo?v=' + Math.random()
+        , data: {}
+        , cache: false
+        , type: 'post'
+        , success: function (resp) {
+            //配置用户基本信息
+            var userInfo = makeUserInfo(resp);
+            var loginView = $(".isLogin");
+            var unLoginView = $(".unLogin");
+            if (userInfo.isLogin) {
+                loginView.show()
+            }
+            else {
+                unLoginView.show()
+            }
+            
+        }//success
+        , error: function () {
+            throw new Error('ERROR: get user info')
+        }
+    });//ajax
+     </script>
+     <script>
+      $(function(){
+        $(".nav li.subnav").mouseover(function(){
+       
+            $(this).children(".navlib").show();
+        })
+        $(".nav li.subnav").mouseleave(function(){
+            
+             $(this).children(".navlib").hide();
+        })
+
+    })
+     </script>
+     <div class="cb">
+     </div>
+    </div>
+   </div>
+  </div>
+  <!--header end-->
+  <!--content begin-->
+  <div class="zwbox">
+   <div class="title_zw">
+    <span class="zwbt_sh">
+     海信集团有限公司-招聘职位
+    </span>
+    <a href="/social" title="">
+     返回社招首页&gt;
+    </a>
+    <div class="cb">
+    </div>
+   </div>
+   <div class="zwlb mt20">
+    <div class="zwlbt">
+     <select id="c" name="c">
+      <option value="">
+       全部工作地点
+      </option>
+      <option value="1">
+       全国
+      </option>
+      <option value="2">
+       国外
+      </option>
+      <option value="1100">
+       北京市
+      </option>
+      <option value="1200">
+       天津市
+      </option>
+      <option value="1300">
+       河北省
+      </option>
+      <option value="1400">
+       山西省
+      </option>
+      <option value="1401">
+       太原市
+      </option>
+      <option value="1500">
+       内蒙古
+      </option>
+      <option value="1501">
+       呼和浩特市
+      </option>
+      <option value="2100">
+       辽宁省
+      </option>
+      <option value="2200">
+       吉林省
+      </option>
+      <option value="2300">
+       黑龙江省
+      </option>
+      <option value="2301">
+       哈尔滨市
+      </option>
+      <option value="3100">
+       上海市
+      </option>
+      <option value="3200">
+       江苏省
+      </option>
+      <option value="3201">
+       南京市
+      </option>
+      <option value="3210">
+       扬州市
+      </option>
+      <option value="3300">
+       浙江省
+      </option>
+      <option value="3305">
+       湖州市
+      </option>
+      <option value="3400">
+       安徽省
+      </option>
+      <option value="3405">
+       马鞍山市
+      </option>
+      <option value="3500">
+       福建省
+      </option>
+      <option value="3501">
+       福州市
+      </option>
+      <option value="3600">
+       江西省
+      </option>
+      <option value="3700">
+       山东省
+      </option>
+      <option value="3701">
+       济南市
+      </option>
+      <option value="3702">
+       青岛市
+      </option>
+      <option value="3706">
+       烟台市
+      </option>
+      <option value="3710">
+       威海市
+      </option>
+      <option value="3713">
+       临沂市
+      </option>
+      <option value="3722">
+       黄岛市
+      </option>
+      <option value="3725">
+       即墨市
+      </option>
+      <option value="3726">
+       平度市
+      </option>
+      <option value="4100">
+       河南省
+      </option>
+      <option value="4101">
+       郑州市
+      </option>
+      <option value="4200">
+       湖北省
+      </option>
+      <option value="4201">
+       武汉市
+      </option>
+      <option value="4300">
+       湖南省
+      </option>
+      <option value="4301">
+       长沙市
+      </option>
+      <option value="4400">
+       广东省
+      </option>
+      <option value="4401">
+       广州市
+      </option>
+      <option value="4403">
+       深圳市
+      </option>
+      <option value="4405">
+       汕头市
+      </option>
+      <option value="4406">
+       佛山市
+      </option>
+      <option value="4407">
+       江门市
+      </option>
+      <option value="4457">
+       顺德县
+      </option>
+      <option value="4500">
+       广西
+      </option>
+      <option value="4501">
+       南宁市
+      </option>
+      <option value="4600">
+       海南省
+      </option>
+      <option value="5000">
+       重庆市
+      </option>
+      <option value="5100">
+       四川省
+      </option>
+      <option value="5101">
+       成都市
+      </option>
+      <option value="5103">
+       自贡市
+      </option>
+      <option value="5105">
+       泸州市
+      </option>
+      <option value="5110">
+       内江市
+      </option>
+      <option value="5115">
+       宜宾市
+      </option>
+      <option value="5200">
+       贵州省
+      </option>
+      <option value="5201">
+       贵阳市
+      </option>
+      <option value="5300">
+       云南省
+      </option>
+      <option value="5301">
+       昆明市
+      </option>
+      <option value="5400">
+       西藏
+      </option>
+      <option value="6100">
+       陕西省
+      </option>
+      <option value="6101">
+       西安市
+      </option>
+      <option value="6200">
+       甘肃省
+      </option>
+      <option value="6300">
+       青海省
+      </option>
+      <option value="6400">
+       宁夏
+      </option>
+      <option value="6500">
+       新疆
+      </option>
+      <option value="6501">
+       乌鲁木齐市
+      </option>
+      <option value="9000">
+       其他
+      </option>
+      <option value="370201">
+       市南区
+      </option>
+      <option value="370205">
+       黄岛区
+      </option>
+      <option value="370206">
+       崂山区
+      </option>
+      <option value="370207">
+       城阳区
+      </option>
+      <option value="370209">
+       即墨市
+      </option>
+      <option value="370210">
+       平度市
+      </option>
+      <option value="370214">
+       青岛高新技术产业开发区
+      </option>
+     </select>
+     <select class="gzdd" id="n" name="n">
+      <option selected='"selected"' title="请选择" value="1^-1">
+       全部职位分类
+      </option>
+      <option title="研发技术类" value="1^15">
+       研发技术类
+      </option>
+      <option title="软件研发类" value="1^9">
+       软件研发类
+      </option>
+      <option title="硬件研发类" value="1^8">
+       硬件研发类
+      </option>
+      <option title="机械设计类" value="1^7">
+       机械设计类
+      </option>
+      <option title="暖通制冷类" value="1^17">
+       暖通制冷类
+      </option>
+      <option title="管理类" value="1^14">
+       管理类
+      </option>
+      <option title="人力资源类" value="1^6">
+       人力资源类
+      </option>
+      <option title="市场营销类" value="1^5">
+       市场营销类
+      </option>
+      <option title="国际市场类" value="1^16">
+       国际市场类
+      </option>
+      <option title="财务管理类" value="1^4">
+       财务管理类
+      </option>
+      <option title="工艺质量类" value="1^3">
+       工艺质量类
+      </option>
+      <option title="生产管理类" value="1^2">
+       生产管理类
+      </option>
+      <option title="一线操作类" value="1^1">
+       一线操作类
+      </option>
+      <option title="地产建筑类" value="1^11">
+       地产建筑类
+      </option>
+      <option title="工程管理类" value="1^10">
+       工程管理类
+      </option>
+      <option title="物业管理类" value="1^12">
+       物业管理类
+      </option>
+      <option title="技术支持类" value="1^13">
+       技术支持类
+      </option>
+     </select>
+     <select class="gzdd" id="p" name="p">
+      <option selected='"selected"' title="请选择分公司" value="3^-1">
+       全部分公司
+      </option>
+      <option title="集团公司" value="3^1">
+       集团公司
+      </option>
+      <option title="多媒体研发中心" value="3^7">
+       多媒体研发中心
+      </option>
+      <option title="海信电器" value="3^5">
+       海信电器
+      </option>
+      <option title="冰箱公司" value="3^8">
+       冰箱公司
+      </option>
+      <option title="空调公司" value="3^17">
+       空调公司
+      </option>
+      <option title="通信公司" value="3^13">
+       通信公司
+      </option>
+      <option title="海信日立公司" value="3^2">
+       海信日立公司
+      </option>
+      <option title="国际营销公司" value="3^3">
+       国际营销公司
+      </option>
+      <option title="海信家电公司" value="3^23">
+       海信家电公司
+      </option>
+      <option title="宽带公司" value="3^16">
+       宽带公司
+      </option>
+      <option title="--宽带中航" value="3^22">
+       --宽带中航
+      </option>
+      <option title="赛维公司" value="3^14">
+       赛维公司
+      </option>
+      <option title="聚好看科技" value="3^28">
+       聚好看科技
+      </option>
+      <option title="海信科技文化公司" value="3^32">
+       海信科技文化公司
+      </option>
+      <option title="网络科技公司" value="3^10">
+       网络科技公司
+      </option>
+      <option title="模具公司" value="3^15">
+       模具公司
+      </option>
+      <option title="--科龙模具" value="3^21">
+       --科龙模具
+      </option>
+      <option title="--容声塑胶" value="3^20">
+       --容声塑胶
+      </option>
+      <option title="海信科龙" value="3^18">
+       海信科龙
+      </option>
+      <option title="医疗设备公司" value="3^12">
+       医疗设备公司
+      </option>
+      <option title="智能商用公司" value="3^11">
+       智能商用公司
+      </option>
+      <option title="智慧家居" value="3^30">
+       智慧家居
+      </option>
+      <option title="房地产公司" value="3^6">
+       房地产公司
+      </option>
+      <option title="--建筑设计院" value="3^25">
+       --建筑设计院
+      </option>
+      <option title="--物业公司" value="3^24">
+       --物业公司
+      </option>
+      <option title="电子商务公司" value="3^34">
+       电子商务公司
+      </option>
+      <option title="海信财务公司" value="3^27">
+       海信财务公司
+      </option>
+      <option title="智动精工公司" value="3^9">
+       智动精工公司
+      </option>
+      <option title="电子设备公司" value="3^19">
+       电子设备公司
+      </option>
+      <option title="海信全国各营销中心" value="3^31">
+       海信全国各营销中心
+      </option>
+      <option title="信扬国际" value="3^29">
+       信扬国际
+      </option>
+      <option title="科技文化公司" value="3^35">
+       科技文化公司
+      </option>
+     </select>
+     <input class="zwlbt_input" name="" placeholder="关键字" type="text" value=""/>
+     <input class="zwlbtsh_btn" name="" type="button" value="搜 索"/>
+     <div class="cb">
+     </div>
+    </div>
+    <div class="zwlbb">
+     <div class="zwlbb_title">
+      <span class="zwlb_zwmc col_sh">
+       职位名称
+      </span>
+      <span class="zwlb_gzdd col_sh">
+       工作地点
+      </span>
+      <span class="zwlb_gsmc col_sh">
+       公司名称
+      </span>
+      <span class="zwlb_fbrq col_sh">
+       发布日期
+      </span>
+      <div class="cb">
+      </div>
+     </div>
+     <!--zwlbb_title end-->
+     <script>
+      $(document).ready(function(){
+	$(".zwlbb li").last().css("border","none") 
+	$(".zwlbb li").click(function(){
+		$(this).children(".rzzg").toggle()
+		})
+	$("select").selectOrDie({})	
+	
+	 $(".nav li").mouseenter(function(){
+		 $(this).children(".navlib").show();
+		 })
+		$(".navlib").mouseleave(function(){
+		 $(this).hide();
+		 }) 
+	 })
+   
+    $(function(){
+                    var href = "";
+                    var type = 1;
+                    var page=1;
+                    $(".zwlbtsh_btn").click(function(){
+                      var sendValue = $(".zwlbt_input").val();
+                      var c=$("#c").val();
+                      var p=$("#p").val();
+                      var n=$("#n").val();
+                       href="/sjobs?k="+sendValue+"&c="+c+"&p="+p+"," + n +"&PageIndex="+page;
+                       window.location.href = href;
+                    });
+      if ($("#p").val()!="3^-1"){
+        $(".zwbt_sh").html($("#p option:selected").attr("title")+"-招聘职位")
+      }
+     });
+     </script>
+     <ul>
+      <li>
+       <span class="zwlb_zwmc">
+        物流总监
+       </span>
+       <span class="zwlb_gzdd">
+        青岛市
+       </span>
+       <span class="zwlb_gsmc">
+        赛维公司
+       </span>
+       <span class="zwlb_fbrq">
+        2017-10-13
+       </span>
+       <div class="cb">
+       </div>
+       <div class="rzzg">
+        <div class="rzzgl col_sh">
+         职位详情：
+        </div>
+        <div class="rzzgm">
+         1、根据公司战略布局，制定物流板块长、中、短期发展规划，完成大型物流中心规划设计及内部资源整合；
+         <br/>
+         2、对公司物流、供应链运作模式及物流配送网络进行规划和设计；
+         <br/>
+         3、组建物流团队，监督、指导物流工作，研究解决物流工作中遇到的问题，制定物流工作重点；
+         <br/>
+         4、制定物流管理和工作计划，对物流工作规范和考核标准不断进行完善；
+         <br/>
+         5、对运输、仓储、人员等方面进行成本控制；
+         <br/>
+         6、负责物流部的预算、人员编制计划、人员分工和培训。
+        </div>
+        <div class="cb">
+        </div>
+        <div class="rzzgl col_sh">
+         任职资格：
+        </div>
+        <div class="rzzgm">
+         1、学历：全日制统招本科及以上学历；
+         <br/>
+         2、专业：专业不限，物流管理等相关专业优先；
+         <br/>
+         3、工作经验：有5年以上物流行业工作经验，有3年以上团队管理经验；
+         <br/>
+         4、知识要求：对供应链管理、物流配送中心管理、物流工程技术发展、物流信息系统技术应用、IT技术管理应用等方面应具备全面的基础认知，并对其中部分内容具有一定的实践经验；
+         <br/>
+         5、能力要求：具有较强逻辑思维能力、较强的沟通表达、业务处理、业务外联和较强团队管理能力，熟悉物流内外部作业流程。
+        </div>
+        <a class="rzzgr btn_sh" href="/sdetail/350134619" title="物流总监">
+         立即申请
+        </a>
+        <div class="cb">
+        </div>
+       </div>
+       <!-- -->
+      </li>
+      <li>
+       <span class="zwlb_zwmc">
+        海信集团融媒体主编招聘
+       </span>
+       <span class="zwlb_gzdd">
+        青岛市
+       </span>
+       <span class="zwlb_gsmc">
+       </span>
+       <span class="zwlb_fbrq">
+        2017-07-25
+       </span>
+       <div class="cb">
+       </div>
+       <div class="rzzg">
+        <div class="rzzgl col_sh">
+         职位详情：
+        </div>
+        <div class="rzzgm">
+         1.负责海信融媒体平台建设与运营；
+         <br/>
+         2.负责海信融媒体内容策划、采编实施、制作、发布、推广与交互运营；
+         <br/>
+         3.负责融媒体矩阵中各子公司频道运营指导与管理。
+        </div>
+        <div class="cb">
+        </div>
+        <div class="rzzgl col_sh">
+         任职资格：
+        </div>
+        <div class="rzzgm">
+         1.本科及以上学历，中文、新闻、经管、营销类专业优先；熟悉、热爱新媒体工作，熟练使用新媒体平台与分析工具。
+         <br/>
+         2.认同海信企业文化和“诚实、正直、务实、向上”的企业价值观；富有工作激情和主动开拓创新精神，责任心强，有一定抗压能力。
+         <br/>
+         3.视野开阔，有良好的策划能力、沟通能力、文字功底、整合资源实施落地的能力与团队协作精神，具有新闻敏感性，反应敏捷，乐于创新，追求结果。
+         <br/>
+         4.有一定的摄影、摄像基础和水平，有良好的审美能力与水平。
+         <br/>
+         5.有新媒体工作经验者优先。
+        </div>
+        <a class="rzzgr btn_sh" href="/sdetail/350111614" title="海信集团融媒体主编招聘">
+         立即申请
+        </a>
+        <div class="cb">
+        </div>
+       </div>
+       <!-- -->
+      </li>
+      <li>
+       <span class="zwlb_zwmc">
+        PR公关
+       </span>
+       <span class="zwlb_gzdd">
+        青岛市
+       </span>
+       <span class="zwlb_gsmc">
+       </span>
+       <span class="zwlb_fbrq">
+        2017-07-25
+       </span>
+       <div class="cb">
+       </div>
+       <div class="rzzg">
+        <div class="rzzgl col_sh">
+         职位详情：
+        </div>
+        <div class="rzzgm">
+         1.公关活动策划和活动落地执行。
+         <br/>
+         2.新闻素材挖掘和对外传播内容撰写。
+         <br/>
+         3.媒体沟通和管理。
+         <br/>
+        </div>
+        <div class="cb">
+        </div>
+        <div class="rzzgl col_sh">
+         任职资格：
+        </div>
+        <div class="rzzgm">
+         1.新闻、中文、管理类、传播类专业本科以上学历。
+         <br/>
+         2.文笔好，善于沟通，善于研究新的传播方式。
+         <br/>
+         3.视野开阔，思路敏捷，行动力和执行力强。
+         <br/>
+         4.公关公司及媒体工作经验者优先。
+         <br/>
+        </div>
+        <a class="rzzgr btn_sh" href="/sdetail/350111619" title="PR公关">
+         立即申请
+        </a>
+        <div class="cb">
+        </div>
+       </div>
+       <!-- -->
+      </li>
+      <li>
+       <span class="zwlb_zwmc">
+        超声系统工程师
+       </span>
+       <span class="zwlb_gzdd">
+        青岛市
+       </span>
+       <span class="zwlb_gsmc">
+       </span>
+       <span class="zwlb_fbrq">
+        2017-07-07
+       </span>
+       <div class="cb">
+       </div>
+       <div class="rzzg">
+        <div class="rzzgl col_sh">
+         职位详情：
+        </div>
+        <div class="rzzgm">
+         1、依据项目需求，参与超声研发技术方案的制订与讨论。
+         <br/>
+         2、负责超声信号处理算法及控制算法设计与优化。
+         <br/>
+         3、负责超声的图像处理算法的实现和相关参数的设置和优化。
+         <br/>
+         4、超声图像质量的评估和分析，性能研究和临床评估合作。
+         <br/>
+         5、负责超声的系统性能的测试和验证。
+         <br/>
+        </div>
+        <div class="cb">
+        </div>
+        <div class="rzzgl col_sh">
+         任职资格：
+        </div>
+        <div class="rzzgm">
+         1、学历： 大学本科以上；
+         <br/>
+         2、专业： 计算机及相关专业；
+         <br/>
+         3、工作经验： 5年以上超声产品研发经验，具备扎实算法理论基础；在超声成像模式、系统设计、图像处理等方面具备丰富软件开发经验。
+         <br/>
+         4、知识要求：在超声成像算法、波束合成、图像处理、血流等方向有深入研究者优先，具备团队管理经验者优先。
+         <br/>
+         5、能力要求：思路开阔，善于创新，积极跟踪相关领域最新的技术动态和成果。
+         <br/>
+        </div>
+        <a class="rzzgr btn_sh" href="/sdetail/350106439" title="超声系统工程师">
+         立即申请
+        </a>
+        <div class="cb">
+        </div>
+       </div>
+       <!-- -->
+      </li>
+      <li>
+       <span class="zwlb_zwmc">
+        电路工程师
+       </span>
+       <span class="zwlb_gzdd">
+        青岛市
+       </span>
+       <span class="zwlb_gsmc">
+       </span>
+       <span class="zwlb_fbrq">
+        2017-10-12
+       </span>
+       <div class="cb">
+       </div>
+       <div class="rzzg">
+        <div class="rzzgl col_sh">
+         职位详情：
+        </div>
+        <div class="rzzgm">
+         1、负责激光显示控制系统设计。
+         <br/>
+         2、负责提高激光显示硬件设计水平，提高整机系统可靠性与性能优化。
+         <br/>
+         3、负责激光显示系统测试、质量相关问题调查和解决；
+         <br/>
+         4、依据激光显示产品、拼接产品规格需要，设计图像处理优化算法，提升显示画质质量水平与产品适用性。
+        </div>
+        <div class="cb">
+        </div>
+        <div class="rzzgl col_sh">
+         任职资格：
+        </div>
+        <div class="rzzgm">
+         1、熟悉投影机显示相关硬件设计，熟悉显示电路系统架构与图像处理相关知识；
+         <br/>
+         2、从事显示相关硬件电路设计三年以上经验；
+         <br/>
+         3、本科及以上学历。
+        </div>
+        <a class="rzzgr btn_sh" href="/sdetail/350134559" title="电路工程师">
+         立即申请
+        </a>
+        <div class="cb">
+        </div>
+       </div>
+       <!-- -->
+      </li>
+      <li>
+       <span class="zwlb_zwmc">
+        项目推进主管
+       </span>
+       <span class="zwlb_gzdd">
+        青岛市
+       </span>
+       <span class="zwlb_gsmc">
+        海信电器
+       </span>
+       <span class="zwlb_fbrq">
+        2017-10-12
+       </span>
+       <div class="cb">
+       </div>
+       <div class="rzzg">
+        <div class="rzzgl col_sh">
+         职位详情：
+        </div>
+        <div class="rzzgm">
+         1：从事项目管理，负责才能够项目启动到批量交付的管理工作。
+         <br/>
+         2：在矩阵式项目管理架构框架下，作为项目的第一 责任人，根据产品经理输入的新品开发需求，组建项目团队，制定项目计划。带领项目团队按计划开发产品。 通过时间管理、质量管理、沟通管理、风险管理、变更管理等方法，确保项目的进度、质量、成本、研发费用控制等达成公司目标要求。
+         <br/>
+         3：负责对已完成项目进行团队成员绩效评价。
+        </div>
+        <div class="cb">
+        </div>
+        <div class="rzzgl col_sh">
+         任职资格：
+        </div>
+        <div class="rzzgm">
+         1：通过PMP资格认证或者具有3年以上项目管理从业经验。:
+         <br/>
+         2：本科及以上学历
+        </div>
+        <a class="rzzgr btn_sh" href="/sdetail/350134542" title="项目推进主管">
+         立即申请
+        </a>
+        <div class="cb">
+        </div>
+       </div>
+       <!-- -->
+      </li>
+      <li>
+       <span class="zwlb_zwmc">
+        京东营销主管
+       </span>
+       <span class="zwlb_gzdd">
+        北京市
+       </span>
+       <span class="zwlb_gsmc">
+        通信公司
+       </span>
+       <span class="zwlb_fbrq">
+        2017-10-11
+       </span>
+       <div class="cb">
+       </div>
+       <div class="rzzg">
+        <div class="rzzgl col_sh">
+         职位详情：
+        </div>
+        <div class="rzzgm">
+         1、负责公司电商京东自营平台销售业务对接工作；
+         <br/>
+         2、完整地负责京东自营平台销售业务需求，设计该平台产品、价格和营销推广策略，最大化争取平台资源，达成业务销售目标；
+         <br/>
+         3、定期进行京东平台数据统计分析以及对竞争对手情况分析跟踪；并通过平台数据和用户反馈，分析流量、转化和用户体验，不断改进和提升产品销售规模；
+         <br/>
+         4、参与产品营销以及市场部门制定线上产品规划和营销活动策划，参与用户体验部门制定在线客服培训计划；
+         <br/>
+         5、常驻京东办公所在地（北京），负责与京东平台保持良好的渠道合作关系，跟进并尝试探索京东平台新业务模式。
+        </div>
+        <div class="cb">
+        </div>
+        <div class="rzzgl col_sh">
+         任职资格：
+        </div>
+        <div class="rzzgm">
+         1、学历：本科及以上学历；
+         <br/>
+         2、专业：不限，电子商务、市场营销、企业管理、通信及相关专业优先；
+         <br/>
+         3、工作经验：在互联网公司有1年以上电商渠道销售经验，有京东平台销售背景优先；
+         <br/>
+         4、知识要求：了解手机等3C产品销售业务知识；熟悉手机等3C产品4P营销知识等；掌握一定的客户沟通技巧；
+         <br/>
+         5、能力要求：学习力强，积极向上，喜欢与人交流，有强烈成就动机。具备较强的口头表达能力和沟通协调能力，分析问题和解决问题的能力。
+        </div>
+        <a class="rzzgr btn_sh" href="/sdetail/350134407" title="京东营销主管">
+         立即申请
+        </a>
+        <div class="cb">
+        </div>
+       </div>
+       <!-- -->
+      </li>
+      <li>
+       <span class="zwlb_zwmc">
+        质量保证主管
+       </span>
+       <span class="zwlb_gzdd">
+        青岛市
+       </span>
+       <span class="zwlb_gsmc">
+       </span>
+       <span class="zwlb_fbrq">
+        2017-10-11
+       </span>
+       <div class="cb">
+       </div>
+       <div class="rzzg">
+        <div class="rzzgl col_sh">
+         职位详情：
+        </div>
+        <div class="rzzgm">
+         1、 优化完善IQC、OQC质量控制标准、方案、手段、设备、人员配置等。
+         <br/>
+         2、 激光产品专用原材料质量控制与异常处理。
+         <br/>
+         3、 激光专用供方的引入、审核、评价、淘汰管理。建立优化供方评价机制对供方定期评价。
+         <br/>
+         4、 激光公司产品生产过程质量跟踪与问题督办管理。
+         <br/>
+         5、 生产关键质量指标对接管理，指导生产质量改善。
+         <br/>
+         6、 IQC、OQC检验人员培训和能力提升。
+        </div>
+        <div class="cb">
+        </div>
+        <div class="rzzgl col_sh">
+         任职资格：
+        </div>
+        <div class="rzzgm">
+         1、学历：全日制本科及以上学历；
+         <br/>
+         2、专业：光学、电子、材料、质量管理类相关专业；
+         <br/>
+         3、工作经验：2年以上相关工作经验
+         <br/>
+        </div>
+        <a class="rzzgr btn_sh" href="/sdetail/350134350" title="质量保证主管">
+         立即申请
+        </a>
+        <div class="cb">
+        </div>
+       </div>
+       <!-- -->
+      </li>
+      <li>
+       <span class="zwlb_zwmc">
+        电路工艺工程师
+       </span>
+       <span class="zwlb_gzdd">
+        青岛市
+       </span>
+       <span class="zwlb_gsmc">
+       </span>
+       <span class="zwlb_fbrq">
+        2017-09-22
+       </span>
+       <div class="cb">
+       </div>
+       <div class="rzzg">
+        <div class="rzzgl col_sh">
+         职位详情：
+        </div>
+        <div class="rzzgm">
+         1、负责新产品电路工艺评审，负责拟制和修订相关可制造性设计规范。
+         <br/>
+         2、负责参与生产中重大和疑难电路问题的技术攻关。
+         <br/>
+         3、负责生产、市场技术支持，OQC、电性能测试问题解决市场质量问题分析解决。
+         <br/>
+         4、承担具体的技术攻关课题任务和质量问题分析。
+         <br/>
+         5、负责元器件认定工作。
+        </div>
+        <div class="cb">
+        </div>
+        <div class="rzzgl col_sh">
+         任职资格：
+        </div>
+        <div class="rzzgm">
+         1、学历：全日制硕士及以上学历。
+         <br/>
+         2、专业：电子科学与技术、微电子、通信工程、集成电路等电子、电路、通信类相关专业。
+         <br/>
+         3、知识：了解电路原理，熟悉模拟、数字电路和PCB技术，掌握一门编程语言和通信基础知识。
+         <br/>
+         4、能力：较好的沟通能力和组织协调能力，良好的团队协作意识。
+        </div>
+        <a class="rzzgr btn_sh" href="/sdetail/350132149" title="电路工艺工程师">
+         立即申请
+        </a>
+        <div class="cb">
+        </div>
+       </div>
+       <!-- -->
+      </li>
+      <li>
+       <span class="zwlb_zwmc">
+        财务专员
+       </span>
+       <span class="zwlb_gzdd">
+        青岛市
+       </span>
+       <span class="zwlb_gsmc">
+        电子设备公司
+       </span>
+       <span class="zwlb_fbrq">
+        2015-10-29
+       </span>
+       <div class="cb">
+       </div>
+       <div class="rzzg">
+        <div class="rzzgl col_sh">
+         职位详情：
+        </div>
+        <div class="rzzgm">
+         1、负责企业的库存盘点、成本核算、成本管理、成本分析工作。
+         <br/>
+         2、负责企业发货审核、票务审核等相关工作。
+         <br/>
+        </div>
+        <div class="cb">
+        </div>
+        <div class="rzzgl col_sh">
+         任职资格：
+        </div>
+        <div class="rzzgm">
+         1、学历要求：全日制本科学历及已上；
+         <br/>
+         2、专业要求：会计学、财务管理等相关专业；
+         <br/>
+         3、知识要求：掌握会计核算和财务管理知识；
+         <br/>
+         4、能力要求：思维敏捷清晰、工作细致严谨，具有良好的沟通能力、协调能力、抗压能力和团队合作能力。
+         <br/>
+         <br/>
+        </div>
+        <a class="rzzgr btn_sh" href="/sdetail/350028988" title="财务专员">
+         立即申请
+        </a>
+        <div class="cb">
+        </div>
+       </div>
+       <!-- -->
+      </li>
+     </ul>
+    </div>
+    <!--zwlbb end-->
+    <div class="page">
+     <span class="fl colac lh30">
+      共695条记录
+     </span>
+     <div class="pager">
+      <span class="colac fl pr10 lh30">
+       当前第1/70页
+      </span>
+      <div class="pagera_sh fl">
+       <a class="disabled next" disabled="disabled">
+        首页
+       </a>
+       <a class="disabled next" disabled="disabled">
+        上一页
+       </a>
+       <a class="next" href="/sjobs/?p=3%5E-1%2C1%5E-1&amp;PageIndex=2">
+        下一页
+       </a>
+       <a href="/sjobs/?p=3%5E-1%2C1%5E-1&amp;PageIndex=70">
+        末页
+       </a>
+      </div>
+      <script language="javascript" type="text/javascript">
+       function _MvcPager_Keydown(e){var _kc,_pib;if(window.event){_kc=e.keyCode;_pib=e.srcElement;}else if(e.which){_kc=e.which;_pib=e.target;}var validKey=(_kc==8||_kc==46||_kc==37||_kc==39||(_kc>=48&&_kc<=57)||(_kc>=96&&_kc<=105));if(!validKey){if(_kc==13){ _MvcPager_GoToPage(_pib,10);}if(e.preventDefault){e.preventDefault();}else{event.returnValue=false;}}}function _MvcPager_GoToPage(_pib,_mp){var pageIndex;if(_pib.tagName=="SELECT"){pageIndex=_pib.options[_pib.selectedIndex].value;}else{pageIndex=_pib.value;var r=new RegExp("^\\s*(\\d+)\\s*$");if(!r.test(pageIndex)){alert("当前页码错误");return;}else if(RegExp.$1<1||RegExp.$1>_mp){alert("当前页码超出范围");return;}}var _hl=document.getElementById(_pib.id+'link').childNodes[0];var _lh=_hl.href;_hl.href=_lh.replace('=0','='+pageIndex);_hl.click();_hl.href=_lh;}
+      </script>
+      <div class="pagerr_sh">
+       <input class="pagerr_input" id="_MvcPager_Ctrl0_pib" onkeydown="_MvcPager_Keydown(event)" type="text" value="1"/>
+       <a onclick="_MvcPager_GoToPage(document.getElementById('_MvcPager_Ctrl0_pib'),70)" title="">
+        跳转
+       </a>
+       <span id="_MvcPager_Ctrl0_piblink" style="display:none;width:0px;height:0px">
+        <a href="/sjobs?PageIndex=0" onclick="window.open(this.attributes.getNamedItem('href').value,'_self')">
+        </a>
+       </span>
+       <div class="cb">
+       </div>
+      </div>
+      <div class="cb">
+      </div>
+      <p class="colac pt15 tr">
+       <a href="/Portal/Resume/ResumeItem" target="_black">
+        如无合适职位，可将简历投递至公司储备人才
+       </a>
+      </p>
+     </div>
+     <!--pager end-->
+     <div class="cb">
+     </div>
+    </div>
+    <!--page end-->
+   </div>
+   <!--zwlb end-->
+  </div>
+  <!--content end-->
+  <div class="footer">
+   Copyright 2015 Hisense Group All Rights Reserved.  海信集团有限公司版权所有  京ICP备05051632号
+   <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802020454" style="display:inline-block;text-decoration:none;height:20px;line-height:28px;" target="_blank">
+    <img lazysrc="" src="http://stcms.beisen.com/cmsportal/201174/201174_themes_hisense_images_jinghui.png" style="float:left;"/>
+    <p http:="" lazysrc="" style="float:left;height:20px;line-&lt;img src=">
+    </p>
+    <p style="float:left;height:20px;line-
+
+height:28px;margin: 0px 0px 0px 5px; color:#939393;">
+     京公网安备 11010802020454号
+    </p>
+   </a>
+   Powered by
+   <a class="footerlogo" href="http://www.beisen.com" target="_blank">
+   </a>
+  </div>
+ </body>
+</html>
