@@ -17,7 +17,7 @@ error_list = [] # Catch the unexpected error during parsing
 # Parse key elements from each URL
 time1 = time.time()
 for i, url in enumerate(url_list):
-    # if i > 10: break # Test
+    if i > 3: break # Test
     print('Parsing URL {}'.format(i))
 
     ### Error handling
@@ -26,6 +26,7 @@ for i, url in enumerate(url_list):
     # In case parse failed, pass to next iteration
     # Error message logged.
     except Exception as err:
+        print('Uncaught Error')
         error_list.append((i, url, err))
         continue
     # If parser catches & logs error, move to next URL

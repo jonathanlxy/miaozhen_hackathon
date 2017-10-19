@@ -36,9 +36,10 @@ class Parser:
         # Load page
         try:
             postback = requests.get(url, **self.req_config)
-        except: # If request failed, log the request fail.
-            print('Request error')
+        except ConnectTimeout: # If request failed, log the request fail.
+            print('Request timeout')
             parse_err_logger(self.log_path, 'RequestFail', url)
+            return None
         # Make soup, extract elements
         if postback.ok:
             soup = BeautifulSoup(postback.content, 'lxml')
