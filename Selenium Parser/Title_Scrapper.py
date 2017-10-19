@@ -6,7 +6,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 # defind Capabilities with header and load strategy
 capa = DesiredCapabilities.CHROME
 capa['pageLoadStrategy'] = 'none'
-capa['phantomjs.page.settings.userAgent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36'
+capa['chrome.page.settings.userAgent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36'
 # initiate selenium webdriver, you might need to use webdriver.Chrome('/path/to/chromedriver.exe', desired_capabilities=capa)
 driver = webdriver.Chrome(desired_capabilities=capa)
 
