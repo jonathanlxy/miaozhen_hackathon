@@ -1115,72 +1115,6 @@
             </div>
             <!-- 收起btn end-->
             <div class="play_right_topArea" id="general_info_wrap">
-             <!-- 打赏+订阅 -->
-             <div class="rewardSubscribe_card " data-elem-pagetype="pgcPage" id="award-dingyue-wrapper">
-              <div class="rewardSubscribe_hd clearfix">
-               <div class="rewardSubscribe_img">
-                <a href="//www.iqiyi.com/ad/index.html">
-                 <img alt="个人头像" height="50" id="widget-vi-uh-playlist" rseat="头像" src="//tp2.sinaimg.cn/2989642753/50/5701499591/0" width="50"/>
-                </a>
-               </div>
-               <div class="rewardSubscribe_msg">
-                <a class="rewardSubscribe_tit" data-bigvip-elem="name" href="//www.iqiyi.com/ad/index.html" id="widget-vi-un-playlist" rseat="userName">
-                 广告
-                </a>
-               </div>
-               <div class="rewardSubscribe_btns" data-bigvip-elem="btnWrap" id="widget-bigvip-reward">
-                <a class="rS_btn rS_dyBtn " data-opt-param='{"agent_type":202,"followfrm":"4_0_0_0"}' data-radiussub-elem="subscribe" data-userid="20" href="javascript:void(0);" id="widget-vshort-uf" j-delegate="add_follow" style="cursor: pointer;" title="订阅Ta，获取最新动态">
-                 <span class="rS_btnBg">
-                 </span>
-                 <i class="rS_txt" rseat="1412042_subs_bfy0">
-                  订
-                 </i>
-                 <i class="rS_txt_selected">
-                  <em class="rS_txt_select">
-                   已订
-                  </em>
-                  <em class="rS_txt_update" j-delegate="update_follow">
-                   查看更新
-                  </em>
-                 </i>
-                </a>
-                <a class="rS_btn rS_dsBtn dn" data-radiussub-elem="reward" href="javascript:(void);">
-                 <span class="ds_bare">
-                  打赏
-                 </span>
-                </a>
-               </div>
-               <!-- 打赏浮层 -->
-               <div class="mod-award-popWrap dn" data-bigvip-elem="rewardFloat">
-                <div class="mod-award-pop">
-                 <span class="tip_t">
-                  <i class="tip_outer">
-                  </i>
-                  <i class="tip_inner">
-                  </i>
-                 </span>
-                 <div class="award-pop-con">
-                  <div class="award-pop-hd">
-                   <p class="pop-hd-txt">
-                    请选择打赏金额：
-                   </p>
-                   <a class="award-pop_closeBtn" data-bigvip-reward="closeFloat" href="javascript:(void);">
-                   </a>
-                  </div>
-                  <div class="award-pop-bd" data-bigvip-elem="rewardInfoWrap">
-                  </div>
-                 </div>
-                </div>
-               </div>
-               <!-- 打赏浮层 end-->
-              </div>
-              <div class="rewardSubscribe_bd clearfix dn" data-bigvip-info="rewardInfo">
-               <p class="people_con" data-bigvip-num="rewardNum">
-               </p>
-               <div class="people_pic" data-bigvip-icons="rewardIcons">
-               </div>
-              </div>
-             </div>
              <!-- 付费按钮 -->
              <div class="mod-tr-vip dyDs_vipBox" data-paopao-newpaybtn="btn" data-widget-moviepaybtn="btn" style="display:none">
              </div>
@@ -2175,15 +2109,43 @@
         </div>
         <div class="mod-crumb_ft clearfix">
          <div class="mod-crumb_bar">
-          <span class="mod-play_tags" data-page-version="pcwdev30" id="datainfo-navlist">
-           <a class="c999" href="//www.iqiyi.com" rseat="bread2_1" target="_blank" title="爱奇艺首页">
-            爱奇艺
-           </a>
-           &gt;
-           <a class="c999" href="//ad.iqiyi.com/" rseat="bread2_2" target="_blank" title="广告">
-            广告
-           </a>
-          </span>
+          <div class="mod-source-v1">
+           <!-- 展开时添加类名playNums-hover -->
+           <div class="playNums fl" data-toggle-class="playNums-hover" id="playcountWrapper" rseat="播放">
+            <a class="mod-play-source" href="javascript:void(0);" id="chartTrigger">
+             <i class="site-icons-play source-play-ico">
+             </i>
+             <span data-playcount-albumname="《同意》“把衣服全脱了，不要问我任何问题”" data-vi-elem="playCount" data-widget-playcount="videoinfo" id="widget-playcount" rseat="plays">
+             </span>
+             <b>
+             </b>
+            </a>
+            <span class="mod-crumbArrow">
+             <i class="mod-crumbArrow_outer">
+             </i>
+             <i class="mod-crumbArrow_inner">
+             </i>
+            </span>
+           </div>
+           <div class="progInfo_msg fl">
+            <!-- 展开时添加类名progInfo_detail-hover -->
+            <a class="progInfo_detail_btn" data-widget-elem="synopsisBtn" href="javascript:;" rseat="701171_info">
+             <i class="site-icons-play source-msg-ico">
+             </i>
+             <span class="progInfo_detail_txt">
+              节目简介
+              <b>
+              </b>
+             </span>
+             <span class="mod-crumbArrow">
+              <i class="mod-crumbArrow_outer">
+              </i>
+              <i class="mod-crumbArrow_inner">
+              </i>
+             </span>
+            </a>
+           </div>
+          </div>
           <span class="mod-tags_item" id="datainfo-taglist">
            <a href="//list.iqiyi.com/www/20/1866------------------.html" rseat="bread3_1" target="_blank" title="生活">
             生活
@@ -2196,38 +2158,64 @@
            </a>
           </span>
          </div>
-         <div class="mod-source clearfix">
-          <div class="playNums fr" data-toggle-class="playNums-hover" id="playcountWrapper" rseat="播放">
-           <a class="mod-play-source" href="javascript:void(0);" id="chartTrigger">
-            播放：
-            <span data-playcount-albumname="《同意》“把衣服全脱了，不要问我任何问题”" data-vi-elem="playCount" data-widget-playcount="videoinfo" id="widget-playcount" rseat="plays">
-            </span>
-            <b>
-            </b>
-           </a>
-           <span class="mod-crumbArrow">
-            <i class="mod-crumbArrow_outer">
-            </i>
-            <i class="mod-crumbArrow_inner">
-            </i>
+         <!-- pcwdev800 订阅打赏 开始 -->
+         <div class="mod-dyDs_bar dn" id="award-dingyue-wrapper">
+          <a class="mod-dyDs-img-link" href="javascript:void(0);" target="_blank">
+           <img alt="个人头像" class="mod-dyDs-img" id="widget-vi-uh-playlist" rseat="头像" src="//tp2.sinaimg.cn/2989642753/50/5701499591/0"/>
+          </a>
+          <a class="mod-dyDs-name-link" data-bigvip-elem="name" href="//www.iqiyi.com/ad/index.html" id="widget-vi-un-playlist">
+           广告
+          </a>
+          <!-- 订阅dy-tocare，已订阅dy-cared，查看更新dy-update -->
+          <a class="btn-care btn-care-tocare dn" data-radiussub-elem="subscribe" data-userid="20" href="javascript:void(0);" id="widget-vshort-uf" j-delegate="add_follow">
+           <i class="site-icons icon-cared">
+           </i>
+           <i class="site-icons icon-eachother">
+           </i>
+           <span class="btn-care_tx btn-care_tx-care" rseat="1412042_subs_bfy0">
+            订阅
            </span>
-          </div>
-          <div class="progInfo_msg fr">
-           <a class="progInfo_detail_btn" data-widget-elem="synopsisBtn" href="javascript:;" rseat="701171_info">
-            <span class="progInfo_detail_txt">
-             节目简介
-             <b>
-             </b>
-            </span>
-            <span class="mod-crumbArrow">
-             <i class="mod-crumbArrow_outer">
+           <span class="btn-care_tx btn-care_tx-tocare" rseat="1412042_subs_bfy0">
+            + 订阅
+           </span>
+           <span class="btn-care_tx btn-care_tx-cared" rseat="1412042_more_bfy0">
+            已订阅
+           </span>
+           <span class="btn-care_tx btn-care_tx-update">
+            查看更新
+           </span>
+           <i class="icon-loading">
+            <img alt="loading" height="15" src="//www.qiyipic.com/common/fix/site/site-loading.gif" width="15"/>
+           </i>
+          </a>
+          <a class="mod-dyDs-ds-link dn" data-radiussub-elem="reward" href="javascript:void(0);">
+           打赏
+          </a>
+          <!-- 打赏浮层 -->
+          <div class="mod-award-popWrap dn" data-bigvip-elem="rewardFloat">
+           <div class="mod-award-pop">
+            <span class="tip_t">
+             <i class="tip_outer">
              </i>
-             <i class="mod-crumbArrow_inner">
+             <i class="tip_inner">
              </i>
             </span>
-           </a>
+            <div class="award-pop-con">
+             <div class="award-pop-hd">
+              <p class="pop-hd-txt">
+               请选择打赏金额：
+              </p>
+              <a class="award-pop_closeBtn" data-bigvip-reward="closeFloat" href="javascript:(void);">
+              </a>
+             </div>
+             <div class="award-pop-bd" data-bigvip-elem="rewardInfoWrap">
+             </div>
+            </div>
+           </div>
           </div>
+          <!-- 打赏浮层 end-->
          </div>
+         <!-- pcwdev800 订阅打赏 结束 -->
         </div>
        </div>
       </div>
@@ -2339,49 +2327,91 @@
      <!-- 短视频简介浮层 end-->
      <!-- 播放量浮层 start-->
      <!-- 默认加dn，展示时去掉-->
-     <div class="mod-crumb_pop" data-chart-leftcolor="#7cba0f" data-chart-rightcolor="#5aabec" data-chart-startangle="56" data-piechar-bg="black" data-private-display="block" id="playcountpiechart" style="display: none;">
+     <div class="mod-crumb_pop mod-crumb_piechart" data-chart-leftcolor="#7cba0f" data-chart-rightcolor="#5aabec" data-chart-startangle="56" data-piechar-bg="black" data-private-display="block" id="playcountpiechart" style="display: none;">
       <div class="play-digitalCon">
        <div class="play-digital">
         <div class="play-digital-con">
-         <div class="wrapper-left clearfix">
-          <div class="digital-con-lf">
+         <div class="wrapper-left">
+          <ul class="digital-main-list clearfix">
+           <li class="digital-wrap">
+            <div class="mobile-lt" data-chart-elem="leftWrapper" style="display: block;">
+             <ul>
+              <li data-chart-elem="title">
+               移动端
+              </li>
+              <li data-chart-elem="ratio">
+               80%
+              </li>
+             </ul>
+            </div>
+            <div class="pc-rt" data-chart-elem="rightWrapper" style="display: block;">
+             <ul>
+              <li data-chart-elem="title">
+               pc端
+              </li>
+              <li data-chart-elem="ratio">
+               20%
+              </li>
+             </ul>
+            </div>
+            <div class="statistical">
+             <p class="statistical-lh40" data-chart-elem="playNum">
+              12.7万
+             </p>
+            </div>
+            <div data-highcharts-chart="0" id="pieChartContainer" style="position:absolute;width:120px;height:120px;left:64px;">
+            </div>
+           </li>
+           <li class="digital-wrap">
+            <div class="mobile-lt" data-chart-elem="leftWrapper1" style="display: none;">
+             <ul>
+              <li data-chart-elem="title">
+               美女
+              </li>
+              <li data-chart-elem="ratio">
+              </li>
+             </ul>
+            </div>
+            <div class="pc-rt" data-chart-elem="rightWrapper1" style="display: none;">
+             <ul>
+              <li data-chart-elem="title">
+               帅哥
+              </li>
+              <li data-chart-elem="ratio">
+              </li>
+             </ul>
+            </div>
+            <div class="statistical">
+             <p class="statistical-lh40" data-chart-elem="sex">
+              性别
+             </p>
+            </div>
+            <div data-highcharts-chart="1" id="portraitChartContainer" style="position:absolute;width:120px;height:120px;left:64px;">
+            </div>
+           </li>
+          </ul>
+         </div>
+         <div class="wrapper-right">
+          <div class="digital-con-lf-new">
            <p class="digital-con-tit">
             播放量数据：快去看看谁在和你一起看视频吧~
            </p>
            <p class="p-tag-source" data-chart-elem="platformTipWrapper" data-private-display="" style="display: block;">
             <span class="c999 f12" data-chart-elem="platformTip">
-             注：数据来自爱奇艺（每日凌晨扣除前日非正常流量）
+             注：数据来自爱奇艺大脑（每日凌晨扣除前日非正常流量）
             </span>
            </p>
-           <p class="chart-entrance" data-chart-elem="indexEntranceWrapper" data-private-display="" style="display: block;">
-            <a data-chart-elem="indexEntrance" href="//index.iqiyi.com/" target="_blank">
-             更多详细数据&gt;
+           <p class="chart-entrance" data-private-display="" style="display: block;">
+            <span class="chart-entrance-tit">
+             更多数据：
+            </span>
+            <a class="chart-entrance-link" href="http://top.iqiyi.com/" target="_blank">
+             爱奇艺风云榜
+            </a>
+            <a class="chart-entrance-link" href="http://index.iqiyi.com/" target="_blank">
+             爱奇艺指数
             </a>
            </p>
-          </div>
-          <div class="digital-main">
-           <div class="mobile-lt" data-chart-elem="leftWrapper" style="display: block;">
-            <ul>
-             <li data-chart-elem="title">
-              移动占比
-             </li>
-             <li data-chart-elem="ratio">
-             </li>
-            </ul>
-           </div>
-           <div class="pc-rt" data-chart-elem="rightWrapper" style="display: block;">
-            <ul>
-             <li data-chart-elem="title">
-              PC占比
-             </li>
-             <li data-chart-elem="ratio">
-             </li>
-            </ul>
-           </div>
-           <div class="statistical" data-chart-elem="playNum">
-           </div>
-           <div data-highcharts-chart="0" id="pieChartContainer" style="position:absolute;width:140px;height:140px;left:92px;">
-           </div>
           </div>
          </div>
         </div>
@@ -2516,9 +2546,9 @@
             <span class="play-rank-nums">
              <i class="icon-fyb-index">
              </i>
-             35
+             29
             </span>
-            <i class="trendTag-ico">
+            <i class="ordinary-ico">
             </i>
            </dd>
           </dl>
@@ -2553,7 +2583,7 @@
             <span class="play-rank-nums">
              <i class="icon-fyb-index">
              </i>
-             19
+             29
             </span>
             <i class="unbiased-ico">
             </i>
@@ -2590,7 +2620,7 @@
             <span class="play-rank-nums">
              <i class="icon-fyb-index">
              </i>
-             19
+             23
             </span>
             <i class="ordinary-ico">
             </i>
@@ -2627,44 +2657,7 @@
             <span class="play-rank-nums">
              <i class="icon-fyb-index">
              </i>
-             18
-            </span>
-            <i class="trendTag-ico">
-            </i>
-           </dd>
-          </dl>
-         </div>
-        </li>
-        <li data-delegate="hoverShowImg">
-         <div class="clearfix rank-item_de " data-hover-type="img">
-          <div class="leftPic" data-show-type="leftPic">
-           <a alt="T-SHIRT WAR创意定格动画" class="site-piclist_pic_link" href="//www.iqiyi.com/v_19rrh8m22c.html" target="_blank" title="T-SHIRT WAR创意定格动画">
-            <img alt="T-SHIRT WAR创意定格动画" height="100%" src="//pic5.qiyipic.com/image/20131021/v_100545773_m_601_m1_116_65.jpg" title="T-SHIRT WAR创意定格动画" width="100%"/>
-            <span class="ordinary def-ordinary">
-             5
-            </span>
-           </a>
-           <div class="video-cover" data-show-type="playBtn" style="display: none;">
-            <a href="//www.iqiyi.com/v_19rrh8m22c.html" rseat="704111_billboardplay" target="_blank">
-             <i class="icon-videoPlay">
-             </i>
-             <span>
-              播放
-             </span>
-            </a>
-           </div>
-          </div>
-          <dl class="rightTxt">
-           <dt class="tit-news">
-            <a alt="T-SHIRT WAR创意定格动画" href="//www.iqiyi.com/v_19rrh8m22c.html" rseat="704111_billboardtitle" target="_blank" title="T-SHIRT WAR创意定格动画">
-             T-SHIRT WAR创意定格动画
-            </a>
-           </dt>
-           <dd>
-            <span class="play-rank-nums">
-             <i class="icon-fyb-index">
-             </i>
-             17
+             22
             </span>
             <i class="ordinary-ico">
             </i>
@@ -2678,7 +2671,7 @@
            <a alt="创意微动画-Ormie吃不到曲奇的 笨笨猪" class="site-piclist_pic_link" href="//www.iqiyi.com/v_19rrhdj3bc.html" target="_blank" title="创意微动画-Ormie吃不到曲奇的 笨笨猪">
             <img alt="创意微动画-Ormie吃不到曲奇的 笨笨猪" height="100%" src="//pic5.qiyipic.com/image/20131210/v_104147168_m_601_116_65.jpg" title="创意微动画-Ormie吃不到曲奇的 笨笨猪" width="100%"/>
             <span class="ordinary def-ordinary">
-             6
+             5
             </span>
            </a>
            <div class="video-cover" data-show-type="playBtn" style="display: none;">
@@ -2701,83 +2694,9 @@
             <span class="play-rank-nums">
              <i class="icon-fyb-index">
              </i>
-             16
+             19
             </span>
             <i class="trendTag-ico">
-            </i>
-           </dd>
-          </dl>
-         </div>
-        </li>
-        <li data-delegate="hoverShowImg">
-         <div class="clearfix rank-item_de " data-hover-type="img">
-          <div class="leftPic" data-show-type="leftPic">
-           <a alt="泰国爆笑减肥广告：够魔性" class="site-piclist_pic_link" href="//www.iqiyi.com/v_19rrbbnlns.html" target="_blank" title="泰国爆笑减肥广告：够魔性">
-            <img alt="泰国爆笑减肥广告：够魔性" height="100%" src="//pic4.qiyipic.com/image/20170410/04/da/v_112113192_m_601_116_65.jpg" title="泰国爆笑减肥广告：够魔性" width="100%"/>
-            <span class="ordinary def-ordinary">
-             7
-            </span>
-           </a>
-           <div class="video-cover" data-show-type="playBtn" style="display: none;">
-            <a href="//www.iqiyi.com/v_19rrbbnlns.html" rseat="704111_billboardplay" target="_blank">
-             <i class="icon-videoPlay">
-             </i>
-             <span>
-              播放
-             </span>
-            </a>
-           </div>
-          </div>
-          <dl class="rightTxt">
-           <dt class="tit-news">
-            <a alt="泰国爆笑减肥广告：够魔性" href="//www.iqiyi.com/v_19rrbbnlns.html" rseat="704111_billboardtitle" target="_blank" title="泰国爆笑减肥广告：够魔性">
-             泰国爆笑减肥广告：够魔性
-            </a>
-           </dt>
-           <dd>
-            <span class="play-rank-nums">
-             <i class="icon-fyb-index">
-             </i>
-             10
-            </span>
-            <i class="trendTag-ico">
-            </i>
-           </dd>
-          </dl>
-         </div>
-        </li>
-        <li data-delegate="hoverShowImg">
-         <div class="clearfix rank-item_de " data-hover-type="img">
-          <div class="leftPic" data-show-type="leftPic">
-           <a alt="可爱小黄人广告大全" class="site-piclist_pic_link" href="//www.iqiyi.com/v_19rrm9ixac.html" target="_blank" title="可爱小黄人广告大全">
-            <img alt="可爱小黄人广告大全" height="100%" src="//pic0.qiyipic.com/image/20160710/5b/49/v_110650552_m_601_116_65.jpg" title="可爱小黄人广告大全" width="100%"/>
-            <span class="ordinary def-ordinary">
-             8
-            </span>
-           </a>
-           <div class="video-cover" data-show-type="playBtn" style="display: none;">
-            <a href="//www.iqiyi.com/v_19rrm9ixac.html" rseat="704111_billboardplay" target="_blank">
-             <i class="icon-videoPlay">
-             </i>
-             <span>
-              播放
-             </span>
-            </a>
-           </div>
-          </div>
-          <dl class="rightTxt">
-           <dt class="tit-news">
-            <a alt="可爱小黄人广告大全" href="//www.iqiyi.com/v_19rrm9ixac.html" rseat="704111_billboardtitle" target="_blank" title="可爱小黄人广告大全">
-             可爱小黄人广告大全
-            </a>
-           </dt>
-           <dd>
-            <span class="play-rank-nums">
-             <i class="icon-fyb-index">
-             </i>
-             8
-            </span>
-            <i class="ordinary-ico">
             </i>
            </dd>
           </dl>
@@ -2789,7 +2708,7 @@
            <a alt="沙漠之舞 除了性感还有亮点" class="site-piclist_pic_link" href="//www.iqiyi.com/v_19rrne7ud0.html" target="_blank" title="沙漠之舞 除了性感还有亮点">
             <img alt="沙漠之舞 除了性感还有亮点" height="100%" src="//pic9.qiyipic.com/image/20140917/e3/4e/v_108581333_m_601_116_65.jpg" title="沙漠之舞 除了性感还有亮点" width="100%"/>
             <span class="ordinary def-ordinary">
-             9
+             6
             </span>
            </a>
            <div class="video-cover" data-show-type="playBtn" style="display: none;">
@@ -2812,7 +2731,81 @@
             <span class="play-rank-nums">
              <i class="icon-fyb-index">
              </i>
+             18
+            </span>
+            <i class="trendTag-ico">
+            </i>
+           </dd>
+          </dl>
+         </div>
+        </li>
+        <li data-delegate="hoverShowImg">
+         <div class="clearfix rank-item_de " data-hover-type="img">
+          <div class="leftPic" data-show-type="leftPic">
+           <a alt="可爱小黄人广告大全" class="site-piclist_pic_link" href="//www.iqiyi.com/v_19rrm9ixac.html" target="_blank" title="可爱小黄人广告大全">
+            <img alt="可爱小黄人广告大全" height="100%" src="//pic0.qiyipic.com/image/20160710/5b/49/v_110650552_m_601_116_65.jpg" title="可爱小黄人广告大全" width="100%"/>
+            <span class="ordinary def-ordinary">
              7
+            </span>
+           </a>
+           <div class="video-cover" data-show-type="playBtn" style="display: none;">
+            <a href="//www.iqiyi.com/v_19rrm9ixac.html" rseat="704111_billboardplay" target="_blank">
+             <i class="icon-videoPlay">
+             </i>
+             <span>
+              播放
+             </span>
+            </a>
+           </div>
+          </div>
+          <dl class="rightTxt">
+           <dt class="tit-news">
+            <a alt="可爱小黄人广告大全" href="//www.iqiyi.com/v_19rrm9ixac.html" rseat="704111_billboardtitle" target="_blank" title="可爱小黄人广告大全">
+             可爱小黄人广告大全
+            </a>
+           </dt>
+           <dd>
+            <span class="play-rank-nums">
+             <i class="icon-fyb-index">
+             </i>
+             12
+            </span>
+            <i class="trendTag-ico">
+            </i>
+           </dd>
+          </dl>
+         </div>
+        </li>
+        <li data-delegate="hoverShowImg">
+         <div class="clearfix rank-item_de " data-hover-type="img">
+          <div class="leftPic" data-show-type="leftPic">
+           <a alt="T-SHIRT WAR创意定格动画" class="site-piclist_pic_link" href="//www.iqiyi.com/v_19rrh8m22c.html" target="_blank" title="T-SHIRT WAR创意定格动画">
+            <img alt="T-SHIRT WAR创意定格动画" height="100%" src="//pic5.qiyipic.com/image/20131021/v_100545773_m_601_m1_116_65.jpg" title="T-SHIRT WAR创意定格动画" width="100%"/>
+            <span class="ordinary def-ordinary">
+             8
+            </span>
+           </a>
+           <div class="video-cover" data-show-type="playBtn" style="display: none;">
+            <a href="//www.iqiyi.com/v_19rrh8m22c.html" rseat="704111_billboardplay" target="_blank">
+             <i class="icon-videoPlay">
+             </i>
+             <span>
+              播放
+             </span>
+            </a>
+           </div>
+          </div>
+          <dl class="rightTxt">
+           <dt class="tit-news">
+            <a alt="T-SHIRT WAR创意定格动画" href="//www.iqiyi.com/v_19rrh8m22c.html" rseat="704111_billboardtitle" target="_blank" title="T-SHIRT WAR创意定格动画">
+             T-SHIRT WAR创意定格动画
+            </a>
+           </dt>
+           <dd>
+            <span class="play-rank-nums">
+             <i class="icon-fyb-index">
+             </i>
+             11
             </span>
             <i class="ordinary-ico">
             </i>
@@ -2826,7 +2819,7 @@
            <a alt="卑鄙的我-小黄人番外篇之香蕉" class="site-piclist_pic_link" href="//www.iqiyi.com/v_19rrhgtm1s.html" target="_blank" title="卑鄙的我-小黄人番外篇之香蕉">
             <img alt="卑鄙的我-小黄人番外篇之香蕉" height="100%" src="//pic5.qiyipic.com/image/20160321/30/6a/v_103766117_m_601_m1_116_65.jpg" title="卑鄙的我-小黄人番外篇之香蕉" width="100%"/>
             <span class="ordinary def-ordinary">
-             10
+             9
             </span>
            </a>
            <div class="video-cover" data-show-type="playBtn" style="display: none;">
@@ -2849,9 +2842,46 @@
             <span class="play-rank-nums">
              <i class="icon-fyb-index">
              </i>
-             7
+             10
             </span>
-            <i class="ordinary-ico">
+            <i class="trendTag-ico">
+            </i>
+           </dd>
+          </dl>
+         </div>
+        </li>
+        <li data-delegate="hoverShowImg">
+         <div class="clearfix rank-item_de " data-hover-type="img">
+          <div class="leftPic" data-show-type="leftPic">
+           <a alt="2014新年超华丽烟火表演" class="site-piclist_pic_link" href="//www.iqiyi.com/v_19rrh10gsw.html" target="_blank" title="2014新年超华丽烟火表演">
+            <img alt="2014新年超华丽烟火表演" height="100%" src="//pic4.qiyipic.com/image/20140102/v_104449594_m_601_116_65.jpg" title="2014新年超华丽烟火表演" width="100%"/>
+            <span class="ordinary def-ordinary">
+             10
+            </span>
+           </a>
+           <div class="video-cover" data-show-type="playBtn" style="display: none;">
+            <a href="//www.iqiyi.com/v_19rrh10gsw.html" rseat="704111_billboardplay" target="_blank">
+             <i class="icon-videoPlay">
+             </i>
+             <span>
+              播放
+             </span>
+            </a>
+           </div>
+          </div>
+          <dl class="rightTxt">
+           <dt class="tit-news">
+            <a alt="2014新年超华丽烟火表演" href="//www.iqiyi.com/v_19rrh10gsw.html" rseat="704111_billboardtitle" target="_blank" title="2014新年超华丽烟火表演">
+             2014新年超华丽烟火表演
+            </a>
+           </dt>
+           <dd>
+            <span class="play-rank-nums">
+             <i class="icon-fyb-index">
+             </i>
+             4
+            </span>
+            <i class="trendTag-ico">
             </i>
            </dd>
           </dl>
