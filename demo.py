@@ -66,10 +66,12 @@ if __name__ == '__main__':
         initargs=[parser, result_q, error_q]) as p:
         p.starmap(main, enumerate(url_list))
     # Collect results
-    result_list = [result_q.get() for i in range(result_q.qsize())]
-    error_list = [error_q.get() for i in range(error_q.qsize())]
+    n_result, n_error = result_q.qsize(), error_q.qsize()
+    result_list = [result_q.get() for i in range(n_result)]
+    error_list = [error_q.get() for i in range(n_error)]
     parse_end = time.time()
     print('Parse finish. Time spent: {:.2f}'.format(parse_end - url_end))
+    print('Results: {}. Error: {}'.format(n_result, n_error))
     print('#'*20)
 
     ## Construct result dataset
