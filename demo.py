@@ -1,6 +1,6 @@
 from multiprocessing import Process, Queue, Pool
 import pandas as pd
-import time, os
+import time, os, json
 # Customized tools
 from lib import *
 
@@ -39,9 +39,8 @@ def main(i, url):
 def result_dump(result_list, path):
     with open(path, 'w') as f:
         for res in result_list:
-            f.write('{}\n'.format(result_list))
+            f.write('{}\n'.format(res))
 
-def
 if __name__ == '__main__':
     #### Initiate
     config = json.load(open('parser_config.json', 'rb'))
@@ -53,7 +52,7 @@ if __name__ == '__main__':
     # Download
     downloader = URL_downloader(save_folder=config['URL_SAVE_FOLDER'])
     url_list = downloader.get_url_list(
-        save_file=config['URL_SAVE_FILE'], test=True)
+        save_file=config['URL_SAVE_FILE'], test=True)[:10]
     # Timing point 2
     url_end = time.time()
     print('URL list downloaded. Time spent: {:.2f}'.format(
@@ -67,7 +66,7 @@ if __name__ == '__main__':
     error_q = Queue() # Catch the error during parsing
     # Parse key elements from each URL
     with Pool(processes=4, initializer=main_init,
-        initargs=[parser, result_q, error_q, config['URL_SAVE_FILE']]) as p:
+        initargs=[parser, result_q, error_q, config['PARSER_SAVE_PATH']]) as p:
         p.starmap(main, enumerate(url_list))
     # Collect results
     n_result, n_error = result_q.qsize(), error_q.qsize()
@@ -80,14 +79,20 @@ if __name__ == '__main__':
     print('#'*20)
 
     #### Dump result
-    result_dump(error_list, config['ERROR_LOG'])
-    result_dump(result_list, config['RESULT_DUMP'])
+    if n_error:
+        result_dump(error_list, config['ERROR_LOG'])
+    else:
+        print('No error occurred')
+    if n_result:
+        result_dump(result_list, config['RESULT_DUMP'])
+    else:
+        print('!!!!! No result !!!!!')
 
     # #### Construct result dataset
     # element_cols = ['url_index', 'url', 'title',
     #                 'description', 'h1', 'h2']
     # result_df = pd.DataFrame(result_list, columns = element_cols)
-    # end = time.time()
+    end = time.time()
     # print('Result DF finished. Time spent: {:.2f}'.format(
     #     end - parse_end))
     # print('#'*20)
