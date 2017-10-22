@@ -1,0 +1,8 @@
+{
+    "PARSER_CONFIG": "request_config.json",
+    "PARSER_SAVE_PATH": "parsed_pages/test",
+    "URL_SAVE_FOLDER": "URL_lists",
+    "URL_SAVE_FILE": "test_list",
+    "ERROR_LOG": "error_log/test.log",
+    "RESULT_DUMP": "result_dump/test"
+}
