@@ -43,16 +43,16 @@ def result_dump(result_list, path):
 
 if __name__ == '__main__':
     #### Initiate
-    config = json.load(open('parser_config.json', 'rb'))
+    cfg = json.load(open('parser_config.json', 'rb'))
 
     #### Download URL list
     # Timing point 1
     start = time.time()
     print('Script starts. Downloading URL list.')
     # Download
-    downloader = URL_downloader(save_folder=config['URL_SAVE_FOLDER'])
+    downloader = URL_downloader(save_folder=cfg['URL_SAVE_FOLDER'])
     url_list = downloader.get_url_list(
-        save_file=config['URL_SAVE_FILE'], test=True)[:10]
+        save_file=cfg['URL_SAVE_FILE'], test=True)[70:90]
     # Timing point 2
     url_end = time.time()
     print('URL list downloaded. Time spent: {:.2f}'.format(
@@ -61,12 +61,12 @@ if __name__ == '__main__':
 
     #### Parallel parsing
     print('Start parsing.')
-    parser = Parser(config['PARSER_CONFIG'])
+    parser = Parser(cfg['PARSER_CONFIG'])
     result_q = Queue() # Store the parsing results
     error_q = Queue() # Catch the error during parsing
     # Parse key elements from each URL
     with Pool(processes=4, initializer=parse_init,
-        initargs=[parser, result_q, error_q, config['PARSER_SAVE_PATH']]) as p:
+        initargs=[parser, result_q, error_q, cfg['PARSER_SAVE_PATH']]) as p:
         p.starmap(parse, enumerate(url_list))
     # Collect results
     n_result, n_error = result_q.qsize(), error_q.qsize()
@@ -80,11 +80,11 @@ if __name__ == '__main__':
 
     #### Dump result
     if n_error:
-        result_dump(error_list, config['ERROR_LOG'])
+        result_dump(error_list, cfg['ERROR_LOG'])
     else:
         print('No error occurred')
     if n_result:
-        result_dump(result_list, config['RESULT_DUMP'])
+        result_dump(result_list, cfg['RESULT_DUMP'])
     else:
         print('!!!!! No result !!!!!')
 
