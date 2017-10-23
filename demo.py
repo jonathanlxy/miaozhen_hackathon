@@ -5,17 +5,17 @@ import time, os, json
 from lib import *
 
 # TODO: Take external arg to point parser log path, save path, etc
-def main_init(parser, result_q, error_q, save_path):
+def parse_init(parser, result_q, error_q, save_path):
     # This is a monkey patch, which allows us to modify the
     # attributes in run time. Also, methods in python are also objects,
     # which allows this f.q operation
     # https://stackoverflow.com/questions/3827065/can-i-use-a-multiprocessing-queue-in-a-function-called-by-pool-imap
-    main.parser = parser
-    main.result_q = result_q
-    main.error_q = error_q
-    main.save_path = save_path
+    parse.parser = parser
+    parse.result_q = result_q
+    parse.error_q = error_q
+    parse.save_path = save_path
 
-def main(i, url):
+def parse(i, url):
     taskid = os.getpid()
     print('Task {} Parsing URL {}'.format(taskid, i))
     #### Error handling
@@ -25,16 +25,16 @@ def main(i, url):
     # Error message logged.
     except (RequestError, PostbackError) as err:
         print('{} while parsing URL {}'.format(err , i))
-        main.error_q.put((i, url, err))
+        parse.error_q.put((i, url, err))
         return None
     #### Get elements & soup
     elements, soup = result
     # Dump soup
-    with open('{}/{}.html'.format(main.save_path, i), 'wb') as page:
+    with open('{}/{}.html'.format(parse.save_path, i), 'wb') as page:
         page.write(soup.prettify('utf-8'))
     # Append the elements to dataset
     new_row = [i, url] + elements
-    main.result_q.put(new_row)
+    parse.result_q.put(new_row)
 
 def result_dump(result_list, path):
     with open(path, 'w') as f:
@@ -65,9 +65,9 @@ if __name__ == '__main__':
     result_q = Queue() # Store the parsing results
     error_q = Queue() # Catch the error during parsing
     # Parse key elements from each URL
-    with Pool(processes=4, initializer=main_init,
+    with Pool(processes=4, initializer=parse_init,
         initargs=[parser, result_q, error_q, config['PARSER_SAVE_PATH']]) as p:
-        p.starmap(main, enumerate(url_list))
+        p.starmap(parse, enumerate(url_list))
     # Collect results
     n_result, n_error = result_q.qsize(), error_q.qsize()
     result_list = [result_q.get() for i in range(n_result)]
@@ -87,6 +87,7 @@ if __name__ == '__main__':
         result_dump(result_list, config['RESULT_DUMP'])
     else:
         print('!!!!! No result !!!!!')
+
 
     # #### Construct result dataset
     # element_cols = ['url_index', 'url', 'title',

@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 def element_extract(soup):
     title = soup.title
     description = soup.find('meta', {'name': 'description'})
-    h1 = soup.find('h1')
+    h1 = soup.h1
     h2 = soup.h2
 
     if title:

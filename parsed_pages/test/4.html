@@ -701,11 +701,8 @@
          <a class="rec_topics_name" href="https://www.douban.com/gallery/topic/%E5%8F%8C%E5%8D%81%E4%B8%80%E4%BB%80%E4%B9%88%E5%80%BC%E5%BE%97%E4%B9%B0/?from=hot_topic_note">
           双十一什么值得买
          </a>
-         <span class="rec_topics_label" style="color: #FF7F92;">
-          [热]
-         </span>
          <span class="rec_topics_subtitle">
-          准备工作可以做起来了 · 4528人参与
+          准备工作可以做起来了 · 4554人参与
          </span>
         </li>
         <li class="rec_topics">
@@ -713,7 +710,7 @@
           我最喜爱的诺奖作家
          </a>
          <span class="rec_topics_subtitle">
-          豆友心中有杆秤 · 2248人参与
+          豆友心中有杆秤 · 2252人参与
          </span>
         </li>
         <li class="rec_topics">
@@ -721,7 +718,7 @@
           网络流行语令我们更有趣了吗
          </a>
          <span class="rec_topics_subtitle">
-          江山代有新词出，各领风骚数百天 · 2538人参与
+          江山代有新词出，各领风骚数百天 · 2542人参与
          </span>
         </li>
         <li class="rec_topics">
@@ -729,7 +726,7 @@
           秋日散步指南
          </a>
          <span class="rec_topics_subtitle">
-          秋天散步才是正经事 · 6971人参与
+          秋天散步才是正经事 · 6972人参与
          </span>
         </li>
         <li class="rec_topics">
@@ -737,7 +734,7 @@
           秋食记
          </a>
          <span class="rec_topics_subtitle">
-          天朗气清，烹一炉秋天 · 11144人参与
+          天朗气清，烹一炉秋天 · 11146人参与
          </span>
         </li>
         <li class="rec_topics">
@@ -745,7 +742,7 @@
           跟着书本去旅行
          </a>
          <span class="rec_topics_subtitle">
-          你去过哪些文学作品里的场景？ · 2335人参与
+          你去过哪些文学作品里的场景？ · 2336人参与
          </span>
         </li>
        </ul>
@@ -837,7 +834,7 @@
             existingNode = global.document.getElementsByTagName('script')[0],
             adSource = '//erebor.douban.com/',
             userId = '',
-            browserId = 'RBzZPAMP2bA',
+            browserId = 'NOW7HmU7-ZI',
             criteria = '3:/note/640437046/',
             preview = '',
             debug = false,
@@ -916,7 +913,38 @@ if (window.addEventListener) {
     window.attachEvent('onload', _ga_init);
 }
   </script>
-  <!-- sindar18c-docker-->
+  <img src="https://img3.doubanio.com/pics/10k.jpg" style="display:none;"/>
+  <img src="https://img3.doubanio.com/pics/10k.jpg" style="display:none;"/>
+  <img src="https://www.douban.com/pics/10k.jpg" style="display:none;"/>
+  <img src="https://img3.doubanio.com/pics/10k.jpg" style="display:none;"/>
+  <script type="text/javascript">
+   $(window).load(function(){
+    if (get_cookie('ct')) return;
+    var submit_result = function(domain, key, cost) {
+        $.get("https://www.douban.com/misc/ct", {domain:domain, key:key, cost:cost});
+    };
+    var test = function(domain, url, key, timeout) {
+        var img = $('<img src="http://'+domain+'.douban.com'+url+'" style="display:none;" />');
+        var begin = new Date();
+        var t;
+        img.load(function() {
+            var cost = new Date() - begin;
+            clearTimeout(t);
+            submit_result(domain, key, cost);
+            set_cookie({ct:'y'});
+        });
+        $().append(img);
+        t = setTimeout(function(){
+            submit_result(domain, key, "timedout");
+            }, timeout);
+    };
+    test('img3', '/pics/ct-1k.gif', 'ct-1k', 5000);
+    test('img1', '/pics/ct-1k.gif', 'ct-1k', 5000);
+    test('www', '/pics/ct-1k.gif', 'ct-1k', 5000);
+    test('img5', '/pics/ct-1k.gif', 'ct-1k', 5000);
+});
+  </script>
+  <!-- daisy1d-docker-->
   <script>
    _SPLITTEST=''
   </script>
