@@ -3,6 +3,7 @@ from .parser import Parser, RequestError, PostbackError
 from .task_handlers import URL_downloader
 from .selenium_helper import Selenium_helper
 
+# This defines what submodule gets imported when import *
 __all__ = ['Parser',
            'RequestError',
            'PostbackError',
