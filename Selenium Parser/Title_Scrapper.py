@@ -39,6 +39,7 @@ title_list = list(map(title_parser, url_list))
 end = time.time()
 print(end - start)
 
+driver.close()
 
 with open("title.txt", "w") as output:
     for title in title_list:
