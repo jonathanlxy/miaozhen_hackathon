@@ -4,13 +4,13 @@ from selenium.webdriver.common.keys import Keys
 import json
 
 class Selenium_helper:
-    def __init__(self, cfg_path=None):
+    def __init__(self, cfg_file=None):
         capa = DesiredCapabilities.CHROME
         capa['pageLoadStrategy'] = 'none'
 
         # Defind Capabilities with header and load strategy
-        if cfg_path:
-            self.config = json.load(open(cfg_path, 'rb'))
+        if cfg_file:
+            self.config = json.load(open(cfg_file, 'rb'))
             capa['chrome.page.settings.userAgent'] = self.config['User_Agent']
         # initiate selenium webdriver, you might need to use webdriver.Chrome('/path/to/chromedriver.exe', desired_capabilities=capa)
         self.driver = webdriver.Chrome(

@@ -5,7 +5,7 @@ import time, os, json
 from lib import *
 
 # TODO: Take external arg to point parser log path, save path, etc
-def parse_init(parser, result_q, error_q, save_path):
+def parse_init(parser, result_q, error_q, save_folder):
     # This is a monkey patch, which allows us to modify the
     # attributes in run time. Also, methods in python are also objects,
     # which allows this f.q operation
@@ -13,7 +13,7 @@ def parse_init(parser, result_q, error_q, save_path):
     parse.parser = parser
     parse.result_q = result_q
     parse.error_q = error_q
-    parse.save_path = save_path
+    parse.save_folder = save_folder
 
 def parse(i, url):
     taskid = os.getpid()
@@ -32,7 +32,7 @@ def parse(i, url):
     #### Get elements & soup
     elements, soup = result
     # Dump soup
-    with open('{}/{}.html'.format(parse.save_path, i), 'wb') as page:
+    with open('{}/{}.html'.format(parse.save_folder, i), 'wb') as page:
         page.write(soup.prettify('utf-8'))
     # Append the elements to dataset
     new_row = [i, url] + elements
@@ -57,7 +57,7 @@ def main_parse():
     print('Start parsing.')
     # Parse key elements from each URL
     with Pool(processes=4, initializer=parse_init,
-        initargs=[parser, result_q, error_q, cfg['PARSER_SAVE_PATH']]) as p:
+        initargs=[parser, result_q, error_q, cfg['PARSER_SAVE_FOLDER']]) as p:
         p.starmap(parse, enumerate(url_list))
     # Collect results
     n_result, n_error = result_q.qsize(), error_q.qsize()

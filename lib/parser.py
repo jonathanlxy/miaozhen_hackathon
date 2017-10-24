@@ -28,11 +28,11 @@ class PostbackError(Exception):
     pass
 
 class Parser:
-    def __init__(self, cfg_path=None):
+    def __init__(self, cfg_file=None):
         # Parser config
-        if cfg_path:
+        if cfg_file:
             self.req_config = json.load(
-                open(cfg_path, 'rb'))
+                open(cfg_file, 'rb'))
 
     def parse(self, url):
         # Load page
