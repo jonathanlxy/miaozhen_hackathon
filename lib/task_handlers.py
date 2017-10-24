@@ -1,6 +1,14 @@
 # import requests
 # download_url = "http://hackathon.mzsvn.com/download.php"
-#
+
+def result_dump(result_list, path):
+    '''
+    Dump the list into a file, separated by \n
+    '''
+    with open(path, 'w') as f:
+        for res in result_list:
+            f.write('{}\n'.format(res))
+
 class URL_downloader:
     def __init__(self, save_folder):
         self.save_folder = save_folder
@@ -18,3 +26,4 @@ class URL_downloader:
         # Read URL (TODO: error handler)
         url_list = url_raw.split('\n')
         return url_list
+

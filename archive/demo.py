@@ -25,9 +25,8 @@ def parse(i, url):
     # Error message logged.
     except (RequestError, PostbackError) as err:
         # type(err).__name__ gets error type, err it self contains the message
-        err_type = type(err).__name__
-        print('{} while parsing URL {}'.format(err_type, i))
-        parse.error_q.put((i, url, err_type))
+        print('{} while parsing URL {}'.format(type(err).__name__, i))
+        parse.error_q.put((i, url, err))
         return None
     #### Get elements & soup
     elements, soup = result
@@ -38,7 +37,10 @@ def parse(i, url):
     new_row = [i, url] + elements
     parse.result_q.put(new_row)
 
-def main_parse():
+if __name__ == '__main__':
+    #### Initiate
+    cfg = json.load(open('parser_config.json', 'rb'))
+
     #### Download URL list
     # Timing point 1
     start = time.time()
@@ -55,6 +57,9 @@ def main_parse():
 
     #### Parallel parsing
     print('Start parsing.')
+    parser = Parser(cfg['PARSER_CONFIG'])
+    result_q = Queue() # Store the parsing results
+    error_q = Queue() # Catch the error during parsing
     # Parse key elements from each URL
     with Pool(processes=4, initializer=parse_init,
         initargs=[parser, result_q, error_q, cfg['PARSER_SAVE_PATH']]) as p:
@@ -79,33 +84,14 @@ def main_parse():
     else:
         print('!!!!! No result !!!!!')
 
-    end = time.time()
-
-    return start, end, result_list, error_list
-
-if __name__ == '__main__':
-    #### Initiate
-    cfg = json.load(open('parser_config.json', 'rb'))
-    parser = Parser(cfg['PARSER_CONFIG'])
-    result_q = Queue() # Store the parsing results
-    error_q = Queue() # Catch the error during parsing
-    #### Parse
-    start, parse_end, result_list, error_list = main_parse()
-
 
     # #### Construct result dataset
     # element_cols = ['url_index', 'url', 'title',
     #                 'description', 'h1', 'h2']
     # result_df = pd.DataFrame(result_list, columns = element_cols)
-
+    end = time.time()
     # print('Result DF finished. Time spent: {:.2f}'.format(
     #     end - parse_end))
     # print('#'*20)
-    #### Submit result
-    sub = Submitter(token='iOkjn2dsAl7js4iD',
-        target_url = 'http://hackathon.mzsvn.com/submit.php')
-    r, value = sub.post(result_dict)
-    print('Submission result:\n{}'.format(value))
-    #### End
     print('Job done. Total execution Time: {:.2f} secs'.format(
-        time.time() - start))
+        end - start))
