@@ -1,5 +1,8 @@
 from multiprocessing import Process, Queue, Pool
 import time, os
+from .parser import Parser, RequestError, PostbackError
+from .misc import result_dump
+
 def parse_init(parser, result_q, error_q, save_folder):
     # This is a monkey patch, which allows us to modify the
     # attributes in run time. Also, methods in python are also objects,
@@ -15,7 +18,7 @@ def parse(i, url):
     print('Task {} Parsing URL {}'.format(taskid, i))
     #### Error handling
     try:
-        result = parser.parse(url)
+        result = parse.parser.parse(url)
     # In case parse failed, pass to next iteration
     # Error message logged.
     except (RequestError, PostbackError) as err:
@@ -33,7 +36,7 @@ def parse(i, url):
     new_row = [i, url] + elements
     parse.result_q.put(new_row)
 
-def main_parse(url_list):
+def main_parse(parser, url_list, cfg):
     #### Download URL list
     # Timing point 1
     start = time.time()
@@ -47,6 +50,8 @@ def main_parse(url_list):
 
     #### Parallel parsing
     print('Start parsing.')
+    result_q = Queue() # Store the parsing results
+    error_q = Queue() # Catch the error during parsing
     # Parse key elements from each URL
     with Pool(processes=4, initializer=parse_init,
         initargs=[parser, result_q, error_q, cfg['PARSER_SAVE_FOLDER']]) as p:

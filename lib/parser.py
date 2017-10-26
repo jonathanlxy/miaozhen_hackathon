@@ -34,7 +34,7 @@ class Parser:
             self.req_config = json.load(
                 open(cfg_file, 'rb'))
 
-    def parse(self, url):
+    def parse(self, url, force_postback=False):
         # Load page
         try:
             postback = requests.get(url, **self.req_config)
@@ -49,9 +49,13 @@ class Parser:
             return elements, soup
         else: # If postback failed, log the status code.
             print('Postback error')
-            raise PostbackError(url)
+            if force_postback:
+                return postback
+            else:
+                raise PostbackError(url)
 
 # Debugging only
 if __name__ == '__main__':
     a = Parser('request_config.json')
-    a.parse('http://www.google.com')
+    res = a.parse('http://www.dianping.com/shop/27215019',
+        force_postback=True)

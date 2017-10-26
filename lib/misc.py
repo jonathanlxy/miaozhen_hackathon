@@ -1,4 +1,4 @@
-# import sqlite3
+import json
 
 # class DBconnector:
 #     def __init__(self, db_file):
@@ -12,5 +12,4 @@ def result_dump(result_list, file):
     Dump the list into a file, separated by \n
     '''
     with open(file, 'w') as f:
-        for res in result_list:
-            f.write('{}\n'.format(res))
+        json.dump(result_list, f)

@@ -23,6 +23,7 @@ class URL_downloader:
                     f.write(url_postback.content)
             # Parse URL into a list (TODO: error handler)
             url_list = url_postback.text.split('\n')
+            clean_url_list = [url for url in url_list if len(url) > 0]
             return url_list
 
 if __name__ == '__main__':
