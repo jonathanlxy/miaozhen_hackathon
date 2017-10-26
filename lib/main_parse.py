@@ -1,10 +1,5 @@
 from multiprocessing import Process, Queue, Pool
-import pandas as pd
-import time, os, json
-# Customized tools
-from lib import *
-
-# TODO: Take external arg to point parser log path, save path, etc
+import time, os
 def parse_init(parser, result_q, error_q, save_folder):
     # This is a monkey patch, which allows us to modify the
     # attributes in run time. Also, methods in python are also objects,
@@ -20,7 +15,7 @@ def parse(i, url):
     print('Task {} Parsing URL {}'.format(taskid, i))
     #### Error handling
     try:
-        result = parse.parser.parse(url)
+        result = parser.parse(url)
     # In case parse failed, pass to next iteration
     # Error message logged.
     except (RequestError, PostbackError) as err:
@@ -38,7 +33,7 @@ def parse(i, url):
     new_row = [i, url] + elements
     parse.result_q.put(new_row)
 
-def main_parse(parser, url_list):
+def main_parse(url_list):
     #### Download URL list
     # Timing point 1
     start = time.time()
@@ -52,8 +47,6 @@ def main_parse(parser, url_list):
 
     #### Parallel parsing
     print('Start parsing.')
-    result_q = Queue() # Store the parsing results
-    error_q = Queue() # Catch the error during parsing
     # Parse key elements from each URL
     with Pool(processes=4, initializer=parse_init,
         initargs=[parser, result_q, error_q, cfg['PARSER_SAVE_FOLDER']]) as p:
@@ -81,37 +74,3 @@ def main_parse(parser, url_list):
     end = time.time()
 
     return start, end, result_list, error_list
-
-if __name__ == '__main__':
-    #### Initiate
-    download_url = 'http://hackathon.mzsvn.com/download.php'
-    cfg = json.load(open('parser_config.json', 'rb'))
-    main_parser = Parser(cfg['PARSER_CONFIG'])
-
-    #### Download URL list
-    downloader = URL_downloader(save_folder=cfg['URL_SAVE_FOLDER'])
-    url_list = downloader.get_url_list(
-        save_file=cfg['URL_SAVE_FILE'],
-        download_url=download_url,
-        test=False)[70:90]
-    #### Parse
-    start, parse_end, result_list, error_list = main_parse(
-        main_parser, url_list)
-
-
-    # #### Construct result dataset
-    # element_cols = ['url_index', 'url', 'title',
-    #                 'description', 'h1', 'h2']
-    # result_df = pd.DataFrame(result_list, columns = element_cols)
-
-    # print('Result DF finished. Time spent: {:.2f}'.format(
-    #     end - parse_end))
-    # print('#'*20)
-    #### Submit result
-    # sub = Submitter(token='iOkjn2dsAl7js4iD',
-    #     target_url = 'http://hackathon.mzsvn.com/submit.php')
-    # r, value = sub.post(result_dict)
-    # print('Submission result:\n{}'.format(value))
-    # #### End
-    # print('Job done. Total execution Time: {:.2f} secs'.format(
-    #     time.time() - start))
