@@ -1,20 +1,27 @@
-import pandas as pd
 import time, os, json
+# Have to mark the time here to cover (almost) all of the imports
+start = time.time()
+import pandas as pd
 # Customized tools
 from lib import *
+
 
 # TODO: Take external arg to point parser log path, save path, etc
 if __name__ == '__main__':
     #### Initiate
-    start = time.time()
+    # Expose the service APIs here for debugging purpose
     print('Initiating...')
+    # Parse
     download_url = 'http://hackathon.mzsvn.com/download.php'
     parse_cfg = json.load(open('parser_config.json', 'rb'))
     main_parser = Parser(parse_cfg['REQUEST_CONFIG'])
+    # Transform & Classify
     corpus_df = pd.read_csv('corpus.csv').reset_index(drop = True)
     corpus_2_list = corpus_df[corpus_df['rate'] == 2]['token'].tolist()
     corpus_3_list = corpus_df[corpus_df['rate'] == 3]['token'].tolist()
-    manual_rater = Selenium_helper('selenium_config.json')
+    trans = Transformer(corpus_2_list, corpus_3_list)
+    clasr = Classifier('Classifier/lr_model')
+    # manual_rater = Selenium_helper('selenium_config.json')
     print('Ready. Time spent: {}'.format(time.time() - start))
     input('Press Enter to start')
 
@@ -33,21 +40,19 @@ if __name__ == '__main__':
         result_list = json.load(f)
     result_list = sorted(result_list, key=lambda x: x[0])
 
-    #### Transform
-    trans = Transformer(corpus_2_list, corpus_3_list)
-    clasr = Classifier('Classifier/lr_model')
-    clsy_result = list(main_classify(result_list, trans, clasr))
+    #### Transform & Classify
 
-    # for res in result_list:
-    #     print('URL: {}'.format(res[0]))
-    #     print('String: {}'.format(res[2]))
-    #     print('Feature: {}'.format(tran.get_feature(res[2])))
-    #     input('Press Enter to continue')
+    clsy_result = list(main_classify(result_list, trans, clasr))
+    for i, t in enumerate(clsy_result):
+        if np.array_equal(trans.get_feature(t[2]), np.array([0, 1, 0, 0])):
+            print(t[2])
+            print(trans.get_feature(t[2]), t[1])
+            input()
 
     #### Construct result dataset
-    element_cols = ['url_index', 'url', 'title',
-                    'description', 'h1', 'h2']
-    result_df = pd.DataFrame(result_list, columns = element_cols)
+    # element_cols = ['url_index', 'url', 'title',
+    #                 'description', 'h1', 'h2']
+    # result_df = pd.DataFrame(result_list, columns = element_cols)
 
 
     # print('Result DF finished. Time spent: {:.2f}'.format(
@@ -65,5 +70,5 @@ if __name__ == '__main__':
     ## Selenium
     # 1. open Postback Error
     # 2. open Request Error
-
+    # manual_rater.close()
     ## If some url left unrated & in error list, classify as 0

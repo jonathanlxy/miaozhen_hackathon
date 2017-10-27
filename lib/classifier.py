@@ -11,7 +11,7 @@ class Classifier:
     def predict(self, X, diff_rate=0.3):
         '''
         Input: Feature np array (n_obs, n_feature)
-        Output: Prediction np array (n_obs, 1)
+        Output: A list of predictions
         '''
         # Initiate
         output = np.empty(len(X))
@@ -27,7 +27,7 @@ class Classifier:
         # -99 => manual classify
         output[~confident_index] = -99
 
-        return output
+        return output.tolist()
 
 if __name__ == '__main__':
     a = Classifier('Classifier/lr_model')
