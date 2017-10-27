@@ -16,14 +16,15 @@ class Classifier:
         # Initiate
         output = np.empty(len(X))
         probablity = self.model.predict_proba(X)
-        # If class probability difference >= threshold (diff_rate), then classify them directly
-        # Otherwise mark for manual inspection
+        # If class probability difference >= threshold (diff_rate),
+        # then classify them directly. Otherwise mark for manual inspection
         diff = probablity[:, 1] - probablity[:, 0]
         confident_index = abs(diff) >= diff_rate
         # Use ceil to round up negative diff (meaning prob0 > prob1) to 0
         # positive diff (prob0 < prob1) to 1
         # There is no prob0 == prob1 case because condfident_index ensures diff
-        output[confident_index] = list(map(ceil, diff[confident_index]))
+        scale_f = lambda x: ceil(x) * 100 # Output => [0, 100]
+        output[confident_index] = list(map(scale_f, diff[confident_index]))
         # -99 => manual classify
         output[~confident_index] = -99
 

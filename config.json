@@ -1,7 +1,7 @@
 {
     "TEAM_TOKEN": "84ade5bb",
     "DOWNLOAD_URL": "http://hackathon.mzsvn.com/download.php",
-
+    "SUBMISSION_URL": "http://hackathon.mzsvn.com/submit.php",
     "REQUEST_CONFIG": {
         "timeout": 4,
         "headers": {

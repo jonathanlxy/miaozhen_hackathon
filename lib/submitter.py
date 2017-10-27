@@ -31,7 +31,11 @@ if __name__ == '__main__':
     wrong_param = dict([
         ('url{!s}'.format(i+1), wrong_scores[i]) for i in range(100)])
 
-    a = sub.post(short_param)
-    b = sub.post(long_param)
-    c = sub.post(perfect_param)
-    d = sub.post(wrong_param)
+    # r, v = sub.post(short_param)
+    # print(r, v)
+    # r, v = sub.post(long_param)
+    # print(r, v)
+    # r, v = sub.post(perfect_param)
+    # print(r, v)
+    # r, v = sub.post(wrong_param)
+    # print(r, v)

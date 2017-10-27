@@ -29,7 +29,12 @@ def testing_load(postback_dump, error_log):
     return postback_list, error_list
 
 if __name__ == '__main__':
-    switch = input('Select Mode (t=tesing/p=production): ')
+    # Allow command line argument
+    if sys.argv[1]:
+        switch = sys.argv[1]
+    else:
+        switch = input('Select Mode (t=tesing/p=production): ')
+    # Production switch
     if switch == 't':
         prod = False
     elif switch == 'p':
@@ -43,7 +48,10 @@ if __name__ == '__main__':
     print('Initiating...')
     cfg = json.load(open('config.json', 'rb'))
     download_url = cfg['DOWNLOAD_URL']
-    team_token = cfg['TEAM_TOKEN']
+    if prod:
+        team_token = cfg['TEAM_TOKEN']
+    else:
+        team_token = 'iOkjn2dsAl7js4iD'
     # Corpus
     corpus_df = pd.read_csv('corpus.csv').reset_index(drop = True)
     corpus_2_list = corpus_df[corpus_df['rate'] == 2]['token'].tolist()
@@ -54,6 +62,7 @@ if __name__ == '__main__':
     trans = Transformer(corpus_2_list, corpus_3_list)
     clasr = Classifier('Classifier/lr_model')
     sel_rater = Selenium_helper(cfg['SEL_CONFIG'])
+    sub = Submitter(token=team_token, target_url = cfg['SUBMISSION_URL'])
 
     # Ready
     print('-' * 20)
@@ -117,9 +126,10 @@ if __name__ == '__main__':
 
     #### Submit result
     # Only take index and label to form the submission data dictionary
-    result_dict = dict([(i, label) for (i, url, title, label) in clsy_list])
-    sub = Submitter(token=team_token,
-        target_url = 'http://hackathon.mzsvn.com/submit.php')
+    # clsy_lsit ==> (index, url, title, pred)
+    result_dict = dict([
+        ('url{}'.format(i+1), int(p)) for (i, u, t, p) in clsy_list])
+
     r, value = sub.post(result_dict)
     print('Submission result:\n{}'.format(value))
 
