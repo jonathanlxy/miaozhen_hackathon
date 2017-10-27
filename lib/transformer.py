@@ -10,7 +10,7 @@ class Transformer:
         '''
         self.corpus2 = corpus_rate2
         self.corpus3 = corpus_rate3
-        for token in corpus_rate3:
+        for token in corpus_rate2 + corpus_rate3:
             add_word(token)
 
     def tokenize(self, doc):
