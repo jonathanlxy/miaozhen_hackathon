@@ -58,10 +58,13 @@ def main_parse(parser, url_list, cfg):
         p.starmap(parse, enumerate(url_list))
     # Collect results
     n_result, n_error = result_q.qsize(), error_q.qsize()
-    result_list = sorted([result_q.get() for i in range(n_result)],
+    postback_list = sorted([result_q.get() for i in range(n_result)],
         key=lambda x: x[0])
-    error_list = sorted([error_q.get() for i in range(n_error)],
-        key=lambda x: x[0])
+    error_raw = [error_q.get() for i in range(n_error)]
+    error_0 = [i for i in error_raw if i[2] == 'PostbackError']
+    error_1 = [i for i in error_raw if i[2] == 'RequestError']
+    error_list = sorted(error_0 + error_1, key=lambda x: x[0])
+
     # Timing point 3
     parse_end = time.time()
     print('Parse finish. Time spent: {:.2f}'.format(parse_end - url_end))
@@ -74,10 +77,10 @@ def main_parse(parser, url_list, cfg):
     else:
         print('No error occurred')
     if n_result:
-        result_dump(result_list, cfg['RESULT_DUMP'])
+        result_dump(postback_list, cfg['RESULT_DUMP'])
     else:
         print('!!!!! No result !!!!!')
 
     end = time.time()
 
-    return start, end, result_list, error_list
+    return start, end, postback_list, error_list
