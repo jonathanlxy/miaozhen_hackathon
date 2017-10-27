@@ -31,9 +31,9 @@ class Selenium_helper:
 
 if __name__ == '__main__':
     a = Selenium_helper('selenium_config.json')
+    input('Press Enter to continue')
     a.get('http://www.google.com')
     score = input('google\n')
-    a.driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + 't')
     a.get('http://www.baidu.com')
     score2 = input('baidu\n')
     print(score, score2)

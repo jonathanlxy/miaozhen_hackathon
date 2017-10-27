@@ -58,8 +58,10 @@ def main_parse(parser, url_list, cfg):
         p.starmap(parse, enumerate(url_list))
     # Collect results
     n_result, n_error = result_q.qsize(), error_q.qsize()
-    result_list = [result_q.get() for i in range(n_result)]
-    error_list = [error_q.get() for i in range(n_error)]
+    result_list = sorted([result_q.get() for i in range(n_result)],
+        key=lambda x: x[0])
+    error_list = sorted([error_q.get() for i in range(n_error)],
+        key=lambda x: x[0])
     # Timing point 3
     parse_end = time.time()
     print('Parse finish. Time spent: {:.2f}'.format(parse_end - url_end))

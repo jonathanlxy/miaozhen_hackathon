@@ -6,26 +6,37 @@ from lib import *
 # TODO: Take external arg to point parser log path, save path, etc
 if __name__ == '__main__':
     #### Initiate
+    start = time.time()
+    print('Initiating...')
     download_url = 'http://hackathon.mzsvn.com/download.php'
     parse_cfg = json.load(open('parser_config.json', 'rb'))
     main_parser = Parser(parse_cfg['REQUEST_CONFIG'])
     corpus_df = pd.read_csv('corpus.csv').reset_index(drop = True)
     corpus_2_list = corpus_df[corpus_df['rate'] == 2]['token'].tolist()
     corpus_3_list = corpus_df[corpus_df['rate'] == 3]['token'].tolist()
+    manual_rater = Selenium_helper('selenium_config.json')
+    print('Ready. Time spent: {}'.format(time.time() - start))
+    input('Press Enter to start')
 
-    #### Download URL list
-    downloader = URL_downloader(save_folder=parse_cfg['URL_SAVE_FOLDER'])
-    url_list = downloader.get_url_list(
-        save_file=parse_cfg['URL_SAVE_FILE'],
-        download_url=download_url,
-        test=False)
+    # #### Download URL list
+    # downloader = URL_downloader(save_folder=parse_cfg['URL_SAVE_FOLDER'])
+    # url_list = downloader.get_url_list(
+    #     save_file=parse_cfg['URL_SAVE_FILE'],
+    #     download_url=download_url,
+    #     test=False)
 
-    #### Parse
-    start, parse_end, result_list, error_list = main_parse(
-        main_parser, url_list, parse_cfg)
+    # #### Parse - returned result & error lists will be sorted already
+    # start, parse_end, result_list, error_list = main_parse(
+    #     main_parser, url_list, parse_cfg)
 
-    # #### Transform
-    # tran = Transformer(corpus_2_list, corpus_3_list)
+    with open('result_dump/test.json', 'rb') as f:
+        result_list = json.load(f)
+    result_list = sorted(result_list, key=lambda x: x[0])
+
+    #### Transform
+    trans = Transformer(corpus_2_list, corpus_3_list)
+    clasr = Classifier('Classifier/lr_model')
+    clsy_result = list(main_classify(result_list, trans, clasr))
 
     # for res in result_list:
     #     print('URL: {}'.format(res[0]))

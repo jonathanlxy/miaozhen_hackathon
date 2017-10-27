@@ -1,6 +1,7 @@
 import numpy as np
 from synonyms import nearby
 from jieba import cut_for_search, add_word
+from zhconv import convert
 
 class Transformer:
     def __init__(self, corpus_rate2, corpus_rate3):
@@ -14,7 +15,7 @@ class Transformer:
 
     def tokenize(self, doc):
         # Remove duplicates & force to lower case
-        return set(cut_for_search(doc.lower()))
+        return set(cut_for_search(convert(doc.lower(), 'zh-cn')))
 
     def rate_token(self, token):
         '''
