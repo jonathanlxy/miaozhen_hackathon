@@ -5,17 +5,17 @@ import json
 from .misc import manual_rate
 
 class Selenium_helper:
-    def __init__(self, cfg_file=None):
+    def __init__(self, cfg=None):
         capa = DesiredCapabilities.CHROME
         capa['pageLoadStrategy'] = 'none'
         # Defind Capabilities with header and load strategy
-        if cfg_file:
-            self.config = json.load(open(cfg_file, 'rb'))
+        if cfg:
+            self.config = cfg
             capa['chrome.page.settings.userAgent'] = self.config['User_Agent']
-        # Initiate selenium webdriver, you might need to use webdriver.Chrome('/path/to/chromedriver.exe', desired_capabilities=capa)
-        self.driver = webdriver.Chrome(
-            self.config['driver_path'],
-            desired_capabilities=capa)
+            # Initiate selenium webdriver, you might need to use webdriver.Chrome('/path/to/chromedriver.exe', desired_capabilities=capa)
+            self.driver = webdriver.Chrome(
+                self.config['driver_path'],
+                desired_capabilities=capa)
 
     def get(self, url):
         self.driver.get(url)

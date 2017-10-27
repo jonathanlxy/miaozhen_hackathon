@@ -1,4 +1,4 @@
-import time, os, json
+import time, os, json, sys
 import pandas as pd
 # Customized tools
 from lib import *
@@ -17,74 +17,107 @@ def timer(phase, comp_time, output=True):
     if output:
         return nowtime
 
-# TODO: Take external arg to point parser log path, save path, etc
+def testing_load(postback_dump, error_log):
+    # Load & make sure postback list was sorted
+    postback_list = json.load(open(postback_dump, 'rb'))
+    postback_list = sorted(postback_list, key=lambda x: x[0])
+    # Load & make sure error list was sorted
+    error_raw = json.load(open(error_log, 'rb'))
+    error_0 = [i for i in error_raw if i[2] == 'PostbackError']
+    error_1 = [i for i in error_raw if i[2] == 'RequestError']
+    error_list = sorted(error_0 + error_1, key=lambda x: x[0])
+    return postback_list, error_list
+
 if __name__ == '__main__':
+    switch = input('Select Mode (t=tesing/p=production): ')
+    if switch == 't':
+        prod = False
+    elif switch == 'p':
+        prod = True
+    else:
+        print(switch)
+        print('Invalid input. Script abort.')
+        sys.exit()
+
     #### Initiate
-    # Expose the service APIs here for debugging purpose
     print('Initiating...')
-    # Parse
-    download_url = 'http://hackathon.mzsvn.com/download.php'
-    parse_cfg = json.load(open('parser_config.json', 'rb'))
-    main_parser = Parser(parse_cfg['REQUEST_CONFIG'])
-    # Transform & Classify
+    cfg = json.load(open('config.json', 'rb'))
+    download_url = cfg['DOWNLOAD_URL']
+    team_token = cfg['TEAM_TOKEN']
+    # Corpus
     corpus_df = pd.read_csv('corpus.csv').reset_index(drop = True)
     corpus_2_list = corpus_df[corpus_df['rate'] == 2]['token'].tolist()
     corpus_3_list = corpus_df[corpus_df['rate'] == 3]['token'].tolist()
+    # Expose the service APIs here for debugging purpose
+    downloader = URL_downloader(save_folder=cfg['URL_SAVE_FOLDER'])
+    main_parser = Parser(cfg['REQUEST_CONFIG'])
     trans = Transformer(corpus_2_list, corpus_3_list)
     clasr = Classifier('Classifier/lr_model')
-    manual_rater = Selenium_helper('selenium_config.json')
-    # Submission
-    team_token = '84ade5bb'
+    sel_rater = Selenium_helper(cfg['SEL_CONFIG'])
+
+    # Ready
+    print('-' * 20)
     input('Ready to roll. Press Enter to start')
 
     start = time.time()
 
-    # #### Download URL list
-    # downloader = URL_downloader(save_folder=parse_cfg['URL_SAVE_FOLDER'])
-    # url_list = downloader.get_url_list(
-    #     save_file=parse_cfg['URL_SAVE_FILE'],
-    #     download_url=download_url,
-    #     test=False)
+    #### Download URL list
+    if prod: # Only runs in production mode
+        url_list = downloader.get_url_list(
+            save_file=cfg['URL_SAVE_FILE'],
+            download_url=download_url,
+            test=False)
 
     download_mark = timer('Downloading', start)
 
     #### Parse
     # Postback list (sorted by index) ==> [index, url, title, desc, h1, h2]
     # Error list (sorted by error type & index) ==> [index, url, err_type]
-    # start, parse_end, postback_list, error_list = main_parse(
-    #     main_parser, url_list, parse_cfg)
+    if prod: # Only runs in production mode
+        start, parse_end, postback_list, error_list = main_parse(
+            main_parser, url_list, cfg)
 
-    with open('result_dump/test.json', 'rb') as f:
-        postback_list = json.load(f)
-    postback_list = sorted(postback_list, key=lambda x: x[0])
+    else: # Load saved lists in testing mode
+        postback_list, error_list = testing_load(
+            'postback_dump/test.json',
+            'error_log/test.log')
 
     parse_mark = timer('Parsing', download_mark)
 
     #### Transform & Classify
     # Transform & auto classify
-    # clsy_list ==> (index, pred, title)
-    clsy_list = list(main_classify(postback_list, trans, clasr))
+    # clsy_zip ==> (index, url, title, pred)
+    clsy_zip, sp_flag = main_classify(postback_list, trans, clasr)
+    clsy_list = list(clsy_zip)
 
     tc_mark = timer('Transform & Auto Classify', parse_mark)
 
-    # Manual labelling
-    if error_list: # Only runs if error item(s) exist(s)
-        print('#### Start Manual Labelling ####')
-        for item in error_list:
-            # If URL is valid, open in browser for rating
-            if item[1]:
-                print('INDEX: {}, URL: {}'.format(item[0], item[1]))
-                m_rate = manual_rater.rate(item[1])
-                clsy_list.append((item[0], m_rate, item[2]))
+    # Selenium inspection
+    if sp_flag: # If main_classify returns positive sp_flag,
+    # add the sp results for inspection
+        sp_list = []
+        for (i, url, title, label) in clsy_list:
+            if label == -99:
+                sp_list.append([i, url, 'Unclear Title'])
+        error_list = sp_list + error_list
 
-        label_mark = timer('Manual Labelling', tc_mark)
+    if error_list: # Only runs if error item(s) exist(s)
+        print('#### Start Selenium Inspection ####')
+        for i, url, err_type in error_list:
+            # If URL is valid, open in browser for rating
+            if url:
+                print('INDEX: {}, URL: {}'.format(i, url))
+                m_rate = sel_rater.rate(url)
+                clsy_list.append((i, url, err_type, m_rate))
+
+        label_mark = timer('Selenium inspection', tc_mark)
     else:
         # If no manual labelling, skip this timer
         label_mark = tc_mark
 
     #### Submit result
     # Only take index and label to form the submission data dictionary
-    result_dict = dict([(i, label) for (i, label, title) in clsy_list])
+    result_dict = dict([(i, label) for (i, url, title, label) in clsy_list])
     sub = Submitter(token=team_token,
         target_url = 'http://hackathon.mzsvn.com/submit.php')
     r, value = sub.post(result_dict)
@@ -92,6 +125,12 @@ if __name__ == '__main__':
 
     timer('Submission', label_mark, output=False)
 
+    #### Dump Classification Results as csv
+    #### Construct result dataset
+    cols = ['url_index', 'url', 'title', 'label']
+    result_df = pd.DataFrame(clsy_list, columns = cols)
+    result_df.to_csv(cfg['RESULT_DUMP'], index=False)
+
     #### End
-    manual_rater.close()
+    sel_rater.close()
     timer('All tasks', start, output=False)

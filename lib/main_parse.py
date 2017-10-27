@@ -61,9 +61,10 @@ def main_parse(parser, url_list, cfg):
     postback_list = sorted([result_q.get() for i in range(n_result)],
         key=lambda x: x[0])
     error_raw = [error_q.get() for i in range(n_error)]
-    error_0 = [i for i in error_raw if i[2] == 'PostbackError']
-    error_1 = [i for i in error_raw if i[2] == 'RequestError']
-    error_list = sorted(error_0 + error_1, key=lambda x: x[0])
+    if error_raw: # Sort error list by error_type then url index
+        error_0 = [i for i in error_raw if i[2] == 'PostbackError']
+        error_1 = [i for i in error_raw if i[2] == 'RequestError']
+        error_list = sorted(error_0 + error_1, key=lambda x: x[0])
 
     # Timing point 3
     parse_end = time.time()

@@ -6,7 +6,7 @@ class Submitter:
 
     def post(self, param_dict):
         '''
-        result_list should be a dict of {'url_i': score_i}
+        param_dict should be a dict of {'url_i': score_i}
         '''
         param = param_dict.copy()
         param['token'] = self.token

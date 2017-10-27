@@ -2,10 +2,10 @@
 ## Parsing step
 from .downloader import URL_downloader
 from .parser import Parser
-from .misc import result_dump
+from .misc import result_dump, manual_rate
 from .selenium_helper import Selenium_helper
 from .submitter import Submitter
-from .main_parse import main_parse#, parse_init, parse
+from .main_parse import main_parse
 ## Feature transformation & Classification
 from .transformer import Transformer
 from .classifier import Classifier
@@ -15,15 +15,14 @@ from .main_classify import main_classify
 __all__ = [# Parsing step
            'URL_downloader',
            'Parser',
-           # 'parse_init',
-           # 'parse',
            'main_parse',
            # Feature transformation & Classification
            'Transformer',
            'Classifier',
            'main_classify',
+           'Selenium_helper',
+           'manual_rate',
            # Result save
            'result_dump',
-           #
-           'Selenium_helper',
+           # Submit
            'Submitter']

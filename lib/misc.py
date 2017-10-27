@@ -14,11 +14,15 @@ def result_dump(result_list, file):
     with open(file, 'w') as f:
         json.dump(result_list, f)
 
-def manual_rate(stdout_info):
+def manual_rate(stdout_info, allow_sp=False):
     # Print the stdout_info to screen for manual rating
     # 0 = no good (0), 1 = good (100), 5 = not sure (50)
     m_rate = None
-    score_dict = {'0': 0, '1': 100, '5': 50}
+    # If allow sp: "?" will be decode as -99 for special action
+    if allow_sp:
+        score_dict = {'0': 0, '1': 100, '5': 50, '?': -99}
+    else:
+        score_dict = {'0': 0, '1': 100, '5': 50}
     while m_rate not in score_dict:
         print(stdout_info)
         m_rate = input('Rate ==> ')

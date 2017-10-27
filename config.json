@@ -1,0 +1,24 @@
+{
+    "TEAM_TOKEN": "84ade5bb",
+    "DOWNLOAD_URL": "http://hackathon.mzsvn.com/download.php",
+
+    "REQUEST_CONFIG": {
+        "timeout": 4,
+        "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
+            "Accept": "application/json, text/javascript"
+        }
+    },
+
+    "SEL_CONFIG": {
+        "User_Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
+        "driver_path": "/mnt/c/Windows/chromedriver.exe"
+    },
+
+    "URL_SAVE_FOLDER": "URL_lists",
+    "URL_SAVE_FILE": "test_list.txt",
+    "PARSER_SAVE_FOLDER": "parsed_pages/test",
+    "POSTBACK_DUMP": "postback_dump/test.json",
+    "ERROR_LOG": "error_log/test.log",
+    "RESULT_DUMP": "result_dump/test.csv"
+}

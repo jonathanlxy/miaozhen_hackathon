@@ -28,11 +28,10 @@ class PostbackError(Exception):
     pass
 
 class Parser:
-    def __init__(self, cfg_file=None):
+    def __init__(self, cfg=None):
         # Parser config
-        if cfg_file:
-            self.req_config = json.load(
-                open(cfg_file, 'rb'))
+        if cfg:
+            self.req_config = cfg
 
     def parse(self, url, force_postback=False):
         # Load page
@@ -48,7 +47,7 @@ class Parser:
             # Return key elements & the soup
             return elements, soup
         else: # If postback failed, log the status code.
-            print('Postback error')
+            print('Postback error: {}'.format(postback.status_code))
             if force_postback:
                 return postback
             else:
@@ -56,6 +55,13 @@ class Parser:
 
 # Debugging only
 if __name__ == '__main__':
-    a = Parser('request_config.json')
+    cfg = {
+        "timeout": 4,
+        "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
+            "Accept": "application/json, text/javascript"
+        }
+    }
+    a = Parser(cfg)
     res = a.parse('http://www.dianping.com/shop/27215019',
         force_postback=True)
