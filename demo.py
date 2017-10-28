@@ -49,7 +49,7 @@ if __name__ == '__main__':
     cfg = json.load(open('config.json', 'rb'))
     download_url = cfg['DOWNLOAD_URL']
     if prod:
-        team_token = cfg['TEAM_TOKEN']
+        team_token = 'iOkjn2dsAl7js4iD'#cfg['TEAM_TOKEN']
     else:
         team_token = 'iOkjn2dsAl7js4iD'
     # Corpus
