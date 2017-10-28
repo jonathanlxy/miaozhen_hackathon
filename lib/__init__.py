@@ -2,7 +2,7 @@
 ## Parsing step
 from .downloader import URL_downloader
 from .parser import Parser
-from .misc import result_dump, manual_rate
+from .misc import result_dump, manual_rate, check_status
 from .selenium_helper import Selenium_helper
 from .submitter import Submitter
 from .main_parse import main_parse
@@ -25,4 +25,6 @@ __all__ = [# Parsing step
            # Result save
            'result_dump',
            # Submit
-           'Submitter']
+           'Submitter',
+           # Status check
+           'check_status']

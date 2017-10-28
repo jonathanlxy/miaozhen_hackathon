@@ -1,4 +1,6 @@
 import json
+import requests
+from .parser import PostbackError
 
 def result_dump(result_list, file):
     '''
@@ -23,3 +25,10 @@ def manual_rate(stdout_info, allow_sp=False):
             return score_dict[m_rate]
         else:
             print('!!! Invalid score !!!')
+
+def check_status(download_url):
+    postback = requests.get(download_url)
+    if postback.ok:
+        print(postback.content)
+    else:
+        raise PostbackError
