@@ -1,7 +1,7 @@
 from multiprocessing import Process, Queue, Pool
 import time, os
-from .parser import Parser, RequestError, PostbackError
-from .misc import result_dump
+from lib.parser import Parser, RequestError, PostbackError
+from lib.misc import result_dump
 
 def parse_init(parser, result_q, error_q, save_folder):
     # This is a monkey patch, which allows us to modify the
@@ -79,10 +79,11 @@ def main_parse(parser, url_list, cfg):
         else:
             print('No error occurred')
         if n_result:
-            result_dump(postback_list, cfg['RESULT_DUMP'])
+            result_dump(postback_list, cfg['POSTBACK_DUMP'])
         else:
-            print('!!!!! No result !!!!!')
+            print('!!!!! No postback !!!!!')
     except:
+        print('Error dumping error & postback')
         pass
     end = time.time()
 

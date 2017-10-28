@@ -30,7 +30,7 @@ def testing_load(postback_dump, error_log):
 
 if __name__ == '__main__':
     # Allow command line argument
-    if sys.argv[1]:
+    if len(sys.argv) > 1:
         switch = sys.argv[1]
     else:
         switch = input('Select Mode (t=tesing/p=production): ')
@@ -49,12 +49,12 @@ if __name__ == '__main__':
     cfg = json.load(open('config.json', 'rb'))
     download_url = cfg['DOWNLOAD_URL']
     if prod:
-        team_token = 'iOkjn2dsAl7js4iD'#cfg['TEAM_TOKEN']
+        team_token = cfg['TEAM_TOKEN']
     else:
         team_token = 'iOkjn2dsAl7js4iD'
     # Corpus
-    corpus_2_list = json.load(open('Classifier/corpus2.json', 'r'))
-    corpus_3_list = json.load(open('Classifier/corpus3.json', 'r'))
+    corpus_2_list = json.load(open('Classifier/new_corpus2.json', 'r'))
+    corpus_3_list = json.load(open('Classifier/new_corpus3.json', 'r'))
     corpus_add_2 = json.load(open('Classifier/corpus_add2.json', 'r'))
     corpus_add_3 = json.load(open('Classifier/corpus_add3.json', 'r'))
     # Expose the service APIs here for debugging purpose
@@ -114,13 +114,17 @@ if __name__ == '__main__':
 
     if error_list: # Only runs if error item(s) exist(s)
         print('#### Start Selenium Inspection ####')
-        for i, url, err_type, err in error_list:
-            # If URL is valid, open in browser for rating
-            if url:
-                print('INDEX: {}, URL: {}'.format(i, url))
-                m_rate = sel_rater.rate(url)
-                clsy_list.append((i, url, err_type, m_rate))
-
+        for item in error_list:
+            try:
+                i, url, err_type, err = item
+                # If URL is valid, open in browser for rating
+                if url:
+                    print('INDEX: {}, URL: {}'.format(i, url))
+                    m_rate = sel_rater.rate(url)
+                    clsy_list.append((i, url, err_type, m_rate))
+            except Exception:
+                print('Error. item={}'.format(item))
+                pass
         label_mark = timer('Selenium inspection', tc_mark)
     else:
         # If no manual labelling, skip this timer
@@ -129,8 +133,19 @@ if __name__ == '__main__':
     #### Submit result
     # Only take index and label to form the submission data dictionary
     # clsy_lsit ==> (index, url, title, pred)
+    result_list = []
+    for i in clsy_list:
+        try:
+            if i[0] in range(100):
+                result_list.append(i)
+        except:
+            print('Error item in clsy_list: {}'.format(i))
+            pass
     result_dict = dict([
-        ('url{}'.format(i+1), int(p)) for (i, u, t, p) in clsy_list])
+        ('url{}'.format(i+1), int(p)) for (i, u, t, p) in result_list])
+
+    # result_dict = dict([
+    #     ('url{}'.format(i+1), int(p)) for (i, u, t, p) in clsy_list])
 
     r, value = sub.post(result_dict)
     print('Submission result:\n{}'.format(value))

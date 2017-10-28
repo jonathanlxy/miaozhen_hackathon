@@ -1,5 +1,5 @@
 import numpy as np
-from .misc import manual_rate
+from lib.misc import manual_rate
 
 def main_classify(postback_list, transformer, classifier):
     '''

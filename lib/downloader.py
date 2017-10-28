@@ -1,5 +1,5 @@
 import requests
-from .parser import PostbackError
+from lib.parser import PostbackError
 
 class URL_downloader:
     def __init__(self, save_folder=None):

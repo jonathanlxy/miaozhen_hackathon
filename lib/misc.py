@@ -1,6 +1,6 @@
 import json
 import requests
-from .parser import PostbackError
+from lib.parser import PostbackError
 
 def result_dump(result_list, file):
     '''

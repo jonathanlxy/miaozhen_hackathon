@@ -11,8 +11,12 @@ class Transformer:
         '''
         self.corpus2 = corpus_rate2 + corpus_add2
         self.corpus3 = corpus_rate3 + corpus_add3
-        for token in corpus_rate2 + corpus_rate3:
-            add_word(token)
+        try:
+            for token in corpus_rate2 + corpus_rate3:
+                add_word(token)
+        except Exception:
+            print('Error adding token in corpus.')
+            pass
 
     def tokenize(self, doc):
         # Remove duplicates & force to lower case
@@ -56,7 +60,11 @@ class Transformer:
             [token_2, token_3, synonym_2, synonym_3]
         '''
         # Tokenize document for rating
-        tokens = self.tokenize(doc)
+        if doc:
+            tokens = self.tokenize(doc)
+        else:
+            # Force the feature to return fluffy prediction
+            return np.array([1, 0, 4, 0])
 
         # Rating temp list, same length
         token_rate_list = [0] * len(tokens)
