@@ -29,7 +29,6 @@ url_index,url,title,label
 24,http://www.xhwhouse.com/news/11340.htm,马来西亚房产优点分析 永久产权租赁回报高-新海外,100.0
 25,http://www.cnblogs.com/blvt/p/7261833.html,铁轨出轨总数目（卡塔兰数及大数的运用） - 余生漫漫浪 - 博客园,100.0
 26,https://baike.baidu.com/tashuo/browse/content?id=03557a8fec542a9226d3e4c2,【TA说】中国有一种比大熊猫还珍贵的猴子，因为不会卖萌错失国宝宝座_百度百科,100.0
-27,http://top.51.la/os.htm,操作系统使用率 - 我要啦 51.La 综合数据,100.0
 28,http://stock.qq.com/a/20170925/006337.htm,格力表示暂不会举牌逼宫海立股份 董明珠或不想顶野蛮人之名_证券_腾讯网,100.0
 29,http://www.qiwen007.com/pc-wy/kejiqianyan/152442.html,“速度与激情”版烧烤炉横空出世-奇闻007,100.0
 30,http://www.cnblogs.com/Kmoon/archive/2012/04/19/2457893.html,写代码容易吗，放松一下吧，苍老师的高清片子 - 独孤求欢 - 博客园,100.0
@@ -40,7 +39,6 @@ url_index,url,title,label
     护肤不贵| 高性价二次清洁爽肤水盘点
 ",100.0
 35,https://www.bilibili.com/video/av2867988/,【尸体派对2】上次4P不过瘾，这是最后一P了_单机游戏_游戏_bilibili_哔哩哔哩,0.0
-36,http://news.eastday.com/w/20170925/u1a13298620.html,默克尔赢得德国大选 与谁组阁成重要悬念-默克尔 德国大选 德国经济 黑天鹅 选举 另类选择 失业率降 悬念 PK 客户端-国际新闻-东方网,100.0
 37,http://v.pptv.com/show/l1kko7kE7y2QDnY.html?rcc_src=www_index,王牌特工2：黄金圈(“花式装备”版预告)_高清在线观看 - PP视频一起玩出精彩 - 原聚力视频、PPTV聚力,100.0
 38,http://blog.renren.com/share/880891199/18025205019,在这场春游中，我们一起走进风景如画的双龙峡 – 【人人分享-人人网】,100.0
 39,http://www.v1.cn/video/14668488.shtml,台式五香炸猪肉 丨 美味菜谱回顾-第一视频,100.0
@@ -54,11 +52,10 @@ url_index,url,title,label
 46,https://st.hujiang.com/topic/1712323321233/,"
 	【泡面翻】2017.10.10 法语泡一泡 - 团结就是力量_爱翻不凡翻译社_语言-沪江社团
 ",100.0
-47,http://city.eastday.com/gk/20170925/u1a13298447.html,唯美樱花木道 虹桥商务区未来十大水景有看头-区域频道-东方网,100.0
 48,http://news.xinhuanet.com/air/2015-11/11/c_128416104.htm,"
 航空公司机票优惠力度大-新华网
 ",100.0
-49,http://yq.voc.com.cn/article/201506/201506242244097228005.html,"舆情分析：兰陵一副校长致初中女生""怀孕"" - 案例库 - 华声舆情 - 华声在线",100.0
+49,http://yq.voc.com.cn/article/201506/201506242244097228005.html,"舆情分析：兰陵一副校长致初中女生""怀孕"" - 案例库 - 华声舆情 - 华声在线",0.0
 50,http://www.toutiao.com/a6471106472599093773/,不要再傻傻的用酵母发面了，用它只需2分钟，做出馒头又软又好吃,100.0
 51,http://news.163.com/photoview/00AN0001/2276780.html?from=ph_ss#p=CVDL22BD00AN0001NOS,广场大全景再现 国庆花坛扮靓京城_网易新闻,100.0
 52,http://economy.youth.cn/dtxw/201709/t20170925_10775710.htm,抑制“煤超疯” 发改委连续发声保障煤炭供应_新闻频道_中国青年网,100.0
@@ -112,5 +109,8 @@ url_index,url,title,label
 汤炳正：朴学的经世致用
 _光明日报
 _光明网",100.0
+27,http://top.51.la/os.htm,PostbackError,100.0
+36,http://news.eastday.com/w/20170925/u1a13298620.html,PostbackError,100.0
+47,http://city.eastday.com/gk/20170925/u1a13298447.html,PostbackError,100.0
 63,http://www.dianping.com/shop/27215019,PostbackError,100.0
 80,http://www.zhainanmao.com/2925.html,RequestError,0.0

@@ -81,7 +81,7 @@ if __name__ == '__main__':
 
     #### Parse
     # Postback list (sorted by index) ==> [index, url, title, desc, h1, h2]
-    # Error list (sorted by error type & index) ==> [index, url, err_type]
+    # Error list (sorted by error type & index) ==> [i, url, err_code, err]
     if prod: # Only runs in production mode
         start, parse_end, postback_list, error_list = main_parse(
             main_parser, url_list, cfg)
@@ -112,7 +112,7 @@ if __name__ == '__main__':
 
     if error_list: # Only runs if error item(s) exist(s)
         print('#### Start Selenium Inspection ####')
-        for i, url, err_type in error_list:
+        for i, url, err_type, err in error_list:
             # If URL is valid, open in browser for rating
             if url:
                 print('INDEX: {}, URL: {}'.format(i, url))

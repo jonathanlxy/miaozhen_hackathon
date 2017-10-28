@@ -25,7 +25,7 @@ def parse(i, url):
         # type(err).__name__ gets error type, err it self contains the message
         err_type = type(err).__name__
         print('{} while parsing URL {}'.format(err_type, i))
-        parse.error_q.put((i, url, err_type))
+        parse.error_q.put((i, url, err_type, err))
         return None
     #### Get elements & soup
     elements, soup = result

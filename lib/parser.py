@@ -51,7 +51,7 @@ class Parser:
             if force_postback:
                 return postback
             else:
-                raise PostbackError(url)
+                raise PostbackError(postback.status_code)
 
 # Debugging only
 if __name__ == '__main__':
