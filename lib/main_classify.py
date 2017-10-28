@@ -10,9 +10,18 @@ def main_classify(postback_list, transformer, classifier):
     Output: zipped url_index, label, and title (i, label, title)
     '''
     # Extract title from result list
-    index_list = [x[0] for x in postback_list]
-    url_list = [x[1] for x in postback_list]
-    title_list = [x[2] for x in postback_list]
+    index_list = []
+    url_list = []
+    title_list = []
+    desc_list = []
+    for x in postback_list:
+        index_list.append(x[0])
+        url_list.append(x[1])
+        if x[3]:
+            title_list.append(x[2] + ' ' + x[3])
+        else:
+            title_list.append(x[2])
+
     # Transform result to aggregated features for prediction
     features = np.array(list(map(transformer.get_feature, title_list)))
     # Make classifications

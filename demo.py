@@ -78,20 +78,16 @@ if __name__ == '__main__':
             save_file=cfg['URL_SAVE_FILE'],
             download_url=download_url,
             test=False)
-
+    else:
+        with open('URL_lists/r8.txt', 'r') as f:
+            url_list = f.read().split('\n')[20:30]
     download_mark = timer('Downloading', start)
 
     #### Parse
     # Postback list (sorted by index) ==> [index, url, title, desc, h1, h2]
     # Error list (sorted by error type & index) ==> [i, url, err_code, err]
-    if prod: # Only runs in production mode
-        start, parse_end, postback_list, error_list = main_parse(
+    start, parse_end, postback_list, error_list = main_parse(
             main_parser, url_list, cfg)
-
-    else: # Load saved lists in testing mode
-        postback_list, error_list = testing_load(
-            'postback_dump/test.json',
-            'error_log/test.log')
 
     parse_mark = timer('Parsing', download_mark)
 
@@ -109,7 +105,7 @@ if __name__ == '__main__':
         sp_list = []
         for (i, url, title, label) in clsy_list:
             if label == -99:
-                sp_list.append([i, url, 'Unclear Title'])
+                sp_list.append([i, url, 'Unclear Title', 'Unclear Title'])
         error_list = sp_list + error_list
 
     if error_list: # Only runs if error item(s) exist(s)
@@ -149,6 +145,18 @@ if __name__ == '__main__':
 
     r, value = sub.post(result_dict)
     print('Submission result:\n{}'.format(value))
+    if value == 'value':
+        try:
+            print('Error item:')
+            for k, v in result_dict.items():
+                if v not in [0, 50, 100]:
+                    print([str(t[2]) + str(t[3]) for t in clsy_list if str(t[0]) == k[3:]])
+                    result_dict[k] = input('RATE ==> ')
+            r, value = sub.post(result_dict)
+            print('Re-Submission result:\n{}'.format(value))
+        except Exception:
+            print('Value error')
+            pass
 
     timer('Submission', label_mark, output=False)
 

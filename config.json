@@ -15,9 +15,9 @@
     },
 
     "URL_SAVE_FOLDER": "URL_lists",
-    "URL_SAVE_FILE": "r4.txt",
-    "PARSER_SAVE_FOLDER": "parsed_pages/r4",
-    "POSTBACK_DUMP": "postback_dump/r4.json",
-    "ERROR_LOG": "error_log/r4.log",
-    "RESULT_DUMP": "result_dump/r4.csv"
+    "URL_SAVE_FILE": "r9.txt",
+    "PARSER_SAVE_FOLDER": "parsed_pages/r9",
+    "POSTBACK_DUMP": "postback_dump/r9.json",
+    "ERROR_LOG": "error_log/r9.log",
+    "RESULT_DUMP": "result_dump/r9.csv"
 }

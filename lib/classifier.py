@@ -8,7 +8,7 @@ class Classifier:
         with open(model_pickle, 'rb') as f:
             self.model = pickle.load(f)
 
-    def predict(self, X, diff_rate=0.3):
+    def predict(self, X, diff_rate=0.35):
         '''
         Input: Feature np array (n_obs, n_feature)
         Output: A list of predictions

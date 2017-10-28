@@ -65,7 +65,8 @@ def main_parse(parser, url_list, cfg):
         error_0 = [i for i in error_raw if i[2] == 'PostbackError']
         error_1 = [i for i in error_raw if i[2] == 'RequestError']
         error_list = sorted(error_0 + error_1, key=lambda x: x[0])
-
+    else:
+        error_list = []
     # Timing point 3
     parse_end = time.time()
     print('Parse finish. Time spent: {:.2f}'.format(parse_end - url_end))

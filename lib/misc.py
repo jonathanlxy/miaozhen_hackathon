@@ -6,6 +6,9 @@ def result_dump(result_list, file):
     '''
     Dump the list into a file, separated by \n
     '''
+    for i in result_list:
+        if i[0] > 99:
+            return None
     with open(file, 'w') as f:
         json.dump(result_list, f)
 
@@ -25,10 +28,3 @@ def manual_rate(stdout_info, allow_sp=False):
             return score_dict[m_rate]
         else:
             print('!!! Invalid score !!!')
-
-def check_status(download_url):
-    postback = requests.get(download_url)
-    if postback.ok:
-        print(postback.content)
-    else:
-        raise PostbackError
