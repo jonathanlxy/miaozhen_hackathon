@@ -4,12 +4,13 @@ from jieba import cut_for_search, add_word
 from zhconv import convert
 
 class Transformer:
-    def __init__(self, corpus_rate2, corpus_rate3):
+    def __init__(self, corpus_rate2, corpus_rate3,
+        corpus_add2=[], corpus_add3=[]):
         '''
         corpus_rateX are lists that contains corresponding tokens
         '''
-        self.corpus2 = corpus_rate2
-        self.corpus3 = corpus_rate3
+        self.corpus2 = corpus_rate2 + corpus_add2
+        self.corpus3 = corpus_rate3 + corpus_add3
         for token in corpus_rate2 + corpus_rate3:
             add_word(token)
 

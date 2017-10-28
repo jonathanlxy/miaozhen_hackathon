@@ -53,15 +53,16 @@ if __name__ == '__main__':
     else:
         team_token = 'iOkjn2dsAl7js4iD'
     # Corpus
-    corpus_df = pd.read_csv('Classifier/corpus_1027.csv').reset_index(
-        drop = True)
-    corpus_2_list = corpus_df[corpus_df['rate'] == 2]['token'].tolist()
-    corpus_3_list = corpus_df[corpus_df['rate'] == 3]['token'].tolist()
+    corpus_2_list = json.load(open('Classifier/corpus2.json', 'r'))
+    corpus_3_list = json.load(open('Classifier/corpus3.json', 'r'))
+    corpus_add_2 = json.load(open('Classifier/corpus_add2.json', 'r'))
+    corpus_add_3 = json.load(open('Classifier/corpus_add3.json', 'r'))
     # Expose the service APIs here for debugging purpose
     downloader = URL_downloader(save_folder=cfg['URL_SAVE_FOLDER'])
     main_parser = Parser(cfg['REQUEST_CONFIG'])
-    trans = Transformer(corpus_2_list, corpus_3_list)
-    clasr = Classifier('Classifier/lr_model')
+    trans = Transformer(corpus_2_list, corpus_3_list,
+        corpus_add_2, corpus_add_3)
+    clasr = Classifier('Classifier/lr_model_1027')
     sel_rater = Selenium_helper(cfg['SEL_CONFIG'])
     sub = Submitter(token=team_token, target_url = cfg['SUBMISSION_URL'])
 
