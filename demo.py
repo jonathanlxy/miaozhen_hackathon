@@ -53,7 +53,8 @@ if __name__ == '__main__':
     else:
         team_token = 'iOkjn2dsAl7js4iD'
     # Corpus
-    corpus_df = pd.read_csv('corpus.csv').reset_index(drop = True)
+    corpus_df = pd.read_csv('Classifier/corpus_1027.csv').reset_index(
+        drop = True)
     corpus_2_list = corpus_df[corpus_df['rate'] == 2]['token'].tolist()
     corpus_3_list = corpus_df[corpus_df['rate'] == 3]['token'].tolist()
     # Expose the service APIs here for debugging purpose

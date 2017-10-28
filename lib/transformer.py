@@ -80,7 +80,8 @@ class Transformer:
 
 if __name__ == '__main__':
     import pandas as pd
-    corpus_df = pd.read_csv('corpus.csv').reset_index(drop = True)
+    corpus_df = pd.read_csv('Classifier/corpus_1027.csv').reset_index(
+        drop = True)
     corpus_2_list = corpus_df[corpus_df['rate'] == 2]['token'].tolist()
     corpus_3_list = corpus_df[corpus_df['rate'] == 3]['token'].tolist()
     a = Transformer(corpus_2_list, corpus_3_list)
@@ -88,6 +89,10 @@ if __name__ == '__main__':
     t2 = '小女孩'
     s1 = '把衣服全脱了'
     s2 = '把衣服全脱光'
-    for s in [t1, t2, s1, s2]:
+    w1 = '舆情分析：兰陵一副校长致初中女生"怀孕"'
+    w2 = '写代码容易吗，放松一下吧，苍老师的高清片子'
+    w3 = '《同意》“把衣服全脱了，不要问我任何问题”'
+    for s in [t1, t2, s1, s2, w1, w2, w3]:
         print('String: {}'.format(s))
+        print('Token: {}'.format(a.tokenize(s)))
         print('Feature: {}'.format(a.get_feature(s)))

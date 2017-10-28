@@ -73,15 +73,17 @@ def main_parse(parser, url_list, cfg):
     print('#'*20)
 
     #### Dump result
-    if n_error:
-        result_dump(error_list, cfg['ERROR_LOG'])
-    else:
-        print('No error occurred')
-    if n_result:
-        result_dump(postback_list, cfg['RESULT_DUMP'])
-    else:
-        print('!!!!! No result !!!!!')
-
+    try:
+        if n_error:
+            result_dump(error_list, cfg['ERROR_LOG'])
+        else:
+            print('No error occurred')
+        if n_result:
+            result_dump(postback_list, cfg['RESULT_DUMP'])
+        else:
+            print('!!!!! No result !!!!!')
+    except:
+        pass
     end = time.time()
 
     return start, end, postback_list, error_list

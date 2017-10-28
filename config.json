@@ -15,9 +15,9 @@
     },
 
     "URL_SAVE_FOLDER": "URL_lists",
-    "URL_SAVE_FILE": "test_list.txt",
-    "PARSER_SAVE_FOLDER": "parsed_pages/test",
-    "POSTBACK_DUMP": "postback_dump/test.json",
-    "ERROR_LOG": "error_log/test.log",
-    "RESULT_DUMP": "result_dump/test.csv"
+    "URL_SAVE_FILE": "t1.txt",
+    "PARSER_SAVE_FOLDER": "parsed_pages/t1",
+    "POSTBACK_DUMP": "postback_dump/t1.json",
+    "ERROR_LOG": "error_log/t1.log",
+    "RESULT_DUMP": "result_dump/t1.csv"
 }
