@@ -16,7 +16,7 @@ Team NOOBS Solution - 秒针&数问 品牌安全黑客马拉松
 
 **用途：访问数问官方接口并返回 URL 列表**
 
-  [lib/downloader.py](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/lib/downloader.py)
+  [lib/downloader.py](lib/downloader.py)
 
 *调用模块: requests*
 
@@ -25,8 +25,9 @@ Team NOOBS Solution - 秒针&数问 品牌安全黑客马拉松
 
 **用途：通过多进程进行页面爬取，并将结果以 list 形式返回 URL 列表**
 
-  [lib/parser.py](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/lib/parser.py)
-  [lib/main_parse.py](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/lib/main_parse.py)
+  [lib/parser.py](lib/parser.py)
+  
+  [lib/main_parse.py](lib/main_parse.py)
 
 *调用模块: requests, BeautifulSoup, multiprocessing*
 
@@ -34,7 +35,7 @@ Team NOOBS Solution - 秒针&数问 品牌安全黑客马拉松
 **3. 特征工程 (Feature Engineering)**
 
 **用途：将提取后的结果转换为 token2, token3, synonym2, synonym3 的 feature 以传入模型**
-  [lib/transformer.py](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/lib/transformer.py)
+  [lib/transformer.py](lib/transformer.py)
 
 *调用模块:* 
 
@@ -46,7 +47,7 @@ Team NOOBS Solution - 秒针&数问 品牌安全黑客马拉松
 
 **用途：对每一个 URL 的 feature 进行判断分类并输出分类结果(0/1/-99)。-99代表不确定**
 
-  [lib/classifier.py](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/lib/classifier.py)
+  [lib/classifier.py](lib/classifier.py)
 
 *调用模块: sklearn, numpy, math* 
 
@@ -54,8 +55,9 @@ Team NOOBS Solution - 秒针&数问 品牌安全黑客马拉松
 
 **用途：通过人工阅读 title 进行分类，如果仍然不能确定，则通过 Selenium 在浏览器中打开页面进行进一步判断**
 
-  [lib/misc.py/manual_rate](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/lib/misc.py)
-  [lib/selenium_helper](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/lib/selenium_helper.py)
+  [lib/misc.py/manual_rate](lib/misc.py)
+  
+  [lib/selenium_helper](lib/selenium_helper.py)
 
 *调用模块: selenium* 
 
@@ -63,7 +65,7 @@ Team NOOBS Solution - 秒针&数问 品牌安全黑客马拉松
 
 **用途：将最终结果转化为规定格式并通过POST进行提交**
 
-  [lib/submitter](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/lib/submitter.py)
+  [lib/submitter](lib/submitter.py)
 
 *调用模块: requests*
 
@@ -79,21 +81,22 @@ Team NOOBS Solution - 秒针&数问 品牌安全黑客马拉松
 
 3. 运行`demo.py` (注：截图中`-i`是非必要的参数，作用是使脚本运行完成后不退出Python环境）
 
-![Call Script](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/snapshots/call.png)
+![Call](snapshots/call.png)
 
 我们的脚本有两个模式，`p`模式 (production) 用于正式比赛提交窗口期间，会调用 downloader 模块下载 URL 列表并且爬取页面； `t`模式 (testing) 用于调试期间，此模式下脚本会读取本地自定义 URL 列表进行爬取。可以在启动脚本时将'p'或者't'通过命令行传入，也可以等脚本初始化完成后按照提示选择。
 
-![Start](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/snapshots/start.png)
-![Parsing](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/snapshots/parsing.png)
+![Start](snapshots/start.png)
+
+![Parsing](snapshots/parsing.png)
 
 爬取结束之后脚本会自动尝试使用模型进行分类。此外，当模型预测结果过于模糊(详见 Classifier.predict() 的`diff_rate`参数)时，脚本将会调用手动打分工具，输出页面标题以进行人工辅助打分。
 
-![Manual Rate]((https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/snapshots/manual_rate.png)
+![Manual Rate](snapshots/manual_rate.png)
 
 如果通过标题仍无法进行分类，或爬取步骤失败导致无法获取标题时，则通过 Selenium 在浏览器内打开 URL 尝试进一步人工识别
 
-![Selenium](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/snapshots/manual_rate2.png)
+![Selenium](snapshots/manual_rate2.png)
 
 在全部打分结束后，脚本将进行自动提交并返回结果与用时
 
-![Submission](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/snapshots/submit.png)
+![Submission](snapshots/submit.png)
