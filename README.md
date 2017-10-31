@@ -12,7 +12,7 @@ Team NOOBS Solution - 秒针&数问 品牌安全黑客马拉松
 
     - lib/downloader.py
 
-**2. 多进程页面爬取以及页面元素提取 (Webpage parsing & Feature extraction) **
+**2. 多进程页面爬取以及页面元素提取 (Webpage parsing & Feature extraction)**
 
     - lib/parser.py
     - lib/main_parse.py
