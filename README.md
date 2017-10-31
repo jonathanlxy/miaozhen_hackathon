@@ -6,6 +6,7 @@ Team NOOBS Solution - 秒针&数问 品牌安全黑客马拉松
 ======
 这个 Repository 包含我们在比赛当天所使用的全部代码以及语料库。由于节省空间的考虑，parsed_pages/ 文件夹被包含在了 .gitignore 文件中，因此测试之前请自行建立该文件夹
 
+我们在本次比赛中所有代码均编写于 Python 3.6 环境下
 
 方案架构
 ======
@@ -76,8 +77,23 @@ Team NOOBS Solution - 秒针&数问 品牌安全黑客马拉松
 
 在爬取页面的过程中, parser 模块会自动保存所访问过的页面，请根据 config.json 内的设定自行创建 parsed_pages/ 及其子文件夹
 
-2. 运行`demo.py`
+3. 运行`demo.py` (注：截图中`-i`是非必要的参数，作用是使脚本运行完成后不退出Python环境）
+
+![Call Script](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/snapshots/call.png)
 
 我们的脚本有两个模式，`p`模式 (production) 用于正式比赛提交窗口期间，会调用 downloader 模块下载 URL 列表并且爬取页面； `t`模式 (testing) 用于调试期间，此模式下脚本会读取本地自定义 URL 列表进行爬取。可以在启动脚本时将'p'或者't'通过命令行传入，也可以等脚本初始化完成后按照提示选择。
 
-爬取结束之后脚本会自动尝试使用模型进行分类。此外，当模型预测结果过于模糊(详见 Classifier.predict() 的`diff_rate`参数)时，脚本将会调用手动打分工具，输出页面标题以进行人工辅助打分。如果通过标题仍无法进行分类，或爬取步骤失败导致无法获取标题时，则通过 Selenium 在浏览器内打开 URL 尝试进一步人工识别
+![Start](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/snapshots/start.png)
+![Parsing](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/snapshots/parsing.png)
+
+爬取结束之后脚本会自动尝试使用模型进行分类。此外，当模型预测结果过于模糊(详见 Classifier.predict() 的`diff_rate`参数)时，脚本将会调用手动打分工具，输出页面标题以进行人工辅助打分。
+
+![Manual Rate]((https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/snapshots/manual_rate.png)
+
+如果通过标题仍无法进行分类，或爬取步骤失败导致无法获取标题时，则通过 Selenium 在浏览器内打开 URL 尝试进一步人工识别
+
+![Selenium](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/snapshots/manual_rate2.png)
+
+在全部打分结束后，脚本将进行自动提交并返回结果与用时
+
+![Submission](https://github.com/jonathanlxy/miaozhen_hackathon/blob/master/snapshots/submit.png)
