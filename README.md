@@ -100,3 +100,12 @@ Team NOOBS Solution - 秒针&数问 品牌安全黑客马拉松
 在全部打分结束后，脚本将进行自动提交并返回结果与用时
 
 ![Submission](snapshots/submit.png)
+
+Credit
+======
+在编写多进程爬取页面模块的过程中，[廖雪峰老师的Python教程](https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014319292979766bd3285c9d6b4942a8ea9b4e9cfb48d8000)的相关章节对我助益良多。在此向有兴趣学习进阶 Python 编程的朋友推荐他的教程
+
+以下三个开源工具在我们进行中文处理的过程中同样不可或缺
+* synonyms (最好的中文近义词工具包 https://github.com/huyingxi/Synonyms)
+* jieba (“结巴”中文分词 https://github.com/fxsjy/jieba)
+* zhconv (中文简繁转换 https://github.com/siuying/zhconv)
